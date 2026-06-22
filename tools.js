@@ -1,31 +1,16 @@
-/* =========================================================================
-   Smart Tools — Developer Tools File  (More Tools Upcoming)
-   -------------------------------------------------------------------------
-   👉 শুধু এই ফাইলটা এডিট করেই নতুন টুল যোগ করুন। মূল অ্যাপ (index.html) এ
-      হাত দিতে হবে না — তাই ভুল হলেও ওয়েবসাইট ক্র্যাশ করবে না।
-
-   কীভাবে নতুন টুল যোগ করবেন:
-   - নিচের নির্দিষ্ট ক্যাটাগরির [ ] এর ভেতরে একটি নতুন লাইন যোগ করুন:
-       { n:"টুলের নাম", l:"https://লিংক", d:"ছোট বর্ণনা", c:"#ff5500" },
-     n = নাম, l = লিংক, d = বর্ণনা, c = রঙ (ঐচ্ছিক)
-   - প্রতিটি লাইনের শেষে কমা ( , ) দিতে ভুলবেন না।
-   - নতুন ক্যাটাগরি বানাতে: "category-key": [ ... ],
-
-   ⚠️ টিপস: কমা/উদ্ধৃতি ঠিক আছে কিনা খেয়াল করুন। ভুল হলে শুধু এই অংশের টুল
-            লোড হবে না, বাকি অ্যাপ আগের মতোই চলবে।
-   ========================================================================= */
-
+/* Smart Tools — Developer maintained list (SAFE FILE)
+   এখানে নতুন টুল যোগ করুন। ফরম্যাট: ["Name","Description","https://url"]
+   মূল অ্যাপ (index.html) এ হাত দেওয়ার দরকার নেই — এটি ক্র্যাশ-ফ্রি।
+   এগুলো 📦 Upcoming সাব-ট্যাবে দেখা যাবে। */
 window.DEV_TOOLS = {
-
   "ai-chat": [
-    // উদাহরণ — ভবিষ্যতে এখানে নতুন AI চ্যাট টুল যোগ করুন
-    { n:"Lepton Search", l:"https://search.lepton.run", d:"Open-source AI search chat", c:"#22c55e" },
-    { n:"Hika AI", l:"https://hika.fyi", d:"AI knowledge search chat", c:"#8b5cf6" }
+    ["Blackbox AI","কোডিং-কেন্দ্রিক AI চ্যাট","https://www.blackbox.ai"],
+    ["Chatsonic","রিয়েল-টাইম তথ্যসহ AI চ্যাট","https://writesonic.com/chat"],
+    ["YouChat","You.com-এর AI চ্যাট","https://you.com"],
+    ["Forefront AI","একাধিক মডেল AI চ্যাট","https://chat.forefront.ai"],
+    ["Ora.ai","কাস্টম AI চ্যাটবট","https://ora.ai"],
+    ["ChatLLM Abacus","মাল্টি-মডেল AI সুপার অ্যাসিস্ট্যান্ট","https://apps.abacus.ai/chatllm"],
+    ["Lepton Chat","দ্রুত ওপেন মডেল চ্যাট","https://chat.lepton.run"],
+    ["DuckDuckGo AI Chat","বেনামী AI চ্যাট","https://duck.ai"]
   ]
-
-  // নতুন ক্যাটাগরি উদাহরণ (চালু করতে // সরিয়ে দিন):
-  // ,"image-tools": [
-  //   { n:"Midjourney", l:"https://www.midjourney.com", d:"AI image generator", c:"#5865f2" }
-  // ]
-
 };

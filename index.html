@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Tools — আপনার টুল হাব</title>
+<title>Smart Tools — Everything tools in your hand</title>
 <style>
 :root{
   --bg:#f4f6fb; --panel:#ffffff; --text:#1f2540; --muted:#6b7390;
   --brand1:#6366f1; --brand2:#ec4899; --brand3:#06b6d4;
-  --card:#ffffff; --border:#e6e9f5; --shadow:0 8px 30px rgba(60,70,160,.10);
+  --card:#ffffff; --border:#e6e9f5; --shadow:0 8px 30px rgba(60,70,160,.12);
   --side:#ffffff;
 }
 [data-theme="dark"]{
@@ -16,14 +16,14 @@
   --card:#1b2233; --border:#2a3350; --shadow:0 8px 30px rgba(0,0,0,.45);
   --side:#141a26;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,system-ui,'Noto Sans Bengali',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,system-ui,'Noto Sans Bengali','Noto Sans Arabic',sans-serif}
 body{background:var(--bg);color:var(--text);transition:.3s}
 .app{display:flex;min-height:100vh}
 
 /* Sidebar */
 .sidebar{width:260px;background:var(--side);border-right:1px solid var(--border);
-  padding:20px 14px;display:flex;flex-direction:column;gap:8px;position:fixed;height:100vh;overflow-y:auto;transition:.3s;z-index:50}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;margin-bottom:18px;padding:0 6px}
+  padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:fixed;height:100vh;overflow-y:auto;transition:.3s;z-index:50}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;margin-bottom:14px;padding:0 6px;cursor:pointer}
 .logo .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand1),var(--brand2));display:grid;place-items:center;color:#fff;font-size:18px}
 .gradtext{background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .cat-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:12px 8px 4px}
@@ -33,7 +33,7 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .cat .ic{font-size:18px}
 
 /* Main */
-.main{margin-left:260px;flex:1;padding:24px 30px;transition:.3s;width:100%}
+.main{margin-left:260px;flex:1;padding:24px 30px 80px;transition:.3s;width:100%}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;flex-wrap:wrap}
 .menu-btn{display:none;background:var(--panel);border:1px solid var(--border);border-radius:10px;
   width:44px;height:44px;font-size:20px;cursor:pointer;color:var(--text)}
@@ -69,6 +69,28 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .loadwrap{display:flex;justify-content:center;margin:30px 0}
 .empty{text-align:center;color:var(--muted);padding:60px 0}
 
+/* HOME / HERO */
+.home{display:none;animation:fade .5s}
+.home.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+.hero{position:relative;border-radius:26px;padding:60px 30px;text-align:center;overflow:hidden;
+  background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899,#06b6d4);background-size:300% 300%;animation:grad 12s ease infinite;color:#fff;box-shadow:var(--shadow)}
+@keyframes grad{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.hero h1{font-size:clamp(42px,9vw,84px);font-weight:900;letter-spacing:-2px;text-shadow:0 6px 24px rgba(0,0,0,.25);line-height:1}
+.hero .slogan{display:inline-block;margin-top:6px;font-size:clamp(13px,3vw,18px);font-weight:600;
+  transform:rotate(-6deg) translateX(38%);transform-origin:right;opacity:.95;background:rgba(255,255,255,.18);padding:6px 16px;border-radius:30px;backdrop-filter:blur(4px)}
+.hero .tag{display:block;margin-top:34px;font-size:15px;opacity:.9}
+.bubbles span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.about{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.about-card{border-radius:18px;padding:22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.about-card h3{font-size:18px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.about-card p{font-size:14px;line-height:1.7;opacity:.96}
+.ac1{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.ac2{background:linear-gradient(135deg,#ec4899,#f43f5e)}
+.ac3{background:linear-gradient(135deg,#06b6d4,#3b82f6)}
+.ac4{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.home-hint{margin:24px 0 6px;text-align:center;color:var(--muted);font-size:15px}
+
 /* Modal */
 .overlay{position:fixed;inset:0;background:rgba(10,12,25,.55);backdrop-filter:blur(4px);display:none;
   place-items:center;z-index:100;padding:20px}
@@ -81,8 +103,8 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .field input,.field select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;outline:none}
 .modal-actions{display:flex;gap:10px;margin-top:8px}
 .modal-actions .btn{flex:1}
-.toggle{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px}
-.switch{position:relative;width:52px;height:28px}
+.toggle{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px;gap:10px}
+.switch{position:relative;width:52px;height:28px;flex:none}
 .switch input{display:none}
 .slider{position:absolute;inset:0;background:var(--border);border-radius:30px;cursor:pointer;transition:.3s}
 .slider::before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
@@ -90,6 +112,13 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .switch input:checked+.slider::before{transform:translateX(24px)}
 .spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:s 1s linear infinite;vertical-align:middle;margin-right:8px}
 @keyframes s{to{transform:rotate(360deg)}}
+
+/* Scroll jump */
+.jump{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;flex-direction:column;gap:8px}
+.jump button{width:48px;height:48px;border:none;border-radius:14px;cursor:pointer;color:#fff;font-size:20px;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow);transition:.2s}
+.jump button:hover{transform:scale(1.1)}
+
 .backdrop{display:none}
 @media(max-width:860px){
   .sidebar{transform:translateX(-100%)}
@@ -102,52 +131,74 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 </head>
 <body>
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
-    <div class="logo"><span class="dot">⚡</span><span class="gradtext">Smart Tools</span></div>
-    <div class="cat-title">ক্যাটাগরি</div>
+    <div class="logo" onclick="goHome()"><span class="dot">⚡</span><span class="gradtext">Smart Tools</span></div>
+    <div class="cat-title" id="catLabel">CATEGORIES</div>
     <div id="catList"></div>
-    <button class="btn ghost" style="margin-top:14px" onclick="openCatModal()">+ নতুন ক্যাটাগরি</button>
+    <button class="btn ghost" style="margin-top:14px" id="newCatBtn" onclick="openCatModal()">+ New Category</button>
   </aside>
   <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
 
-  <!-- Main -->
   <main class="main">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
         <div class="heading">
-          <h1 id="catHeading" class="gradtext">AI Chat Tools</h1>
-          <p id="catSub">আপনার সব এআই চ্যাট টুল এক জায়গায়</p>
+          <h1 id="catHeading" class="gradtext">Smart Tools</h1>
+          <p id="catSub"></p>
         </div>
       </div>
       <div class="actions">
-        <button class="btn" onclick="openToolModal()">+ টুল যোগ করুন</button>
-        <button class="btn icon ghost" title="সেটিংস" onclick="openSettings()">⚙️</button>
+        <button class="btn" id="addToolBtn" onclick="openToolModal()" style="display:none">+ Add Tool</button>
+        <button class="btn icon ghost" title="Settings" onclick="openSettings()">⚙️</button>
       </div>
     </div>
 
-    <div class="search">
-      <span class="si">🔍</span>
-      <input id="searchBox" placeholder="টুল খুঁজুন..." oninput="render()">
-    </div>
+    <!-- HOME -->
+    <section class="home" id="homeView">
+      <div class="hero">
+        <div class="bubbles">
+          <span style="width:120px;height:120px;top:-30px;left:-20px"></span>
+          <span style="width:80px;height:80px;bottom:-20px;right:40px"></span>
+          <span style="width:50px;height:50px;top:30px;right:90px"></span>
+        </div>
+        <h1>Smart Tools</h1>
+        <span class="slogan">Everything tools in your hand</span>
+        <span class="tag" id="heroTag">বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈</span>
+      </div>
+      <div class="about" id="aboutBox"></div>
+      <p class="home-hint" id="homeHint">⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন</p>
+    </section>
 
-    <div class="grid" id="grid"></div>
-    <div class="loadwrap"><button class="btn" id="loadBtn" onclick="loadMore()">⬇️ Load More টুলস</button></div>
+    <!-- TOOLS -->
+    <section id="toolsView" style="display:none">
+      <div class="search">
+        <span class="si">🔍</span>
+        <input id="searchBox" placeholder="Search tools..." oninput="render()">
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="loadwrap"><button class="btn" id="loadBtn" onclick="loadMore()">⬇️ Load More</button></div>
+    </section>
   </main>
+</div>
+
+<!-- Jump buttons -->
+<div class="jump">
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">⬆️</button>
+  <button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="Bottom">⬇️</button>
 </div>
 
 <!-- Add Tool Modal -->
 <div class="overlay" id="toolModal">
   <div class="modal">
-    <h2>টুল যোগ করুন</h2>
-    <p class="sub" id="toolModalSub">আপনার পছন্দের টুল এই ক্যাটাগরিতে যোগ করুন</p>
-    <div class="field"><label>Tools name</label><input id="tName" placeholder="example"></div>
-    <div class="field"><label>Link</label><input id="tLink" placeholder="https://tools-link-here.com"></div>
-    <div class="field"><label>সংক্ষিপ্ত বর্ণনা (ঐচ্ছিক)</label><input id="tDesc" placeholder="এই টুলটি কী করে"></div>
+    <h2 id="m_addTool">Add Tool</h2>
+    <p class="sub" id="toolModalSub"></p>
+    <div class="field"><label id="l_name">Tools name</label><input id="tName" placeholder="example"></div>
+    <div class="field"><label id="l_link">Link</label><input id="tLink" placeholder="https://tools-link-here.com"></div>
+    <div class="field"><label id="l_desc">Description (optional)</label><input id="tDesc" placeholder="What this tool does"></div>
     <div class="modal-actions">
-      <button class="btn ghost" onclick="closeModal('toolModal')">বাতিল</button>
-      <button class="btn" onclick="saveTool()">💾 Save Tool</button>
+      <button class="btn ghost" id="b_cancel1" onclick="closeModal('toolModal')">Cancel</button>
+      <button class="btn" id="b_save" onclick="saveTool()">💾 Save Tool</button>
     </div>
   </div>
 </div>
@@ -155,13 +206,13 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 <!-- Category Modal -->
 <div class="overlay" id="catModal">
   <div class="modal">
-    <h2>নতুন ক্যাটাগরি</h2>
-    <p class="sub">নতুন টুল ক্যাটাগরি তৈরি করুন</p>
-    <div class="field"><label>ক্যাটাগরির নাম</label><input id="cName" placeholder="যেমন: Image Generator"></div>
-    <div class="field"><label>আইকন (ইমোজি)</label><input id="cIcon" placeholder="🎨" maxlength="2"></div>
+    <h2 id="m_newCat">New Category</h2>
+    <p class="sub" id="m_newCatSub">Create a new tool category</p>
+    <div class="field"><label id="l_catname">Category name</label><input id="cName" placeholder="e.g. Image Generator"></div>
+    <div class="field"><label id="l_caticon">Icon (emoji)</label><input id="cIcon" placeholder="🎨" maxlength="2"></div>
     <div class="modal-actions">
-      <button class="btn ghost" onclick="closeModal('catModal')">বাতিল</button>
-      <button class="btn" onclick="saveCat()">➕ যোগ করুন</button>
+      <button class="btn ghost" id="b_cancel2" onclick="closeModal('catModal')">Cancel</button>
+      <button class="btn" id="b_addcat" onclick="saveCat()">➕ Add</button>
     </div>
   </div>
 </div>
@@ -169,163 +220,253 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 <!-- Settings Modal -->
 <div class="overlay" id="settingsModal">
   <div class="modal">
-    <h2>⚙️ সেটিংস</h2>
-    <p class="sub">আপনার অভিজ্ঞতা কাস্টমাইজ করুন</p>
+    <h2 id="m_settings">⚙️ Settings</h2>
+    <p class="sub" id="m_settingsSub">Customize your experience</p>
     <div class="toggle">
-      <div><strong>🌙 ডার্ক নাইট মোড</strong><div style="font-size:12px;color:var(--muted)">চোখের আরামের জন্য ডার্ক থিম</div></div>
+      <div><strong id="s_dark">🌙 Dark Night Mode</strong><div style="font-size:12px;color:var(--muted)" id="s_darkSub">Comfortable dark theme</div></div>
       <label class="switch"><input type="checkbox" id="darkToggle" onchange="toggleDark()"><span class="slider"></span></label>
     </div>
-    <div class="modal-actions"><button class="btn" style="flex:1" onclick="closeModal('settingsModal')">বন্ধ করুন</button></div>
+    <div class="field"><label id="s_lang">🌐 Language</label>
+      <select id="langSel" onchange="setLang(this.value)">
+        <option value="bn">বাংলা (Bengali)</option>
+        <option value="en">English</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ur">اردو (Urdu)</option>
+      </select>
+    </div>
+    <div class="modal-actions"><button class="btn" style="flex:1" id="s_close" onclick="closeModal('settingsModal')">Close</button></div>
   </div>
 </div>
 
 <script>
-/* ---------- Seed data: AI Chat tools (worldwide) ---------- */
-var SEED = {
-  "ai-chat": {
-    name:"AI Chat Tools", icon:"💬", sub:"আপনার সব এআই চ্যাট টুল এক জায়গায়",
-    batches:[
-      [
-        {n:"ChatGPT",l:"https://chat.openai.com",d:"OpenAI-এর জনপ্রিয় এআই চ্যাটবট",c:"#10a37f"},
-        {n:"Claude",l:"https://claude.ai",d:"Anthropic-এর নিরাপদ ও স্মার্ট এআই",c:"#d97757"},
-        {n:"Gemini",l:"https://gemini.google.com",d:"Google-এর মাল্টিমোডাল এআই",c:"#4285f4"},
-        {n:"Perplexity",l:"https://www.perplexity.ai",d:"উত্তর সহ এআই সার্চ ইঞ্জিন",c:"#20808d"},
-        {n:"Mistral / Le Chat",l:"https://chat.mistral.ai",d:"Mistral-এর ওপেন এআই চ্যাট",c:"#fa5310"},
-        {n:"Qwen Chat",l:"https://chat.qwen.ai",d:"Alibaba-এর Qwen এআই চ্যাট",c:"#615ced"},
-        {n:"Microsoft Copilot",l:"https://copilot.microsoft.com",d:"Microsoft-এর এআই সহকারী",c:"#0078d4"},
-        {n:"DeepSeek",l:"https://chat.deepseek.com",d:"শক্তিশালী রিজনিং এআই চ্যাট",c:"#4d6bfe"}
-      ],
-      [
-        {n:"Grok",l:"https://grok.com",d:"xAI-এর এআই চ্যাটবট",c:"#000000"},
-        {n:"Meta AI",l:"https://www.meta.ai",d:"Meta-এর Llama ভিত্তিক এআই",c:"#0064e0"},
-        {n:"Poe",l:"https://poe.com",d:"একাধিক এআই মডেল এক অ্যাপে",c:"#5d3fd3"},
-        {n:"HuggingChat",l:"https://huggingface.co/chat",d:"Hugging Face-এর ওপেন চ্যাট",c:"#ff9d00"},
-        {n:"Pi",l:"https://pi.ai",d:"Inflection-এর ব্যক্তিগত এআই",c:"#a06bf5"},
-        {n:"Character.AI",l:"https://character.ai",d:"চরিত্রভিত্তিক এআই চ্যাট",c:"#3b5bfe"},
-        {n:"You.com",l:"https://you.com",d:"এআই সার্চ ও চ্যাট",c:"#7c3aed"},
-        {n:"Kimi (Moonshot)",l:"https://kimi.moonshot.cn",d:"লং-কনটেক্সট এআই চ্যাট",c:"#16a3ff"}
-      ],
-      [
-        {n:"Ernie Bot",l:"https://yiyan.baidu.com",d:"Baidu-এর এআই চ্যাট",c:"#2932e1"},
-        {n:"Doubao",l:"https://www.doubao.com",d:"ByteDance-এর এআই চ্যাট",c:"#0a84ff"},
-        {n:"Clova X",l:"https://clova-x.naver.com",d:"Naver-এর কোরিয়ান এআই",c:"#03c75a"},
-        {n:"Jasper Chat",l:"https://www.jasper.ai",d:"মার্কেটিং কেন্দ্রিক এআই চ্যাট",c:"#ff7a59"},
-        {n:"Phind",l:"https://www.phind.com",d:"ডেভেলপারদের জন্য এআই চ্যাট",c:"#2563eb"},
-        {n:"Komo AI",l:"https://komo.ai",d:"দ্রুত এআই সার্চ চ্যাট",c:"#ff5a5f"},
-        {n:"Andi Search",l:"https://andisearch.com",d:"কথোপকথনমূলক এআই সার্চ",c:"#00b3a4"},
-        {n:"GroqChat",l:"https://groq.com",d:"অতি দ্রুত এআই ইনফারেন্স চ্যাট",c:"#f55036"}
-      ]
-    ]
-  }
+/* ===== i18n ===== */
+var I18N={
+ en:{cats:"CATEGORIES",newCat:"+ New Category",addTool:"+ Add Tool",settings:"Settings",search:"Search tools...",load:"⬇️ Load More",loading:"🔎 Searching the internet...",
+   heroTag:"Pick your favorite tools from the category on the left 👈",hint:"⬅️ Select a category to get started",
+   aiChatSub:"All your AI chat tools in one place",modAddTool:"Add Tool",lname:"Tools name",llink:"Link",ldesc:"Description (optional)",cancel:"Cancel",save:"💾 Save Tool",
+   modNewCat:"New Category",modNewCatSub:"Create a new tool category",lcatname:"Category name",lcaticon:"Icon (emoji)",addc:"➕ Add",
+   setTitle:"⚙️ Settings",setSub:"Customize your experience",dark:"🌙 Dark Night Mode",darkSub:"Comfortable dark theme",lang:"🌐 Language",close:"Close",
+   open:"Open ↗",toolSub:function(c){return 'Add a tool to "'+c+'"'},notFound:"No tools found. Click \"+ Add Tool\" above.",custom:"Custom tool",
+   about:[["🎯","Our Goal","Bring every useful online tool together in one organized place — so you never waste time searching across the internet again."],
+          ["💡","Purpose","Whether it's AI chat, image, video or any tool — find it instantly by category, all neatly arranged for you."],
+          ["🚀","Vision","To become the world's smartest tool hub where any tool, old or new, is just one click away."],
+          ["✨","Why Smart Tools","Colorful, fast, customizable and works on every device. Add your own tools and keep discovering new ones with Load More."]]},
+ bn:{cats:"ক্যাটাগরি",newCat:"+ নতুন ক্যাটাগরি",addTool:"+ টুল যোগ করুন",settings:"সেটিংস",search:"টুল খুঁজুন...",load:"⬇️ আরো লোড করুন",loading:"🔎 ইন্টারনেটে খুঁজছি...",
+   heroTag:"বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈",hint:"⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন",
+   aiChatSub:"আপনার সব এআই চ্যাট টুল এক জায়গায়",modAddTool:"টুল যোগ করুন",lname:"টুলের নাম",llink:"লিংক",ldesc:"বর্ণনা (ঐচ্ছিক)",cancel:"বাতিল",save:"💾 Save Tool",
+   modNewCat:"নতুন ক্যাটাগরি",modNewCatSub:"নতুন টুল ক্যাটাগরি তৈরি করুন",lcatname:"ক্যাটাগরির নাম",lcaticon:"আইকন (ইমোজি)",addc:"➕ যোগ করুন",
+   setTitle:"⚙️ সেটিংস",setSub:"আপনার অভিজ্ঞতা কাস্টমাইজ করুন",dark:"🌙 ডার্ক নাইট মোড",darkSub:"চোখের আরামের জন্য ডার্ক থিম",lang:"🌐 ভাষা",close:"বন্ধ করুন",
+   open:"খুলুন ↗",toolSub:function(c){return '"'+c+'" ক্যাটাগরিতে টুল যোগ করুন'},notFound:"কোনো টুল পাওয়া যায়নি। উপরে \"+ টুল যোগ করুন\" ক্লিক করুন।",custom:"কাস্টম টুল",
+   about:[["🎯","আমাদের লক্ষ্য","অনলাইনের সব দরকারি টুল এক সাজানো জায়গায় নিয়ে আসা — যাতে আর কখনো ইন্টারনেটে খুঁজে সময় নষ্ট করতে না হয়।"],
+          ["💡","উদ্দেশ্য","এআই চ্যাট, ইমেজ, ভিডিও বা যেকোনো টুল — ক্যাটাগরি অনুযায়ী সাজানো অবস্থায় সঙ্গে সঙ্গে খুঁজে পান।"],
+          ["🚀","ভিশন","পৃথিবীর সবচেয়ে স্মার্ট টুল হাব হয়ে ওঠা, যেখানে পুরোনো-নতুন যেকোনো টুল মাত্র এক ক্লিক দূরে।"],
+          ["✨","কেন Smart Tools","কালারফুল, দ্রুত, কাস্টমাইজযোগ্য এবং সব ডিভাইসে চলে। নিজের টুল যোগ করুন আর Load More দিয়ে নতুন টুল আবিষ্কার করুন।"]]},
+ hi:{cats:"श्रेणियाँ",newCat:"+ नई श्रेणी",addTool:"+ टूल जोड़ें",settings:"सेटिंग्स",search:"टूल खोजें...",load:"⬇️ और लोड करें",loading:"🔎 इंटरनेट पर खोज रहे हैं...",
+   heroTag:"बाईं ओर की श्रेणी से अपने पसंदीदा टूल चुनें 👈",hint:"⬅️ शुरू करने के लिए एक श्रेणी चुनें",
+   aiChatSub:"आपके सभी AI चैट टूल एक जगह",modAddTool:"टूल जोड़ें",lname:"टूल का नाम",llink:"लिंक",ldesc:"विवरण (वैकल्पिक)",cancel:"रद्द करें",save:"💾 सेव करें",
+   modNewCat:"नई श्रेणी",modNewCatSub:"नई टूल श्रेणी बनाएँ",lcatname:"श्रेणी का नाम",lcaticon:"आइकन (इमोजी)",addc:"➕ जोड़ें",
+   setTitle:"⚙️ सेटिंग्स",setSub:"अपना अनुभव अनुकूलित करें",dark:"🌙 डार्क नाइट मोड",darkSub:"आरामदायक डार्क थीम",lang:"🌐 भाषा",close:"बंद करें",
+   open:"खोलें ↗",toolSub:function(c){return '"'+c+'" में टूल जोड़ें'},notFound:"कोई टूल नहीं मिला।",custom:"कस्टम टूल",
+   about:[["🎯","हमारा लक्ष्य","हर उपयोगी ऑनलाइन टूल को एक व्यवस्थित जगह पर लाना।"],["💡","उद्देश्य","श्रेणी अनुसार किसी भी टूल को तुरंत खोजें।"],["🚀","विज़न","दुनिया का सबसे स्मार्ट टूल हब बनना।"],["✨","क्यों Smart Tools","रंगीन, तेज़ और हर डिवाइस पर काम करता है।"]]},
+ ar:{cats:"الفئات",newCat:"+ فئة جديدة",addTool:"+ إضافة أداة",settings:"الإعدادات",search:"ابحث عن الأدوات...",load:"⬇️ تحميل المزيد",loading:"🔎 جارٍ البحث...",
+   heroTag:"اختر أدواتك المفضلة من الفئة على اليسار 👈",hint:"⬅️ اختر فئة للبدء",
+   aiChatSub:"كل أدوات الدردشة الذكية في مكان واحد",modAddTool:"إضافة أداة",lname:"اسم الأداة",llink:"الرابط",ldesc:"الوصف (اختياري)",cancel:"إلغاء",save:"💾 حفظ",
+   modNewCat:"فئة جديدة",modNewCatSub:"أنشئ فئة أدوات جديدة",lcatname:"اسم الفئة",lcaticon:"أيقونة (إيموجي)",addc:"➕ إضافة",
+   setTitle:"⚙️ الإعدادات",setSub:"خصص تجربتك",dark:"🌙 الوضع الليلي",darkSub:"سمة داكنة مريحة",lang:"🌐 اللغة",close:"إغلاق",
+   open:"فتح ↗",toolSub:function(c){return 'أضف أداة إلى "'+c+'"'},notFound:"لا توجد أدوات.",custom:"أداة مخصصة",
+   about:[["🎯","هدفنا","جمع كل أداة مفيدة في مكان منظم واحد."],["💡","الغرض","ابحث عن أي أداة فورًا حسب الفئة."],["🚀","رؤيتنا","أن نصبح أذكى مركز أدوات في العالم."],["✨","لماذا Smart Tools","ملون وسريع ويعمل على كل جهاز."]]},
+ es:{cats:"CATEGORÍAS",newCat:"+ Nueva categoría",addTool:"+ Añadir herramienta",settings:"Ajustes",search:"Buscar herramientas...",load:"⬇️ Cargar más",loading:"🔎 Buscando en internet...",
+   heroTag:"Elige tus herramientas favoritas de la categoría de la izquierda 👈",hint:"⬅️ Selecciona una categoría para empezar",
+   aiChatSub:"Todas tus herramientas de chat IA en un lugar",modAddTool:"Añadir herramienta",lname:"Nombre",llink:"Enlace",ldesc:"Descripción (opcional)",cancel:"Cancelar",save:"💾 Guardar",
+   modNewCat:"Nueva categoría",modNewCatSub:"Crea una nueva categoría",lcatname:"Nombre de categoría",lcaticon:"Icono (emoji)",addc:"➕ Añadir",
+   setTitle:"⚙️ Ajustes",setSub:"Personaliza tu experiencia",dark:"🌙 Modo nocturno",darkSub:"Tema oscuro cómodo",lang:"🌐 Idioma",close:"Cerrar",
+   open:"Abrir ↗",toolSub:function(c){return 'Añadir a "'+c+'"'},notFound:"No se encontraron herramientas.",custom:"Herramienta personal",
+   about:[["🎯","Nuestro objetivo","Reunir cada herramienta útil en un solo lugar."],["💡","Propósito","Encuentra cualquier herramienta por categoría al instante."],["🚀","Visión","Ser el centro de herramientas más inteligente."],["✨","Por qué","Colorido, rápido y en todos los dispositivos."]]},
+ ur:{cats:"اقسام",newCat:"+ نئی قسم",addTool:"+ ٹول شامل کریں",settings:"ترتیبات",search:"ٹولز تلاش کریں...",load:"⬇️ مزید لوڈ کریں",loading:"🔎 تلاش جاری ہے...",
+   heroTag:"بائیں جانب کی قسم سے اپنے پسندیدہ ٹولز چنیں 👈",hint:"⬅️ شروع کرنے کے لیے ایک قسم منتخب کریں",
+   aiChatSub:"آپ کے تمام AI چیٹ ٹولز ایک جگہ",modAddTool:"ٹول شامل کریں",lname:"ٹول کا نام",llink:"لنک",ldesc:"تفصیل (اختیاری)",cancel:"منسوخ",save:"💾 محفوظ کریں",
+   modNewCat:"نئی قسم",modNewCatSub:"نئی ٹول قسم بنائیں",lcatname:"قسم کا نام",lcaticon:"آئیکن (ایموجی)",addc:"➕ شامل کریں",
+   setTitle:"⚙️ ترتیبات",setSub:"اپنا تجربہ ترتیب دیں",dark:"🌙 ڈارک نائٹ موڈ",darkSub:"آرام دہ ڈارک تھیم",lang:"🌐 زبان",close:"بند کریں",
+   open:"کھولیں ↗",toolSub:function(c){return '"'+c+'" میں ٹول شامل کریں'},notFound:"کوئی ٹول نہیں ملا۔",custom:"کسٹم ٹول",
+   about:[["🎯","ہمارا مقصد","ہر مفید ٹول کو ایک منظم جگہ پر لانا۔"],["💡","غرض","کسی بھی ٹول کو فوراً تلاش کریں۔"],["🚀","ویژن","دنیا کا سب سے سمارٹ ٹول ہب بننا۔"],["✨","کیوں","رنگین، تیز اور ہر ڈیوائس پر۔"]]}
 };
+function T(){return I18N[lang]||I18N.en;}
 
-var state = JSON.parse(localStorage.getItem("smartTools")||"null");
+/* ===== Seed AI chat tools (large pool for endless Load More) ===== */
+var POOL=[
+ {n:"ChatGPT",l:"https://chat.openai.com",d:"OpenAI's popular AI chatbot",c:"#10a37f"},
+ {n:"Claude",l:"https://claude.ai",d:"Anthropic's safe & smart AI",c:"#d97757"},
+ {n:"Gemini",l:"https://gemini.google.com",d:"Google's multimodal AI",c:"#4285f4"},
+ {n:"Perplexity",l:"https://www.perplexity.ai",d:"AI answer search engine",c:"#20808d"},
+ {n:"Mistral / Le Chat",l:"https://chat.mistral.ai",d:"Mistral's open AI chat",c:"#fa5310"},
+ {n:"Qwen Chat",l:"https://chat.qwen.ai",d:"Alibaba's Qwen AI chat",c:"#615ced"},
+ {n:"Microsoft Copilot",l:"https://copilot.microsoft.com",d:"Microsoft's AI assistant",c:"#0078d4"},
+ {n:"DeepSeek",l:"https://chat.deepseek.com",d:"Powerful reasoning AI chat",c:"#4d6bfe"},
+ {n:"Grok",l:"https://grok.com",d:"xAI's AI chatbot",c:"#111111"},
+ {n:"Meta AI",l:"https://www.meta.ai",d:"Meta's Llama-based AI",c:"#0064e0"},
+ {n:"Poe",l:"https://poe.com",d:"Many AI models in one app",c:"#5d3fd3"},
+ {n:"HuggingChat",l:"https://huggingface.co/chat",d:"Hugging Face open chat",c:"#ff9d00"},
+ {n:"Pi",l:"https://pi.ai",d:"Inflection's personal AI",c:"#a06bf5"},
+ {n:"Character.AI",l:"https://character.ai",d:"Character-based AI chat",c:"#3b5bfe"},
+ {n:"You.com",l:"https://you.com",d:"AI search & chat",c:"#7c3aed"},
+ {n:"Kimi (Moonshot)",l:"https://kimi.moonshot.cn",d:"Long-context AI chat",c:"#16a3ff"},
+ {n:"Ernie Bot",l:"https://yiyan.baidu.com",d:"Baidu's AI chat",c:"#2932e1"},
+ {n:"Doubao",l:"https://www.doubao.com",d:"ByteDance's AI chat",c:"#0a84ff"},
+ {n:"Clova X",l:"https://clova-x.naver.com",d:"Naver's Korean AI",c:"#03c75a"},
+ {n:"Jasper Chat",l:"https://www.jasper.ai",d:"Marketing-focused AI chat",c:"#ff7a59"},
+ {n:"Phind",l:"https://www.phind.com",d:"AI chat for developers",c:"#2563eb"},
+ {n:"Komo AI",l:"https://komo.ai",d:"Fast AI search chat",c:"#ff5a5f"},
+ {n:"Andi Search",l:"https://andisearch.com",d:"Conversational AI search",c:"#00b3a4"},
+ {n:"GroqChat",l:"https://groq.com",d:"Ultra-fast AI inference chat",c:"#f55036"},
+ {n:"Cohere Chat",l:"https://cohere.com/chat",d:"Cohere's enterprise AI chat",c:"#39594d"},
+ {n:"Llama (Ollama)",l:"https://ollama.com",d:"Run open AI chat locally",c:"#000000"},
+ {n:"ChatGLM",l:"https://chatglm.cn",d:"Zhipu's bilingual AI chat",c:"#3859ff"},
+ {n:"Tongyi",l:"https://tongyi.aliyun.com",d:"Alibaba Tongyi AI chat",c:"#615ced"},
+ {n:"Spark Desk",l:"https://xinghuo.xfyun.cn",d:"iFlytek Spark AI chat",c:"#1f6feb"},
+ {n:"YouChat",l:"https://you.com/chat",d:"Conversational AI by You",c:"#7c3aed"},
+ {n:"Brave Leo",l:"https://brave.com/leo",d:"Brave browser's AI chat",c:"#fb542b"},
+ {n:"Hix Chat",l:"https://hix.ai/chat",d:"All-in-one AI chat",c:"#6d28d9"},
+ {n:"Chatsonic",l:"https://writesonic.com/chat",d:"Writesonic's AI chat",c:"#9013fe"},
+ {n:"Forefront AI",l:"https://forefront.ai",d:"Multi-model AI chat",c:"#5b21b6"},
+ {n:"Falcon Chat",l:"https://falconllm.tii.ae",d:"TII Falcon AI chat",c:"#0ea5e9"},
+ {n:"Inflection",l:"https://inflection.ai",d:"Empathetic AI chat",c:"#a06bf5"},
+ {n:"Yandex Alice",l:"https://alice.yandex.ru",d:"Yandex AI assistant chat",c:"#ffcc00"},
+ {n:"WildCard AI",l:"https://wildcard.ai",d:"Conversational AI tool",c:"#e11d48"}
+];
+
+var state = JSON.parse(localStorage.getItem("smartTools2")||"null");
 function defaultState(){
-  var s={cats:{},order:[],active:"ai-chat",loaded:{}};
-  for(var k in SEED){
-    s.cats[k]={name:SEED[k].name,icon:SEED[k].icon,sub:SEED[k].sub,tools:SEED[k].batches[0].slice(),custom:[]};
-    s.order.push(k); s.loaded[k]=1;
-  }
-  return s;
+  return { cats:{ "ai-chat":{name:"AI Chat Tools",icon:"💬",sub:"All your AI chat tools in one place",builtin:true,shown:8,custom:[]} },
+           order:["ai-chat"], active:"home" };
 }
 if(!state) state=defaultState();
-function save(){localStorage.setItem("smartTools",JSON.stringify(state));}
+state.active="home"; // always open on home
+var lang = localStorage.getItem("lang")||"bn";
+function save(){var a=state.active;localStorage.setItem("smartTools2",JSON.stringify(state));state.active=a;}
 
-/* ---------- Render ---------- */
-function colorOf(t){return t.c||["#6366f1","#ec4899","#06b6d4","#f59e0b","#10b981","#8b5cf6"][(t.n.charCodeAt(0))%6];}
-function renderCats(){
-  var html="";
-  state.order.forEach(function(k){
-    var c=state.cats[k];
-    html+='<div class="cat '+(k===state.active?'active':'')+'" onclick="selectCat(\''+k+'\')"><span class="ic">'+c.icon+'</span>'+c.name+'</div>';
-  });
-  document.getElementById("catList").innerHTML=html;
+/* ===== Apply language to static UI ===== */
+function applyLang(){
+  var t=T();
+  document.documentElement.lang=lang;
+  document.documentElement.dir=(lang==="ar"||lang==="ur")?"rtl":"ltr";
+  document.getElementById("catLabel").textContent=t.cats;
+  document.getElementById("newCatBtn").textContent=t.newCat;
+  document.getElementById("addToolBtn").textContent=t.addTool;
+  document.getElementById("searchBox").placeholder=t.search;
+  document.getElementById("heroTag").textContent=t.heroTag;
+  document.getElementById("homeHint").textContent=t.hint;
+  document.getElementById("m_addTool").textContent=t.modAddTool;
+  document.getElementById("l_name").textContent=t.lname;
+  document.getElementById("l_link").textContent=t.llink;
+  document.getElementById("l_desc").textContent=t.ldesc;
+  document.getElementById("b_cancel1").textContent=t.cancel;
+  document.getElementById("b_save").textContent=t.save;
+  document.getElementById("m_newCat").textContent=t.modNewCat;
+  document.getElementById("m_newCatSub").textContent=t.modNewCatSub;
+  document.getElementById("l_catname").textContent=t.lcatname;
+  document.getElementById("l_caticon").textContent=t.lcaticon;
+  document.getElementById("b_cancel2").textContent=t.cancel;
+  document.getElementById("b_addcat").textContent=t.addc;
+  document.getElementById("m_settings").textContent=t.setTitle;
+  document.getElementById("m_settingsSub").textContent=t.setSub;
+  document.getElementById("s_dark").textContent=t.dark;
+  document.getElementById("s_darkSub").textContent=t.darkSub;
+  document.getElementById("s_lang").textContent=t.lang;
+  document.getElementById("s_close").textContent=t.close;
+  document.getElementById("loadBtn").textContent=t.load;
+  // about cards
+  document.getElementById("aboutBox").innerHTML=t.about.map(function(a,i){
+    return '<div class="about-card ac'+((i%4)+1)+'"><h3>'+a[0]+' '+a[1]+'</h3><p>'+a[2]+'</p></div>';
+  }).join("");
+  document.getElementById("langSel").value=lang;
 }
-function selectCat(k){state.active=k;save();render();if(window.innerWidth<=860)toggleSidebar();}
+function setLang(v){lang=v;localStorage.setItem("lang",v);applyLang();render();}
+
+/* ===== Render ===== */
+function colorOf(t){return t.c||["#6366f1","#ec4899","#06b6d4","#f59e0b","#10b981","#8b5cf6"][(t.n.charCodeAt(0))%6];}
+function catTools(c){ // builtin shows first c.shown from POOL + custom
+  var base = c.builtin ? POOL.slice(0,c.shown) : [];
+  return base.concat(c.custom||[]);
+}
+function renderCats(){
+  document.getElementById("catList").innerHTML=state.order.map(function(k){
+    var c=state.cats[k];
+    return '<div class="cat '+(k===state.active?'active':'')+'" onclick="selectCat(\''+k+'\')"><span class="ic">'+c.icon+'</span>'+c.name+'</div>';
+  }).join("");
+}
+function goHome(){state.active="home";render();if(window.innerWidth<=860)closeSide();}
+function selectCat(k){state.active=k;render();if(window.innerWidth<=860)closeSide();window.scrollTo({top:0});}
 function render(){
+  var t=T();
   renderCats();
+  var home=state.active==="home";
+  document.getElementById("homeView").classList.toggle("show",home);
+  document.getElementById("toolsView").style.display=home?"none":"block";
+  document.getElementById("addToolBtn").style.display=home?"none":"inline-flex";
+  if(home){
+    document.getElementById("catHeading").textContent="Smart Tools";
+    document.getElementById("catSub").textContent="";
+    return;
+  }
   var c=state.cats[state.active];
   document.getElementById("catHeading").textContent=c.name;
-  document.getElementById("catSub").textContent=c.sub||"আপনার পছন্দের টুলগুলো";
+  document.getElementById("catSub").textContent=(c.builtin?t.aiChatSub:(c.sub||""));
   var q=(document.getElementById("searchBox").value||"").toLowerCase();
-  var all=c.tools.concat(c.custom||[]);
-  var list=all.filter(function(t){return t.n.toLowerCase().indexOf(q)>-1||(t.d||"").toLowerCase().indexOf(q)>-1;});
+  var all=catTools(c);
+  var list=all.filter(function(x){return x.n.toLowerCase().indexOf(q)>-1||(x.d||"").toLowerCase().indexOf(q)>-1;});
   var g=document.getElementById("grid");
-  if(list.length===0){g.innerHTML='<div class="empty" style="grid-column:1/-1">কোনো টুল পাওয়া যায়নি। উপরে "+ টুল যোগ করুন" বাটনে ক্লিক করুন।</div>';}
-  else{
-    g.innerHTML=list.map(function(t,i){
-      var idx=all.indexOf(t);var isCustom=idx>=c.tools.length;
-      var letter=t.n.charAt(0).toUpperCase();
-      return '<a class="card" href="'+t.l+'" target="_blank" rel="noopener">'+
-        (isCustom?'<button class="del" title="মুছুন" onclick="event.preventDefault();event.stopPropagation();delTool('+(idx-c.tools.length)+')">🗑</button>':'')+
-        '<div class="ava" style="background:linear-gradient(135deg,'+colorOf(t)+',#ec4899)">'+letter+'</div>'+
-        '<h3>'+t.n+'</h3><p>'+(t.d||"টুল লিংক")+'</p><span class="go">খুলুন ↗</span></a>';
-    }).join("");
-  }
-  // load more visibility
-  var hasMore = SEED[state.active] && state.loaded[state.active]<SEED[state.active].batches.length;
-  document.getElementById("loadBtn").style.display = hasMore? "inline-flex":"none";
+  if(list.length===0){g.innerHTML='<div class="empty" style="grid-column:1/-1">'+t.notFound+'</div>';}
+  else g.innerHTML=list.map(function(x){
+    var idx=all.indexOf(x);var baseLen=c.builtin?Math.min(c.shown,POOL.length):0;var isCustom=idx>=baseLen;
+    return '<a class="card" href="'+x.l+'" target="_blank" rel="noopener">'+
+      (isCustom?'<button class="del" onclick="event.preventDefault();event.stopPropagation();delTool('+(idx-baseLen)+')">🗑</button>':'')+
+      '<div class="ava" style="background:linear-gradient(135deg,'+colorOf(x)+',#ec4899)">'+x.n.charAt(0).toUpperCase()+'</div>'+
+      '<h3>'+x.n+'</h3><p>'+(x.d||t.custom)+'</p><span class="go">'+t.open+'</span></a>';
+  }).join("");
+  // Load More always visible for builtin until pool exhausted
+  var more = c.builtin && c.shown<POOL.length;
+  document.getElementById("loadBtn").style.display=more?"inline-flex":"none";
 }
 
-/* ---------- Load More ---------- */
 function loadMore(){
-  var k=state.active, btn=document.getElementById("loadBtn");
-  if(!SEED[k])return;
-  btn.innerHTML='<span class="spin"></span> ইন্টারনেটে খুঁজছি...';
-  setTimeout(function(){
-    var next=state.loaded[k];
-    if(SEED[k].batches[next]){
-      state.cats[k].tools=state.cats[k].tools.concat(SEED[k].batches[next]);
-      state.loaded[k]=next+1; save();
-    }
-    btn.innerHTML='⬇️ Load More টুলস';
-    render();
-  },900);
+  var c=state.cats[state.active];if(!c.builtin)return;
+  var btn=document.getElementById("loadBtn");btn.innerHTML='<span class="spin"></span>'+T().loading;
+  setTimeout(function(){c.shown=Math.min(c.shown+6,POOL.length);save();render();},900);
 }
 
-/* ---------- Add Tool ---------- */
-function openToolModal(){document.getElementById("toolModalSub").textContent="\""+state.cats[state.active].name+"\" ক্যাটাগরিতে টুল যোগ করুন";document.getElementById("toolModal").classList.add("open");}
+/* Add Tool */
+function openToolModal(){document.getElementById("toolModalSub").textContent=T().toolSub(state.cats[state.active].name);document.getElementById("toolModal").classList.add("open");}
 function saveTool(){
-  var n=document.getElementById("tName").value.trim();
-  var l=document.getElementById("tLink").value.trim();
-  var d=document.getElementById("tDesc").value.trim();
-  if(!n||!l){alert("নাম ও লিংক দিন");return;}
+  var n=document.getElementById("tName").value.trim(),l=document.getElementById("tLink").value.trim(),d=document.getElementById("tDesc").value.trim();
+  if(!n||!l)return alert("⚠️");
   if(!/^https?:\/\//.test(l))l="https://"+l;
-  state.cats[state.active].custom=state.cats[state.active].custom||[];
-  state.cats[state.active].custom.push({n:n,l:l,d:d||"কাস্টম টুল"});
-  save();closeModal('toolModal');
-  document.getElementById("tName").value="";document.getElementById("tLink").value="";document.getElementById("tDesc").value="";
-  render();
+  var c=state.cats[state.active];c.custom=c.custom||[];c.custom.push({n:n,l:l,d:d||T().custom});save();
+  closeModal('toolModal');document.getElementById("tName").value="";document.getElementById("tLink").value="";document.getElementById("tDesc").value="";render();
 }
-function delTool(i){if(confirm("টুলটি মুছবেন?")){state.cats[state.active].custom.splice(i,1);save();render();}}
+function delTool(i){if(confirm("🗑?")){state.cats[state.active].custom.splice(i,1);save();render();}}
 
-/* ---------- Category ---------- */
+/* Category */
 function openCatModal(){document.getElementById("catModal").classList.add("open");}
 function saveCat(){
-  var n=document.getElementById("cName").value.trim();
-  var ic=document.getElementById("cIcon").value.trim()||"📁";
-  if(!n){alert("ক্যাটাগরির নাম দিন");return;}
-  var key="cat-"+Date.now();
-  state.cats[key]={name:n,icon:ic,sub:"আপনার কাস্টম ক্যাটাগরি",tools:[],custom:[]};
-  state.order.push(key);state.active=key;save();
-  document.getElementById("cName").value="";document.getElementById("cIcon").value="";
-  closeModal('catModal');render();
+  var n=document.getElementById("cName").value.trim(),ic=document.getElementById("cIcon").value.trim()||"📁";
+  if(!n)return alert("⚠️");
+  var key="cat-"+Date.now();state.cats[key]={name:n,icon:ic,sub:"",builtin:false,custom:[]};state.order.push(key);state.active=key;save();
+  document.getElementById("cName").value="";document.getElementById("cIcon").value="";closeModal('catModal');render();window.scrollTo({top:0});
 }
 
-/* ---------- Settings / Dark ---------- */
-function openSettings(){document.getElementById("darkToggle").checked=document.documentElement.getAttribute("data-theme")==="dark";document.getElementById("settingsModal").classList.add("open");}
-function toggleDark(){
-  var on=document.getElementById("darkToggle").checked;
-  document.documentElement.setAttribute("data-theme",on?"dark":"light");
-  localStorage.setItem("theme",on?"dark":"light");
-}
+/* Settings */
+function openSettings(){document.getElementById("darkToggle").checked=document.documentElement.getAttribute("data-theme")==="dark";document.getElementById("langSel").value=lang;document.getElementById("settingsModal").classList.add("open");}
+function toggleDark(){var on=document.getElementById("darkToggle").checked;document.documentElement.setAttribute("data-theme",on?"dark":"light");localStorage.setItem("theme",on?"dark":"light");}
 (function(){if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})();
 
 function closeModal(id){document.getElementById(id).classList.remove("open");}
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("show");document.getElementById("backdrop").classList.toggle("show");}
+function closeSide(){document.getElementById("sidebar").classList.remove("show");document.getElementById("backdrop").classList.remove("show");}
 document.querySelectorAll(".overlay").forEach(function(o){o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open");});});
 
-render();
+applyLang();render();
 </script>
 </body>
 </html>

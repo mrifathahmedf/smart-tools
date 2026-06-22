@@ -5,24 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Tools — Everything tools in your hand</title>
 <style>
-:root{
-  --bg:#f4f6fb; --panel:#ffffff; --text:#1f2540; --muted:#6b7390;
-  --brand1:#6366f1; --brand2:#ec4899; --brand3:#06b6d4;
-  --card:#ffffff; --border:#e6e9f5; --shadow:0 8px 30px rgba(60,70,160,.12);
-  --side:#ffffff;
-}
-[data-theme="dark"]{
-  --bg:#0e1117; --panel:#161b27; --text:#e8ecf7; --muted:#9aa3c0;
-  --card:#1b2233; --border:#2a3350; --shadow:0 8px 30px rgba(0,0,0,.45);
-  --side:#141a26;
-}
+:root{--bg:#f4f6fb;--panel:#ffffff;--text:#1f2540;--muted:#6b7390;--brand1:#6366f1;--brand2:#ec4899;--brand3:#06b6d4;--card:#ffffff;--border:#e6e9f5;--shadow:0 8px 30px rgba(60,70,160,.12);--side:#ffffff;}
+[data-theme="dark"]{--bg:#0e1117;--panel:#161b27;--text:#e8ecf7;--muted:#9aa3c0;--card:#1b2233;--border:#2a3350;--shadow:0 8px 30px rgba(0,0,0,.45);--side:#141a26;}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,system-ui,'Noto Sans Bengali','Noto Sans Arabic',sans-serif}
 body{background:var(--bg);color:var(--text);transition:.3s}
 .app{display:flex;min-height:100vh}
-
-/* Sidebar */
-.sidebar{width:260px;background:var(--side);border-right:1px solid var(--border);
-  padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:fixed;height:100vh;overflow-y:auto;transition:.3s;z-index:50}
+.sidebar{width:260px;background:var(--side);border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:fixed;height:100vh;overflow-y:auto;transition:.3s;z-index:50}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;margin-bottom:14px;padding:0 6px;cursor:pointer}
 .logo .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand1),var(--brand2));display:grid;place-items:center;color:#fff;font-size:18px}
 .gradtext{background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -31,102 +19,81 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .cat:hover{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(236,72,153,.12))}
 .cat.active{background:linear-gradient(135deg,var(--brand1),var(--brand2));color:#fff;box-shadow:var(--shadow)}
 .cat .ic{font-size:18px}
-
-/* Main */
 .main{margin-left:260px;flex:1;padding:24px 30px 80px;transition:.3s;width:100%}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.menu-btn{display:none;background:var(--panel);border:1px solid var(--border);border-radius:10px;
-  width:44px;height:44px;font-size:20px;cursor:pointer;color:var(--text)}
-.heading h1{font-size:26px}
-.heading p{color:var(--muted);font-size:14px;margin-top:2px}
+.menu-btn{display:none;background:var(--panel);border:1px solid var(--border);border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer;color:var(--text)}
+.heading h1{font-size:26px}.heading p{color:var(--muted);font-size:14px;margin-top:2px}
 .actions{display:flex;gap:10px}
-.btn{border:none;cursor:pointer;border-radius:12px;padding:11px 18px;font-weight:600;font-size:14px;transition:.2s;color:#fff;
-  background:linear-gradient(135deg,var(--brand1),var(--brand2))}
+.btn{border:none;cursor:pointer;border-radius:12px;padding:11px 18px;font-weight:600;font-size:14px;transition:.2s;color:#fff;background:linear-gradient(135deg,var(--brand1),var(--brand2))}
 .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .btn.ghost{background:var(--panel);color:var(--text);border:1px solid var(--border)}
 .btn.icon{width:44px;height:44px;padding:0;font-size:18px;display:grid;place-items:center}
-
-/* Search */
+.btn:disabled{opacity:.55;cursor:default;transform:none}
 .search{position:relative;margin-bottom:22px}
-.search input{width:100%;padding:14px 16px 14px 44px;border-radius:14px;border:1px solid var(--border);
-  background:var(--panel);color:var(--text);font-size:15px;outline:none}
+.search input{width:100%;padding:14px 16px 14px 44px;border-radius:14px;border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:15px;outline:none}
 .search .si{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
-
-/* Grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
-  display:flex;flex-direction:column;gap:10px;transition:.25s;position:relative;overflow:hidden;text-decoration:none;color:inherit}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:.25s;position:relative;overflow:hidden;text-decoration:none;color:inherit}
 .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand1),var(--brand2),var(--brand3))}
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--brand1)}
 .card .ava{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff;font-size:20px}
-.card h3{font-size:16px}
-.card p{font-size:13px;color:var(--muted);line-height:1.5;flex:1}
+.card h3{font-size:16px}.card p{font-size:13px;color:var(--muted);line-height:1.5;flex:1}
 .card .go{font-size:12px;font-weight:700;color:var(--brand1)}
-.del{position:absolute;top:12px;right:12px;background:rgba(236,72,153,.12);color:var(--brand2);border:none;
-  width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;opacity:0;transition:.2s}
-.card:hover .del{opacity:1}
-
+.badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;color:#fff}
+.bg-ai{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.bg-net{background:linear-gradient(135deg,#06b6d4,#3b82f6)}.bg-dev{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.tactions{position:absolute;top:10px;right:10px;display:flex;gap:6px;opacity:0;transition:.2s}
+.card:hover .tactions{opacity:1}
+.tactions button{width:28px;height:28px;border:none;border-radius:8px;cursor:pointer;font-size:13px;color:#fff}
+.tedit{background:linear-gradient(135deg,#6366f1,#06b6d4)}.tdel{background:linear-gradient(135deg,#ec4899,#f43f5e)}
 .loadwrap{display:flex;justify-content:center;margin:30px 0}
 .empty{text-align:center;color:var(--muted);padding:60px 0}
-
-/* HOME / HERO */
-.home{display:none;animation:fade .5s}
-.home.show{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
-.hero{position:relative;border-radius:26px;padding:60px 30px;text-align:center;overflow:hidden;
-  background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899,#06b6d4);background-size:300% 300%;animation:grad 12s ease infinite;color:#fff;box-shadow:var(--shadow)}
+.modebar{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;color:var(--muted);margin-bottom:16px}
+.modebar b{color:var(--text)}
+/* HOME */
+.home{display:none}.home.show{display:block}
+.hero{position:relative;border-radius:26px;padding:60px 30px;text-align:center;overflow:hidden;background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899,#06b6d4);background-size:300% 300%;animation:grad 12s ease infinite;color:#fff;box-shadow:var(--shadow)}
 @keyframes grad{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 .hero h1{font-size:clamp(42px,9vw,84px);font-weight:900;letter-spacing:-2px;text-shadow:0 6px 24px rgba(0,0,0,.25);line-height:1}
-.hero .slogan{display:inline-block;margin-top:6px;font-size:clamp(13px,3vw,18px);font-weight:600;
-  transform:rotate(-6deg) translateX(38%);transform-origin:right;opacity:.95;background:rgba(255,255,255,.18);padding:6px 16px;border-radius:30px;backdrop-filter:blur(4px)}
+.hero .slogan{display:inline-block;margin-top:6px;font-size:clamp(13px,3vw,18px);font-weight:600;transform:rotate(-6deg) translateX(34%);transform-origin:right;opacity:.95;background:rgba(255,255,255,.18);padding:6px 16px;border-radius:30px;backdrop-filter:blur(4px)}
 .hero .tag{display:block;margin-top:34px;font-size:15px;opacity:.9}
 .bubbles span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
-.about{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.about-card{border-radius:18px;padding:22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-.about-card h3{font-size:18px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.about-card p{font-size:14px;line-height:1.7;opacity:.96}
-.ac1{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
-.ac2{background:linear-gradient(135deg,#ec4899,#f43f5e)}
-.ac3{background:linear-gradient(135deg,#06b6d4,#3b82f6)}
-.ac4{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.desc{margin-top:30px;border-radius:22px;padding:34px;background:linear-gradient(135deg,rgba(99,102,241,.10),rgba(236,72,153,.10),rgba(6,182,212,.10));border:1px solid var(--border)}
+.desc h2{font-size:24px;margin-bottom:16px;text-align:center}
+.desc p{font-size:15.5px;line-height:1.95;margin-bottom:16px;color:var(--text);opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.desc p.reveal{opacity:1;transform:none}
+.desc p b{background:linear-gradient(135deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .home-hint{margin:24px 0 6px;text-align:center;color:var(--muted);font-size:15px}
-
 /* Modal */
-.overlay{position:fixed;inset:0;background:rgba(10,12,25,.55);backdrop-filter:blur(4px);display:none;
-  place-items:center;z-index:100;padding:20px}
+.overlay{position:fixed;inset:0;background:rgba(10,12,25,.55);backdrop-filter:blur(4px);display:none;place-items:center;z-index:100;padding:20px}
 .overlay.open{display:grid}
-.modal{background:var(--panel);border-radius:20px;padding:26px;width:100%;max-width:440px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.modal h2{margin-bottom:6px;font-size:20px}
-.modal .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.modal{background:var(--panel);border-radius:20px;padding:26px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow);border:1px solid var(--border)}
+.modal h2{margin-bottom:6px;font-size:20px}.modal .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .field input,.field select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;outline:none}
-.modal-actions{display:flex;gap:10px;margin-top:8px}
-.modal-actions .btn{flex:1}
+.modal-actions{display:flex;gap:10px;margin-top:8px}.modal-actions .btn{flex:1}
 .toggle{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px;gap:10px}
-.switch{position:relative;width:52px;height:28px;flex:none}
-.switch input{display:none}
+.switch{position:relative;width:52px;height:28px;flex:none}.switch input{display:none}
 .slider{position:absolute;inset:0;background:var(--border);border-radius:30px;cursor:pointer;transition:.3s}
 .slider::before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
 .switch input:checked+.slider{background:linear-gradient(135deg,var(--brand1),var(--brand2))}
 .switch input:checked+.slider::before{transform:translateX(24px)}
+.modecard{border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:12px;cursor:pointer;transition:.2s}
+.modecard.active{border-color:var(--brand1);box-shadow:0 0 0 2px rgba(99,102,241,.25)}
+.modecard .mhead{display:flex;align-items:center;gap:10px;font-weight:700}
+.modecard .mhead .pill{font-size:10px;font-weight:800;color:#fff;padding:2px 8px;border-radius:20px;background:linear-gradient(135deg,#f59e0b,#f97316)}
+.modecard .msub{font-size:12px;color:var(--muted);margin:6px 0 0 28px}
+.modecard .mbody{margin:12px 0 0 0;display:none}
+.modecard.active .mbody{display:block}
+.mrow{display:flex;gap:8px}.mrow .btn{padding:9px 12px;font-size:13px}
+.keylink{font-size:12px;display:inline-block;margin-top:6px;color:var(--brand1);text-decoration:none;font-weight:600}
 .spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:s 1s linear infinite;vertical-align:middle;margin-right:8px}
 @keyframes s{to{transform:rotate(360deg)}}
-
-/* Scroll jump */
+.devnote{font-size:12px;color:var(--muted);line-height:1.7;background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:12px;margin-top:8px}
 .jump{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;flex-direction:column;gap:8px}
-.jump button{width:48px;height:48px;border:none;border-radius:14px;cursor:pointer;color:#fff;font-size:20px;
-  background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow);transition:.2s}
+.jump button{width:48px;height:48px;border:none;border-radius:14px;cursor:pointer;color:#fff;font-size:20px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow);transition:.2s}
 .jump button:hover{transform:scale(1.1)}
-
 .backdrop{display:none}
-@media(max-width:860px){
-  .sidebar{transform:translateX(-100%)}
-  .sidebar.show{transform:translateX(0)}
-  .main{margin-left:0}
-  .menu-btn{display:grid;place-items:center}
-  .backdrop.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40}
-}
+@media(max-width:860px){.sidebar{transform:translateX(-100%)}.sidebar.show{transform:translateX(0)}.main{margin-left:0}.menu-btn{display:grid;place-items:center}.backdrop.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40}}
 </style>
 </head>
 <body>
@@ -138,334 +105,290 @@ body{background:var(--bg);color:var(--text);transition:.3s}
     <button class="btn ghost" style="margin-top:14px" id="newCatBtn" onclick="openCatModal()">+ New Category</button>
   </aside>
   <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
-
   <main class="main">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <div class="heading">
-          <h1 id="catHeading" class="gradtext">Smart Tools</h1>
-          <p id="catSub"></p>
-        </div>
+        <div class="heading"><h1 id="catHeading" class="gradtext">Smart Tools</h1><p id="catSub"></p></div>
       </div>
       <div class="actions">
         <button class="btn" id="addToolBtn" onclick="openToolModal()" style="display:none">+ Add Tool</button>
         <button class="btn icon ghost" title="Settings" onclick="openSettings()">⚙️</button>
       </div>
     </div>
-
-    <!-- HOME -->
     <section class="home" id="homeView">
       <div class="hero">
-        <div class="bubbles">
-          <span style="width:120px;height:120px;top:-30px;left:-20px"></span>
-          <span style="width:80px;height:80px;bottom:-20px;right:40px"></span>
-          <span style="width:50px;height:50px;top:30px;right:90px"></span>
-        </div>
-        <h1>Smart Tools</h1>
-        <span class="slogan">Everything tools in your hand</span>
-        <span class="tag" id="heroTag">বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈</span>
+        <div class="bubbles"><span style="width:120px;height:120px;top:-30px;left:-20px"></span><span style="width:80px;height:80px;bottom:-20px;right:40px"></span><span style="width:50px;height:50px;top:30px;right:90px"></span></div>
+        <h1>Smart Tools</h1><span class="slogan">Everything tools in your hand</span>
+        <span class="tag" id="heroTag"></span>
       </div>
-      <div class="about" id="aboutBox"></div>
-      <p class="home-hint" id="homeHint">⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন</p>
+      <div class="desc"><h2 id="descTitle" class="gradtext">About Smart Tools</h2><div id="descBody"></div></div>
+      <p class="home-hint" id="homeHint"></p>
     </section>
-
-    <!-- TOOLS -->
     <section id="toolsView" style="display:none">
-      <div class="search">
-        <span class="si">🔍</span>
-        <input id="searchBox" placeholder="Search tools..." oninput="render()">
-      </div>
+      <div class="modebar" id="modeBar"></div>
+      <div class="search"><span class="si">🔍</span><input id="searchBox" placeholder="Search tools..." oninput="render()"></div>
       <div class="grid" id="grid"></div>
       <div class="loadwrap"><button class="btn" id="loadBtn" onclick="loadMore()">⬇️ Load More</button></div>
     </section>
   </main>
 </div>
-
-<!-- Jump buttons -->
 <div class="jump">
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">⬆️</button>
   <button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="Bottom">⬇️</button>
 </div>
+<!-- Add/Edit Tool -->
+<div class="overlay" id="toolModal"><div class="modal">
+  <h2 id="m_addTool">Add Tool</h2><p class="sub" id="toolModalSub"></p>
+  <div class="field"><label id="l_name">Tools name</label><input id="tName" placeholder="example"></div>
+  <div class="field"><label id="l_link">Link</label><input id="tLink" placeholder="https://tools-link-here.com"></div>
+  <div class="field"><label id="l_desc">Description (optional)</label><input id="tDesc" placeholder="What this tool does"></div>
+  <div class="modal-actions"><button class="btn ghost" id="b_cancel1" onclick="closeModal('toolModal')">Cancel</button><button class="btn" id="b_save" onclick="saveTool()">💾 Save Tool</button></div>
+</div></div>
+<!-- Category -->
+<div class="overlay" id="catModal"><div class="modal">
+  <h2 id="m_newCat">New Category</h2><p class="sub" id="m_newCatSub">Create a new tool category</p>
+  <div class="field"><label id="l_catname">Category name</label><input id="cName" placeholder="e.g. Image Generator"></div>
+  <div class="field"><label id="l_caticon">Icon (emoji)</label><input id="cIcon" placeholder="🎨" maxlength="2"></div>
+  <div class="modal-actions"><button class="btn ghost" id="b_cancel2" onclick="closeModal('catModal')">Cancel</button><button class="btn" id="b_addcat" onclick="saveCat()">➕ Add</button></div>
+</div></div>
+<!-- Settings -->
+<div class="overlay" id="settingsModal"><div class="modal">
+  <h2 id="m_settings">⚙️ Settings</h2><p class="sub" id="m_settingsSub">Customize your experience</p>
+  <div class="toggle"><div><strong id="s_dark">🌙 Dark Night Mode</strong><div style="font-size:12px;color:var(--muted)" id="s_darkSub">Comfortable dark theme</div></div><label class="switch"><input type="checkbox" id="darkToggle" onchange="toggleDark()"><span class="slider"></span></label></div>
+  <div class="field"><label id="s_lang">🌐 Language</label><select id="langSel" onchange="setLang(this.value)">
+    <option value="bn">বাংলা (Bengali)</option><option value="en">English</option><option value="hi">हिन्दी (Hindi)</option><option value="ar">العربية (Arabic)</option><option value="es">Español (Spanish)</option><option value="ur">اردو (Urdu)</option></select></div>
+  <h3 style="margin:18px 0 6px;font-size:16px" id="s_modeTitle">🧭 Tool Source</h3>
+  <p class="sub" id="s_modeSub" style="margin-bottom:14px">Choose ONE source. Only one stays active.</p>
+  <div id="modeCards"></div>
+  <div class="modal-actions" style="margin-top:6px"><button class="btn" style="flex:1" id="s_close" onclick="closeModal('settingsModal')">Close</button></div>
+</div></div>
 
-<!-- Add Tool Modal -->
-<div class="overlay" id="toolModal">
-  <div class="modal">
-    <h2 id="m_addTool">Add Tool</h2>
-    <p class="sub" id="toolModalSub"></p>
-    <div class="field"><label id="l_name">Tools name</label><input id="tName" placeholder="example"></div>
-    <div class="field"><label id="l_link">Link</label><input id="tLink" placeholder="https://tools-link-here.com"></div>
-    <div class="field"><label id="l_desc">Description (optional)</label><input id="tDesc" placeholder="What this tool does"></div>
-    <div class="modal-actions">
-      <button class="btn ghost" id="b_cancel1" onclick="closeModal('toolModal')">Cancel</button>
-      <button class="btn" id="b_save" onclick="saveTool()">💾 Save Tool</button>
-    </div>
-  </div>
-</div>
-
-<!-- Category Modal -->
-<div class="overlay" id="catModal">
-  <div class="modal">
-    <h2 id="m_newCat">New Category</h2>
-    <p class="sub" id="m_newCatSub">Create a new tool category</p>
-    <div class="field"><label id="l_catname">Category name</label><input id="cName" placeholder="e.g. Image Generator"></div>
-    <div class="field"><label id="l_caticon">Icon (emoji)</label><input id="cIcon" placeholder="🎨" maxlength="2"></div>
-    <div class="modal-actions">
-      <button class="btn ghost" id="b_cancel2" onclick="closeModal('catModal')">Cancel</button>
-      <button class="btn" id="b_addcat" onclick="saveCat()">➕ Add</button>
-    </div>
-  </div>
-</div>
-
-<!-- Settings Modal -->
-<div class="overlay" id="settingsModal">
-  <div class="modal">
-    <h2 id="m_settings">⚙️ Settings</h2>
-    <p class="sub" id="m_settingsSub">Customize your experience</p>
-    <div class="toggle">
-      <div><strong id="s_dark">🌙 Dark Night Mode</strong><div style="font-size:12px;color:var(--muted)" id="s_darkSub">Comfortable dark theme</div></div>
-      <label class="switch"><input type="checkbox" id="darkToggle" onchange="toggleDark()"><span class="slider"></span></label>
-    </div>
-    <div class="field"><label id="s_lang">🌐 Language</label>
-      <select id="langSel" onchange="setLang(this.value)">
-        <option value="bn">বাংলা (Bengali)</option>
-        <option value="en">English</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ur">اردو (Urdu)</option>
-      </select>
-    </div>
-    <div class="modal-actions"><button class="btn" style="flex:1" id="s_close" onclick="closeModal('settingsModal')">Close</button></div>
-  </div>
-</div>
-
+<!-- Developer tools (safe, separate file) -->
+<script src="tools.js" onerror="window.DEV_TOOLS=window.DEV_TOOLS||{}"></script>
 <script>
-/* ===== i18n ===== */
+/* ===== Providers for "Searching Tools from AI" ===== */
+var PROVIDERS={
+ gemini:{label:"Google Gemini",type:"free",link:"https://aistudio.google.com/apikey",kind:"gemini",model:"gemini-1.5-flash"},
+ groq:{label:"Groq (Llama 3.3)",type:"free",link:"https://console.groq.com/keys",kind:"openai",base:"https://api.groq.com/openai/v1",model:"llama-3.3-70b-versatile"},
+ openrouter:{label:"OpenRouter (free models)",type:"free",link:"https://openrouter.ai/keys",kind:"openai",base:"https://openrouter.ai/api/v1",model:"meta-llama/llama-3.3-70b-instruct:free"},
+ hf:{label:"Hugging Face",type:"free",link:"https://huggingface.co/settings/tokens",kind:"openai",base:"https://router.huggingface.co/v1",model:"meta-llama/Llama-3.1-8B-Instruct"},
+ openai:{label:"OpenAI (ChatGPT)",type:"paid",link:"https://platform.openai.com/api-keys",kind:"openai",base:"https://api.openai.com/v1",model:"gpt-4o-mini"},
+ anthropic:{label:"Anthropic (Claude)",type:"paid",link:"https://console.anthropic.com/settings/keys",kind:"anthropic",model:"claude-3-5-haiku-latest"},
+ deepseek:{label:"DeepSeek",type:"paid",link:"https://platform.deepseek.com/api_keys",kind:"openai",base:"https://api.deepseek.com",model:"deepseek-chat"},
+ mistral:{label:"Mistral",type:"trial",link:"https://console.mistral.ai/api-keys",kind:"openai",base:"https://api.mistral.ai/v1",model:"mistral-small-latest"},
+ cohere:{label:"Cohere",type:"trial",link:"https://dashboard.cohere.com/api-keys",kind:"cohere",model:"command-r"}
+};
+var NET_PROVIDERS={
+ serper:{label:"Serper.dev (Google)",link:"https://serper.dev/api-key"},
+ tavily:{label:"Tavily Search",link:"https://app.tavily.com/home"}
+};
+
+/* ===== i18n (missing keys auto-fallback to English) ===== */
 var I18N={
- en:{cats:"CATEGORIES",newCat:"+ New Category",addTool:"+ Add Tool",settings:"Settings",search:"Search tools...",load:"⬇️ Load More",loading:"🔎 Searching the internet...",
-   heroTag:"Pick your favorite tools from the category on the left 👈",hint:"⬅️ Select a category to get started",
-   aiChatSub:"All your AI chat tools in one place",modAddTool:"Add Tool",lname:"Tools name",llink:"Link",ldesc:"Description (optional)",cancel:"Cancel",save:"💾 Save Tool",
+ en:{cats:"CATEGORIES",newCat:"+ New Category",addTool:"+ Add Tool",search:"Search tools...",load:"⬇️ Load More",loadingDev:"🔎 Loading more...",loadingAI:"🤖 AI is finding tools...",loadingNet:"🌐 Searching the internet...",
+   heroTag:"Pick your favorite tools from the category on the left 👈",hint:"⬅️ Select a category to get started",aiChatSub:"All your AI chat tools in one place",
+   modAddTool:"Add Tool",modEditTool:"Edit Tool",lname:"Tools name",llink:"Link",ldesc:"Description (optional)",cancel:"Cancel",save:"💾 Save Tool",update:"💾 Update Tool",
    modNewCat:"New Category",modNewCatSub:"Create a new tool category",lcatname:"Category name",lcaticon:"Icon (emoji)",addc:"➕ Add",
    setTitle:"⚙️ Settings",setSub:"Customize your experience",dark:"🌙 Dark Night Mode",darkSub:"Comfortable dark theme",lang:"🌐 Language",close:"Close",
-   open:"Open ↗",toolSub:function(c){return 'Add a tool to "'+c+'"'},notFound:"No tools found. Click \"+ Add Tool\" above.",custom:"Custom tool",
-   about:[["🎯","Our Goal","Bring every useful online tool together in one organized place — so you never waste time searching across the internet again."],
-          ["💡","Purpose","Whether it's AI chat, image, video or any tool — find it instantly by category, all neatly arranged for you."],
-          ["🚀","Vision","To become the world's smartest tool hub where any tool, old or new, is just one click away."],
-          ["✨","Why Smart Tools","Colorful, fast, customizable and works on every device. Add your own tools and keep discovering new ones with Load More."]]},
- bn:{cats:"ক্যাটাগরি",newCat:"+ নতুন ক্যাটাগরি",addTool:"+ টুল যোগ করুন",settings:"সেটিংস",search:"টুল খুঁজুন...",load:"⬇️ আরো লোড করুন",loading:"🔎 ইন্টারনেটে খুঁজছি...",
-   heroTag:"বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈",hint:"⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন",
-   aiChatSub:"আপনার সব এআই চ্যাট টুল এক জায়গায়",modAddTool:"টুল যোগ করুন",lname:"টুলের নাম",llink:"লিংক",ldesc:"বর্ণনা (ঐচ্ছিক)",cancel:"বাতিল",save:"💾 Save Tool",
+   open:"Open ↗",notFound:"No tools yet. Click \"+ Add Tool\" or use Load More.",custom:"Custom tool",allLoaded:"✓ All tools loaded",
+   modeTitle:"🧭 Tool Source",modeSub:"Choose ONE source — only one stays active to save your time & cost.",
+   mDev:"📦 More Tools Upcoming",mDevSub:"Big offline list + developer-added tools. Free, fast, reliable.",
+   mAI:"🤖 Searching Tools from AI",mAISub:"Add your AI API key. The app uses AI to discover tools.",
+   mNet:"🌐 Searching Tools Internet",mNetSub:"Real-time internet search via API.",premium:"PREMIUM",active:"ACTIVE",
+   apiType:"API type",free:"Free",paid:"Paid",trial:"Trial",provider:"Provider",apiKey:"API key",getKey:"🔑 Create API key",
+   saveKey:"Save",removeKey:"Remove",replaceKey:"Replace",keyOn:"✓ Key saved & active",noKey:"No API key added yet",
+   needKeyAI:"Add your AI API key in Settings → Searching Tools from AI.",needKeyNet:"Add a search API key in Settings → Searching Tools Internet.",
+   devNote:"Developers can add tools safely by editing only the tools.js file — a small mistake there won't crash the whole app.",editFile:"✏️ Edit tools.js on GitHub",
+   modeNow:"Source",badgeAI:"AI",badgeNet:"NET",badgeDev:"DEV",fetchFail:"Could not fetch tools. Check your API key / network.",
+   descTitle:"About Smart Tools",
+   desc:["<b>Smart Tools</b> is your one smart hub for every useful tool on the internet. Instead of searching across countless sites, you find everything neatly arranged by category — right at your fingertips.",
+         "Our <b>goal</b> is simple: save your time and effort. Whether you need AI chat, image, video or any other tool, just open a category and it is there. No more endless searching, no more wasted minutes.",
+         "Our <b>vision</b> is to become the world's smartest tool hub, where any tool — old or new — is only one click away. With <b>Load More</b> the list keeps growing, and you can even add your own tools.",
+         "Built to be <b>colorful, fast and comfortable</b> on every device — mobile, desktop, iPhone and Mac. Smart Tools puts everything tools in your hand. ✨"]},
+ bn:{cats:"ক্যাটাগরি",newCat:"+ নতুন ক্যাটাগরি",addTool:"+ টুল যোগ করুন",search:"টুল খুঁজুন...",load:"⬇️ আরো লোড করুন",loadingDev:"🔎 লোড হচ্ছে...",loadingAI:"🤖 AI টুল খুঁজছে...",loadingNet:"🌐 ইন্টারনেটে খুঁজছি...",
+   heroTag:"বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈",hint:"⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন",aiChatSub:"আপনার সব এআই চ্যাট টুল এক জায়গায়",
+   modAddTool:"টুল যোগ করুন",modEditTool:"টুল এডিট করুন",lname:"টুলের নাম",llink:"লিংক",ldesc:"বর্ণনা (ঐচ্ছিক)",cancel:"বাতিল",save:"💾 Save Tool",update:"💾 আপডেট করুন",
    modNewCat:"নতুন ক্যাটাগরি",modNewCatSub:"নতুন টুল ক্যাটাগরি তৈরি করুন",lcatname:"ক্যাটাগরির নাম",lcaticon:"আইকন (ইমোজি)",addc:"➕ যোগ করুন",
    setTitle:"⚙️ সেটিংস",setSub:"আপনার অভিজ্ঞতা কাস্টমাইজ করুন",dark:"🌙 ডার্ক নাইট মোড",darkSub:"চোখের আরামের জন্য ডার্ক থিম",lang:"🌐 ভাষা",close:"বন্ধ করুন",
-   open:"খুলুন ↗",toolSub:function(c){return '"'+c+'" ক্যাটাগরিতে টুল যোগ করুন'},notFound:"কোনো টুল পাওয়া যায়নি। উপরে \"+ টুল যোগ করুন\" ক্লিক করুন।",custom:"কাস্টম টুল",
-   about:[["🎯","আমাদের লক্ষ্য","অনলাইনের সব দরকারি টুল এক সাজানো জায়গায় নিয়ে আসা — যাতে আর কখনো ইন্টারনেটে খুঁজে সময় নষ্ট করতে না হয়।"],
-          ["💡","উদ্দেশ্য","এআই চ্যাট, ইমেজ, ভিডিও বা যেকোনো টুল — ক্যাটাগরি অনুযায়ী সাজানো অবস্থায় সঙ্গে সঙ্গে খুঁজে পান।"],
-          ["🚀","ভিশন","পৃথিবীর সবচেয়ে স্মার্ট টুল হাব হয়ে ওঠা, যেখানে পুরোনো-নতুন যেকোনো টুল মাত্র এক ক্লিক দূরে।"],
-          ["✨","কেন Smart Tools","কালারফুল, দ্রুত, কাস্টমাইজযোগ্য এবং সব ডিভাইসে চলে। নিজের টুল যোগ করুন আর Load More দিয়ে নতুন টুল আবিষ্কার করুন।"]]},
- hi:{cats:"श्रेणियाँ",newCat:"+ नई श्रेणी",addTool:"+ टूल जोड़ें",settings:"सेटिंग्स",search:"टूल खोजें...",load:"⬇️ और लोड करें",loading:"🔎 इंटरनेट पर खोज रहे हैं...",
-   heroTag:"बाईं ओर की श्रेणी से अपने पसंदीदा टूल चुनें 👈",hint:"⬅️ शुरू करने के लिए एक श्रेणी चुनें",
-   aiChatSub:"आपके सभी AI चैट टूल एक जगह",modAddTool:"टूल जोड़ें",lname:"टूल का नाम",llink:"लिंक",ldesc:"विवरण (वैकल्पिक)",cancel:"रद्द करें",save:"💾 सेव करें",
-   modNewCat:"नई श्रेणी",modNewCatSub:"नई टूल श्रेणी बनाएँ",lcatname:"श्रेणी का नाम",lcaticon:"आइकन (इमोजी)",addc:"➕ जोड़ें",
-   setTitle:"⚙️ सेटिंग्स",setSub:"अपना अनुभव अनुकूलित करें",dark:"🌙 डार्क नाइट मोड",darkSub:"आरामदायक डार्क थीम",lang:"🌐 भाषा",close:"बंद करें",
-   open:"खोलें ↗",toolSub:function(c){return '"'+c+'" में टूल जोड़ें'},notFound:"कोई टूल नहीं मिला।",custom:"कस्टम टूल",
-   about:[["🎯","हमारा लक्ष्य","हर उपयोगी ऑनलाइन टूल को एक व्यवस्थित जगह पर लाना।"],["💡","उद्देश्य","श्रेणी अनुसार किसी भी टूल को तुरंत खोजें।"],["🚀","विज़न","दुनिया का सबसे स्मार्ट टूल हब बनना।"],["✨","क्यों Smart Tools","रंगीन, तेज़ और हर डिवाइस पर काम करता है।"]]},
- ar:{cats:"الفئات",newCat:"+ فئة جديدة",addTool:"+ إضافة أداة",settings:"الإعدادات",search:"ابحث عن الأدوات...",load:"⬇️ تحميل المزيد",loading:"🔎 جارٍ البحث...",
-   heroTag:"اختر أدواتك المفضلة من الفئة على اليسار 👈",hint:"⬅️ اختر فئة للبدء",
-   aiChatSub:"كل أدوات الدردشة الذكية في مكان واحد",modAddTool:"إضافة أداة",lname:"اسم الأداة",llink:"الرابط",ldesc:"الوصف (اختياري)",cancel:"إلغاء",save:"💾 حفظ",
-   modNewCat:"فئة جديدة",modNewCatSub:"أنشئ فئة أدوات جديدة",lcatname:"اسم الفئة",lcaticon:"أيقونة (إيموجي)",addc:"➕ إضافة",
-   setTitle:"⚙️ الإعدادات",setSub:"خصص تجربتك",dark:"🌙 الوضع الليلي",darkSub:"سمة داكنة مريحة",lang:"🌐 اللغة",close:"إغلاق",
-   open:"فتح ↗",toolSub:function(c){return 'أضف أداة إلى "'+c+'"'},notFound:"لا توجد أدوات.",custom:"أداة مخصصة",
-   about:[["🎯","هدفنا","جمع كل أداة مفيدة في مكان منظم واحد."],["💡","الغرض","ابحث عن أي أداة فورًا حسب الفئة."],["🚀","رؤيتنا","أن نصبح أذكى مركز أدوات في العالم."],["✨","لماذا Smart Tools","ملون وسريع ويعمل على كل جهاز."]]},
- es:{cats:"CATEGORÍAS",newCat:"+ Nueva categoría",addTool:"+ Añadir herramienta",settings:"Ajustes",search:"Buscar herramientas...",load:"⬇️ Cargar más",loading:"🔎 Buscando en internet...",
-   heroTag:"Elige tus herramientas favoritas de la categoría de la izquierda 👈",hint:"⬅️ Selecciona una categoría para empezar",
-   aiChatSub:"Todas tus herramientas de chat IA en un lugar",modAddTool:"Añadir herramienta",lname:"Nombre",llink:"Enlace",ldesc:"Descripción (opcional)",cancel:"Cancelar",save:"💾 Guardar",
-   modNewCat:"Nueva categoría",modNewCatSub:"Crea una nueva categoría",lcatname:"Nombre de categoría",lcaticon:"Icono (emoji)",addc:"➕ Añadir",
-   setTitle:"⚙️ Ajustes",setSub:"Personaliza tu experiencia",dark:"🌙 Modo nocturno",darkSub:"Tema oscuro cómodo",lang:"🌐 Idioma",close:"Cerrar",
-   open:"Abrir ↗",toolSub:function(c){return 'Añadir a "'+c+'"'},notFound:"No se encontraron herramientas.",custom:"Herramienta personal",
-   about:[["🎯","Nuestro objetivo","Reunir cada herramienta útil en un solo lugar."],["💡","Propósito","Encuentra cualquier herramienta por categoría al instante."],["🚀","Visión","Ser el centro de herramientas más inteligente."],["✨","Por qué","Colorido, rápido y en todos los dispositivos."]]},
- ur:{cats:"اقسام",newCat:"+ نئی قسم",addTool:"+ ٹول شامل کریں",settings:"ترتیبات",search:"ٹولز تلاش کریں...",load:"⬇️ مزید لوڈ کریں",loading:"🔎 تلاش جاری ہے...",
-   heroTag:"بائیں جانب کی قسم سے اپنے پسندیدہ ٹولز چنیں 👈",hint:"⬅️ شروع کرنے کے لیے ایک قسم منتخب کریں",
-   aiChatSub:"آپ کے تمام AI چیٹ ٹولز ایک جگہ",modAddTool:"ٹول شامل کریں",lname:"ٹول کا نام",llink:"لنک",ldesc:"تفصیل (اختیاری)",cancel:"منسوخ",save:"💾 محفوظ کریں",
-   modNewCat:"نئی قسم",modNewCatSub:"نئی ٹول قسم بنائیں",lcatname:"قسم کا نام",lcaticon:"آئیکن (ایموجی)",addc:"➕ شامل کریں",
-   setTitle:"⚙️ ترتیبات",setSub:"اپنا تجربہ ترتیب دیں",dark:"🌙 ڈارک نائٹ موڈ",darkSub:"آرام دہ ڈارک تھیم",lang:"🌐 زبان",close:"بند کریں",
-   open:"کھولیں ↗",toolSub:function(c){return '"'+c+'" میں ٹول شامل کریں'},notFound:"کوئی ٹول نہیں ملا۔",custom:"کسٹم ٹول",
-   about:[["🎯","ہمارا مقصد","ہر مفید ٹول کو ایک منظم جگہ پر لانا۔"],["💡","غرض","کسی بھی ٹول کو فوراً تلاش کریں۔"],["🚀","ویژن","دنیا کا سب سے سمارٹ ٹول ہب بننا۔"],["✨","کیوں","رنگین، تیز اور ہر ڈیوائس پر۔"]]}
+   open:"খুলুন ↗",notFound:"এখনো কোনো টুল নেই। \"+ টুল যোগ করুন\" বা Load More ব্যবহার করুন।",custom:"কাস্টম টুল",allLoaded:"✓ সব টুল দেখানো হয়েছে",
+   modeTitle:"🧭 টুল সোর্স",modeSub:"একটি সোর্স বেছে নিন — সময় ও খরচ বাঁচাতে একসাথে শুধু একটাই চালু থাকবে।",
+   mDev:"📦 More Tools Upcoming",mDevSub:"বড় অফলাইন তালিকা + ডেভেলপার-যোগ করা টুল। ফ্রি, দ্রুত, নির্ভরযোগ্য।",
+   mAI:"🤖 Searching Tools from AI",mAISub:"আপনার AI API key যোগ করুন। অ্যাপ AI দিয়ে টুল খুঁজবে।",
+   mNet:"🌐 Searching Tools Internet",mNetSub:"API দিয়ে রিয়েল-টাইম ইন্টারনেট সার্চ।",premium:"প্রিমিয়াম",active:"চালু",
+   apiType:"API ধরন",free:"ফ্রি",paid:"পেইড",trial:"ট্রায়াল",provider:"প্রোভাইডার",apiKey:"API key",getKey:"🔑 API key তৈরি করুন",
+   saveKey:"সেভ",removeKey:"রিমুভ",replaceKey:"রিপ্লেস",keyOn:"✓ Key সেভ ও চালু আছে",noKey:"এখনো কোনো API key যোগ করা হয়নি",
+   needKeyAI:"সেটিংস → Searching Tools from AI তে আপনার AI API key যোগ করুন।",needKeyNet:"সেটিংস → Searching Tools Internet এ একটি সার্চ API key যোগ করুন।",
+   devNote:"ডেভেলপাররা নিরাপদে শুধু tools.js ফাইলটি এডিট করেই টুল যোগ করতে পারবেন — ছোট ভুলেও পুরো অ্যাপ ক্র্যাশ করবে না।",editFile:"✏️ GitHub এ tools.js এডিট করুন",
+   modeNow:"সোর্স",badgeAI:"AI",badgeNet:"NET",badgeDev:"DEV",fetchFail:"টুল আনা যায়নি। আপনার API key / নেট সংযোগ দেখুন।",
+   descTitle:"Smart Tools সম্পর্কে",
+   desc:["<b>Smart Tools</b> হলো ইন্টারনেটের সব দরকারি টুলের জন্য আপনার একটি স্মার্ট হাব। অসংখ্য সাইটে খুঁজে বেড়ানোর বদলে, এখানে সবকিছু ক্যাটাগরি অনুযায়ী সুন্দরভাবে সাজানো — একদম আপনার হাতের মুঠোয়।",
+         "আমাদের <b>লক্ষ্য</b> খুব সহজ: আপনার সময় ও পরিশ্রম বাঁচানো। এআই চ্যাট, ইমেজ, ভিডিও বা যেকোনো টুল দরকার হলে শুধু ক্যাটাগরিটি খুলুন — টুল হাজির। আর কোনো অন্তহীন খোঁজাখুঁজি নয়, সময়ের অপচয় নয়।",
+         "আমাদের <b>ভিশন</b> হলো পৃথিবীর সবচেয়ে স্মার্ট টুল হাব হয়ে ওঠা, যেখানে পুরোনো হোক বা নতুন — যেকোনো টুল মাত্র এক ক্লিক দূরে। <b>Load More</b> দিয়ে তালিকা বাড়তেই থাকে, আর আপনি নিজের টুলও যোগ করতে পারেন।",
+         "প্রতিটি ডিভাইসে — মোবাইল, ডেস্কটপ, আইফোন ও ম্যাক — <b>রঙিন, দ্রুত ও আরামদায়ক</b> অভিজ্ঞতার জন্য তৈরি। Smart Tools সব টুল এনে দেয় আপনার হাতের মুঠোয়। ✨"]},
+ hi:{aiChatSub:"आपके सभी AI चैट टूल एक जगह",heroTag:"बाईं ओर की श्रेणी से अपने पसंदीदा टूल चुनें 👈",hint:"⬅️ शुरू करने के लिए एक श्रेणी चुनें",cats:"श्रेणियाँ",newCat:"+ नई श्रेणी",addTool:"+ टूल जोड़ें",search:"टूल खोजें...",close:"बंद करें",lang:"🌐 भाषा",dark:"🌙 डार्क मोड"},
+ ar:{aiChatSub:"كل أدوات الدردشة الذكية في مكان واحد",heroTag:"اختر أدواتك المفضلة من الفئة على اليسار 👈",hint:"⬅️ اختر فئة للبدء",cats:"الفئات",newCat:"+ فئة جديدة",addTool:"+ إضافة أداة",search:"ابحث...",close:"إغلاق",lang:"🌐 اللغة",dark:"🌙 الوضع الليلي"},
+ es:{aiChatSub:"Todas tus herramientas de chat IA en un lugar",heroTag:"Elige tus herramientas favoritas de la izquierda 👈",hint:"⬅️ Selecciona una categoría",cats:"CATEGORÍAS",newCat:"+ Nueva categoría",addTool:"+ Añadir",search:"Buscar...",close:"Cerrar",lang:"🌐 Idioma",dark:"🌙 Modo nocturno"},
+ ur:{aiChatSub:"آپ کے تمام AI چیٹ ٹولز ایک جگہ",heroTag:"بائیں جانب کی قسم سے اپنے پسندیدہ ٹولز چنیں 👈",hint:"⬅️ ایک قسم منتخب کریں",cats:"اقسام",newCat:"+ نئی قسم",addTool:"+ ٹول شامل کریں",search:"تلاش کریں...",close:"بند کریں",lang:"🌐 زبان",dark:"🌙 ڈارک موڈ"}
 };
+Object.keys(I18N).forEach(function(L){for(var k in I18N.en){if(I18N[L][k]===undefined)I18N[L][k]=I18N.en[k];}});
 function T(){return I18N[lang]||I18N.en;}
 
-/* ===== Seed AI chat tools (large pool for endless Load More) ===== */
+/* ===== Offline pool ===== */
 var POOL=[
- {n:"ChatGPT",l:"https://chat.openai.com",d:"OpenAI's popular AI chatbot",c:"#10a37f"},
- {n:"Claude",l:"https://claude.ai",d:"Anthropic's safe & smart AI",c:"#d97757"},
- {n:"Gemini",l:"https://gemini.google.com",d:"Google's multimodal AI",c:"#4285f4"},
- {n:"Perplexity",l:"https://www.perplexity.ai",d:"AI answer search engine",c:"#20808d"},
- {n:"Mistral / Le Chat",l:"https://chat.mistral.ai",d:"Mistral's open AI chat",c:"#fa5310"},
- {n:"Qwen Chat",l:"https://chat.qwen.ai",d:"Alibaba's Qwen AI chat",c:"#615ced"},
- {n:"Microsoft Copilot",l:"https://copilot.microsoft.com",d:"Microsoft's AI assistant",c:"#0078d4"},
- {n:"DeepSeek",l:"https://chat.deepseek.com",d:"Powerful reasoning AI chat",c:"#4d6bfe"},
- {n:"Grok",l:"https://grok.com",d:"xAI's AI chatbot",c:"#111111"},
- {n:"Meta AI",l:"https://www.meta.ai",d:"Meta's Llama-based AI",c:"#0064e0"},
- {n:"Poe",l:"https://poe.com",d:"Many AI models in one app",c:"#5d3fd3"},
- {n:"HuggingChat",l:"https://huggingface.co/chat",d:"Hugging Face open chat",c:"#ff9d00"},
- {n:"Pi",l:"https://pi.ai",d:"Inflection's personal AI",c:"#a06bf5"},
- {n:"Character.AI",l:"https://character.ai",d:"Character-based AI chat",c:"#3b5bfe"},
- {n:"You.com",l:"https://you.com",d:"AI search & chat",c:"#7c3aed"},
- {n:"Kimi (Moonshot)",l:"https://kimi.moonshot.cn",d:"Long-context AI chat",c:"#16a3ff"},
- {n:"Ernie Bot",l:"https://yiyan.baidu.com",d:"Baidu's AI chat",c:"#2932e1"},
- {n:"Doubao",l:"https://www.doubao.com",d:"ByteDance's AI chat",c:"#0a84ff"},
- {n:"Clova X",l:"https://clova-x.naver.com",d:"Naver's Korean AI",c:"#03c75a"},
- {n:"Jasper Chat",l:"https://www.jasper.ai",d:"Marketing-focused AI chat",c:"#ff7a59"},
- {n:"Phind",l:"https://www.phind.com",d:"AI chat for developers",c:"#2563eb"},
- {n:"Komo AI",l:"https://komo.ai",d:"Fast AI search chat",c:"#ff5a5f"},
- {n:"Andi Search",l:"https://andisearch.com",d:"Conversational AI search",c:"#00b3a4"},
- {n:"GroqChat",l:"https://groq.com",d:"Ultra-fast AI inference chat",c:"#f55036"},
- {n:"Cohere Chat",l:"https://cohere.com/chat",d:"Cohere's enterprise AI chat",c:"#39594d"},
- {n:"Llama (Ollama)",l:"https://ollama.com",d:"Run open AI chat locally",c:"#000000"},
- {n:"ChatGLM",l:"https://chatglm.cn",d:"Zhipu's bilingual AI chat",c:"#3859ff"},
- {n:"Tongyi",l:"https://tongyi.aliyun.com",d:"Alibaba Tongyi AI chat",c:"#615ced"},
- {n:"Spark Desk",l:"https://xinghuo.xfyun.cn",d:"iFlytek Spark AI chat",c:"#1f6feb"},
- {n:"YouChat",l:"https://you.com/chat",d:"Conversational AI by You",c:"#7c3aed"},
- {n:"Brave Leo",l:"https://brave.com/leo",d:"Brave browser's AI chat",c:"#fb542b"},
- {n:"Hix Chat",l:"https://hix.ai/chat",d:"All-in-one AI chat",c:"#6d28d9"},
- {n:"Chatsonic",l:"https://writesonic.com/chat",d:"Writesonic's AI chat",c:"#9013fe"},
- {n:"Forefront AI",l:"https://forefront.ai",d:"Multi-model AI chat",c:"#5b21b6"},
- {n:"Falcon Chat",l:"https://falconllm.tii.ae",d:"TII Falcon AI chat",c:"#0ea5e9"},
- {n:"Inflection",l:"https://inflection.ai",d:"Empathetic AI chat",c:"#a06bf5"},
- {n:"Yandex Alice",l:"https://alice.yandex.ru",d:"Yandex AI assistant chat",c:"#ffcc00"},
- {n:"WildCard AI",l:"https://wildcard.ai",d:"Conversational AI tool",c:"#e11d48"}
+ {n:"ChatGPT",l:"https://chat.openai.com",d:"OpenAI's popular AI chatbot",c:"#10a37f"},{n:"Claude",l:"https://claude.ai",d:"Anthropic's safe & smart AI",c:"#d97757"},
+ {n:"Gemini",l:"https://gemini.google.com",d:"Google's multimodal AI",c:"#4285f4"},{n:"Perplexity",l:"https://www.perplexity.ai",d:"AI answer search engine",c:"#20808d"},
+ {n:"Mistral / Le Chat",l:"https://chat.mistral.ai",d:"Mistral's open AI chat",c:"#fa5310"},{n:"Qwen Chat",l:"https://chat.qwen.ai",d:"Alibaba's Qwen AI chat",c:"#615ced"},
+ {n:"Microsoft Copilot",l:"https://copilot.microsoft.com",d:"Microsoft's AI assistant",c:"#0078d4"},{n:"DeepSeek",l:"https://chat.deepseek.com",d:"Powerful reasoning AI chat",c:"#4d6bfe"},
+ {n:"Grok",l:"https://grok.com",d:"xAI's AI chatbot",c:"#111111"},{n:"Meta AI",l:"https://www.meta.ai",d:"Meta's Llama-based AI",c:"#0064e0"},
+ {n:"Poe",l:"https://poe.com",d:"Many AI models in one app",c:"#5d3fd3"},{n:"HuggingChat",l:"https://huggingface.co/chat",d:"Hugging Face open chat",c:"#ff9d00"},
+ {n:"Pi",l:"https://pi.ai",d:"Inflection's personal AI",c:"#a06bf5"},{n:"Character.AI",l:"https://character.ai",d:"Character-based AI chat",c:"#3b5bfe"},
+ {n:"You.com",l:"https://you.com",d:"AI search & chat",c:"#7c3aed"},{n:"Kimi (Moonshot)",l:"https://kimi.moonshot.cn",d:"Long-context AI chat",c:"#16a3ff"},
+ {n:"Ernie Bot",l:"https://yiyan.baidu.com",d:"Baidu's AI chat",c:"#2932e1"},{n:"Doubao",l:"https://www.doubao.com",d:"ByteDance's AI chat",c:"#0a84ff"},
+ {n:"Clova X",l:"https://clova-x.naver.com",d:"Naver's Korean AI",c:"#03c75a"},{n:"Jasper Chat",l:"https://www.jasper.ai",d:"Marketing AI chat",c:"#ff7a59"},
+ {n:"Phind",l:"https://www.phind.com",d:"AI chat for developers",c:"#2563eb"},{n:"Komo AI",l:"https://komo.ai",d:"Fast AI search chat",c:"#ff5a5f"},
+ {n:"Andi Search",l:"https://andisearch.com",d:"Conversational AI search",c:"#00b3a4"},{n:"GroqChat",l:"https://groq.com",d:"Ultra-fast AI inference chat",c:"#f55036"},
+ {n:"Cohere Chat",l:"https://cohere.com/chat",d:"Enterprise AI chat",c:"#39594d"},{n:"ChatGLM",l:"https://chatglm.cn",d:"Zhipu bilingual AI chat",c:"#3859ff"},
+ {n:"Tongyi",l:"https://tongyi.aliyun.com",d:"Alibaba Tongyi AI chat",c:"#615ced"},{n:"Spark Desk",l:"https://xinghuo.xfyun.cn",d:"iFlytek Spark AI chat",c:"#1f6feb"},
+ {n:"Brave Leo",l:"https://brave.com/leo",d:"Brave browser AI chat",c:"#fb542b"},{n:"Chatsonic",l:"https://writesonic.com/chat",d:"Writesonic AI chat",c:"#9013fe"},
+ {n:"Falcon Chat",l:"https://falconllm.tii.ae",d:"TII Falcon AI chat",c:"#0ea5e9"},{n:"Yandex Alice",l:"https://alice.yandex.ru",d:"Yandex AI assistant",c:"#ffcc00"}
 ];
 
-var state = JSON.parse(localStorage.getItem("smartTools2")||"null");
-function defaultState(){
-  return { cats:{ "ai-chat":{name:"AI Chat Tools",icon:"💬",sub:"All your AI chat tools in one place",builtin:true,shown:8,custom:[]} },
-           order:["ai-chat"], active:"home" };
-}
-if(!state) state=defaultState();
-state.active="home"; // always open on home
-var lang = localStorage.getItem("lang")||"bn";
-function save(){var a=state.active;localStorage.setItem("smartTools2",JSON.stringify(state));state.active=a;}
+/* ===== State ===== */
+var state=JSON.parse(localStorage.getItem("smartTools3")||"null");
+function defaultState(){return {cats:{"ai-chat":{name:"AI Chat Tools",icon:"💬",builtin:true,shown:8,custom:[],fetched:[]}},order:["ai-chat"],active:"home",
+  mode:"dev",aiType:"free",aiProvider:"gemini",aiKey:"",netProvider:"serper",netKey:""};}
+if(!state)state=defaultState();
+state.active="home";
+if(!state.mode)state.mode="dev";
+var lang=localStorage.getItem("lang")||"bn";
+function save(){var a=state.active;localStorage.setItem("smartTools3",JSON.stringify(state));state.active=a;}
+var DEV=window.DEV_TOOLS||{};
 
-/* ===== Apply language to static UI ===== */
-function applyLang(){
-  var t=T();
-  document.documentElement.lang=lang;
-  document.documentElement.dir=(lang==="ar"||lang==="ur")?"rtl":"ltr";
-  document.getElementById("catLabel").textContent=t.cats;
-  document.getElementById("newCatBtn").textContent=t.newCat;
-  document.getElementById("addToolBtn").textContent=t.addTool;
-  document.getElementById("searchBox").placeholder=t.search;
-  document.getElementById("heroTag").textContent=t.heroTag;
-  document.getElementById("homeHint").textContent=t.hint;
-  document.getElementById("m_addTool").textContent=t.modAddTool;
-  document.getElementById("l_name").textContent=t.lname;
-  document.getElementById("l_link").textContent=t.llink;
-  document.getElementById("l_desc").textContent=t.ldesc;
-  document.getElementById("b_cancel1").textContent=t.cancel;
-  document.getElementById("b_save").textContent=t.save;
-  document.getElementById("m_newCat").textContent=t.modNewCat;
-  document.getElementById("m_newCatSub").textContent=t.modNewCatSub;
-  document.getElementById("l_catname").textContent=t.lcatname;
-  document.getElementById("l_caticon").textContent=t.lcaticon;
-  document.getElementById("b_cancel2").textContent=t.cancel;
-  document.getElementById("b_addcat").textContent=t.addc;
-  document.getElementById("m_settings").textContent=t.setTitle;
-  document.getElementById("m_settingsSub").textContent=t.setSub;
-  document.getElementById("s_dark").textContent=t.dark;
-  document.getElementById("s_darkSub").textContent=t.darkSub;
-  document.getElementById("s_lang").textContent=t.lang;
-  document.getElementById("s_close").textContent=t.close;
-  document.getElementById("loadBtn").textContent=t.load;
-  // about cards
-  document.getElementById("aboutBox").innerHTML=t.about.map(function(a,i){
-    return '<div class="about-card ac'+((i%4)+1)+'"><h3>'+a[0]+' '+a[1]+'</h3><p>'+a[2]+'</p></div>';
-  }).join("");
+/* ===== Language apply ===== */
+function applyLang(){var t=T();document.documentElement.lang=lang;document.documentElement.dir=(lang==="ar"||lang==="ur")?"rtl":"ltr";
+  document.getElementById("catLabel").textContent=t.cats;document.getElementById("newCatBtn").textContent=t.newCat;document.getElementById("addToolBtn").textContent=t.addTool;
+  document.getElementById("searchBox").placeholder=t.search;document.getElementById("heroTag").textContent=t.heroTag;document.getElementById("homeHint").textContent=t.hint;
+  document.getElementById("l_name").textContent=t.lname;document.getElementById("l_link").textContent=t.llink;document.getElementById("l_desc").textContent=t.ldesc;
+  document.getElementById("b_cancel1").textContent=t.cancel;document.getElementById("m_newCat").textContent=t.modNewCat;document.getElementById("m_newCatSub").textContent=t.modNewCatSub;
+  document.getElementById("l_catname").textContent=t.lcatname;document.getElementById("l_caticon").textContent=t.lcaticon;document.getElementById("b_cancel2").textContent=t.cancel;document.getElementById("b_addcat").textContent=t.addc;
+  document.getElementById("m_settings").textContent=t.setTitle;document.getElementById("m_settingsSub").textContent=t.setSub;document.getElementById("s_dark").textContent=t.dark;document.getElementById("s_darkSub").textContent=t.darkSub;
+  document.getElementById("s_lang").textContent=t.lang;document.getElementById("s_close").textContent=t.close;document.getElementById("s_modeTitle").textContent=t.modeTitle;document.getElementById("s_modeSub").textContent=t.modeSub;
+  document.getElementById("descTitle").textContent=t.descTitle;
+  document.getElementById("descBody").innerHTML=t.desc.map(function(p){return '<p>'+p+'</p>';}).join("");
   document.getElementById("langSel").value=lang;
+  setupReveal();
 }
 function setLang(v){lang=v;localStorage.setItem("lang",v);applyLang();render();}
 
-/* ===== Render ===== */
-function colorOf(t){return t.c||["#6366f1","#ec4899","#06b6d4","#f59e0b","#10b981","#8b5cf6"][(t.n.charCodeAt(0))%6];}
-function catTools(c){ // builtin shows first c.shown from POOL + custom
-  var base = c.builtin ? POOL.slice(0,c.shown) : [];
-  return base.concat(c.custom||[]);
-}
-function renderCats(){
-  document.getElementById("catList").innerHTML=state.order.map(function(k){
-    var c=state.cats[k];
-    return '<div class="cat '+(k===state.active?'active':'')+'" onclick="selectCat(\''+k+'\')"><span class="ic">'+c.icon+'</span>'+c.name+'</div>';
-  }).join("");
-}
-function goHome(){state.active="home";render();if(window.innerWidth<=860)closeSide();}
+/* ===== Scroll reveal ===== */
+function setupReveal(){var ps=document.querySelectorAll(".desc p");if(!("IntersectionObserver" in window)){ps.forEach(function(p){p.classList.add("reveal");});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("reveal");});},{threshold:.15});
+  ps.forEach(function(p){io.observe(p);});}
+
+/* ===== Tools assembly ===== */
+function colorOf(t){return t.c||["#6366f1","#ec4899","#06b6d4","#f59e0b","#10b981","#8b5cf6"][((t.n||"x").charCodeAt(0))%6];}
+function permanentTools(c,key){var base=c.builtin?POOL.slice(0,c.shown):[];var dev=(DEV[key]||[]);var fetched=c.fetched||[];return base.concat(dev,fetched);}
+function badgeFor(t){if(t.src==="ai")return '<span class="badge bg-ai">'+T().badgeAI+'</span>';if(t.src==="net")return '<span class="badge bg-net">'+T().badgeNet+'</span>';if(t.src==="dev")return '<span class="badge bg-dev">'+T().badgeDev+'</span>';return "";}
+
+function renderCats(){document.getElementById("catList").innerHTML=state.order.map(function(k){var c=state.cats[k];return '<div class="cat '+(k===state.active?'active':'')+'" onclick="selectCat(\''+k+'\')"><span class="ic">'+c.icon+'</span>'+c.name+'</div>';}).join("");}
+function goHome(){state.active="home";render();setupReveal();if(window.innerWidth<=860)closeSide();}
 function selectCat(k){state.active=k;render();if(window.innerWidth<=860)closeSide();window.scrollTo({top:0});}
-function render(){
-  var t=T();
-  renderCats();
-  var home=state.active==="home";
-  document.getElementById("homeView").classList.toggle("show",home);
-  document.getElementById("toolsView").style.display=home?"none":"block";
-  document.getElementById("addToolBtn").style.display=home?"none":"inline-flex";
-  if(home){
-    document.getElementById("catHeading").textContent="Smart Tools";
-    document.getElementById("catSub").textContent="";
-    return;
-  }
-  var c=state.cats[state.active];
-  document.getElementById("catHeading").textContent=c.name;
-  document.getElementById("catSub").textContent=(c.builtin?t.aiChatSub:(c.sub||""));
+
+function render(){var t=T();renderCats();var home=state.active==="home";
+  document.getElementById("homeView").classList.toggle("show",home);document.getElementById("toolsView").style.display=home?"none":"block";document.getElementById("addToolBtn").style.display=home?"none":"inline-flex";
+  if(home){document.getElementById("catHeading").textContent="Smart Tools";document.getElementById("catSub").textContent="";return;}
+  var key=state.active,c=state.cats[key];
+  document.getElementById("catHeading").textContent=c.name;document.getElementById("catSub").textContent=(c.builtin?t.aiChatSub:"");
+  var modeName=state.mode==="ai"?t.mAI:state.mode==="net"?t.mNet:t.mDev;
+  document.getElementById("modeBar").innerHTML=t.modeNow+': <b>'+modeName+'</b>';
   var q=(document.getElementById("searchBox").value||"").toLowerCase();
-  var all=catTools(c);
-  var list=all.filter(function(x){return x.n.toLowerCase().indexOf(q)>-1||(x.d||"").toLowerCase().indexOf(q)>-1;});
+  var perm=permanentTools(c,key),custom=c.custom||[],all=perm.concat(custom);
+  var list=all.filter(function(x){return (x.n||"").toLowerCase().indexOf(q)>-1||(x.d||"").toLowerCase().indexOf(q)>-1;});
   var g=document.getElementById("grid");
-  if(list.length===0){g.innerHTML='<div class="empty" style="grid-column:1/-1">'+t.notFound+'</div>';}
-  else g.innerHTML=list.map(function(x){
-    var idx=all.indexOf(x);var baseLen=c.builtin?Math.min(c.shown,POOL.length):0;var isCustom=idx>=baseLen;
-    return '<a class="card" href="'+x.l+'" target="_blank" rel="noopener">'+
-      (isCustom?'<button class="del" onclick="event.preventDefault();event.stopPropagation();delTool('+(idx-baseLen)+')">🗑</button>':'')+
-      '<div class="ava" style="background:linear-gradient(135deg,'+colorOf(x)+',#ec4899)">'+x.n.charAt(0).toUpperCase()+'</div>'+
-      '<h3>'+x.n+'</h3><p>'+(x.d||t.custom)+'</p><span class="go">'+t.open+'</span></a>';
-  }).join("");
-  // Load More always visible for builtin until pool exhausted
-  var more = c.builtin && c.shown<POOL.length;
-  document.getElementById("loadBtn").style.display=more?"inline-flex":"none";
+  if(list.length===0)g.innerHTML='<div class="empty" style="grid-column:1/-1">'+t.notFound+'</div>';
+  else g.innerHTML=list.map(function(x){var gi=all.indexOf(x);var isCustom=gi>=perm.length;var ci=gi-perm.length;
+    var ctrl=isCustom?('<div class="tactions"><button class="tedit" title="Edit" onclick="event.preventDefault();event.stopPropagation();editTool('+ci+')">✏️</button><button class="tdel" title="Remove" onclick="event.preventDefault();event.stopPropagation();delTool('+ci+')">🗑</button></div>'):badgeFor(x);
+    return '<a class="card" href="'+x.l+'" target="_blank" rel="noopener">'+ctrl+'<div class="ava" style="background:linear-gradient(135deg,'+colorOf(x)+',#ec4899)">'+(x.n||"?").charAt(0).toUpperCase()+'</div><h3>'+x.n+'</h3><p>'+(x.d||t.custom)+'</p><span class="go">'+t.open+'</span></a>';}).join("");
+  var btn=document.getElementById("loadBtn");btn.disabled=false;
+  if(state.mode==="dev"){var more=(c.builtin&&c.shown<POOL.length);if(more){btn.style.display="inline-flex";btn.textContent=t.load;}else{btn.style.display="inline-flex";btn.disabled=true;btn.textContent=t.allLoaded;}}
+  else{btn.style.display="inline-flex";btn.textContent=t.load;}
 }
 
-function loadMore(){
-  var c=state.cats[state.active];if(!c.builtin)return;
-  var btn=document.getElementById("loadBtn");btn.innerHTML='<span class="spin"></span>'+T().loading;
-  setTimeout(function(){c.shown=Math.min(c.shown+6,POOL.length);save();render();},900);
+/* ===== Load More by mode ===== */
+async function loadMore(){var t=T();var key=state.active,c=state.cats[key];var btn=document.getElementById("loadBtn");
+  if(state.mode==="dev"){if(!c.builtin)return;btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingDev;setTimeout(function(){c.shown=Math.min(c.shown+6,POOL.length);save();render();},700);return;}
+  if(state.mode==="ai"){if(!state.aiKey){alert(t.needKeyAI);openSettings();return;}btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingAI;
+    try{var got=await aiFetch(c.name,permanentTools(c,key).map(function(x){return x.n;}));attachFetched(c,got,"ai");}catch(e){alert(t.fetchFail+"\n"+(e.message||e));}render();return;}
+  if(state.mode==="net"){if(!state.netKey){alert(t.needKeyNet);openSettings();return;}btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingNet;
+    try{var got2=await netFetch(c.name);attachFetched(c,got2,"net");}catch(e){alert(t.fetchFail+"\n"+(e.message||e));}render();return;}
 }
+function attachFetched(c,arr,src){c.fetched=c.fetched||[];var have={};permanentTools(c,state.active).concat(c.custom||[]).forEach(function(x){have[(x.n||"").toLowerCase()]=1;});
+  arr.forEach(function(x){if(x&&x.n&&x.l&&!have[x.n.toLowerCase()]){x.src=src;c.fetched.push(x);have[x.n.toLowerCase()]=1;}});save();}
 
-/* Add Tool */
-function openToolModal(){document.getElementById("toolModalSub").textContent=T().toolSub(state.cats[state.active].name);document.getElementById("toolModal").classList.add("open");}
-function saveTool(){
-  var n=document.getElementById("tName").value.trim(),l=document.getElementById("tLink").value.trim(),d=document.getElementById("tDesc").value.trim();
-  if(!n||!l)return alert("⚠️");
-  if(!/^https?:\/\//.test(l))l="https://"+l;
-  var c=state.cats[state.active];c.custom=c.custom||[];c.custom.push({n:n,l:l,d:d||T().custom});save();
-  closeModal('toolModal');document.getElementById("tName").value="";document.getElementById("tLink").value="";document.getElementById("tDesc").value="";render();
+/* ===== AI fetch ===== */
+function parseToolJSON(text){var m=text.match(/\[[\s\S]*\]/);if(!m)throw new Error("Bad AI response");var arr=JSON.parse(m[0]);return arr.map(function(o){return {n:o.n||o.name,l:o.l||o.url||o.link,d:o.d||o.desc||o.description||""};});}
+async function aiFetch(catName,exclude){var p=PROVIDERS[state.aiProvider],key=state.aiKey;
+  var prompt='List 8 popular, real, currently-working '+catName+' tools or websites. Exclude these: '+(exclude||[]).join(", ")+'. Respond ONLY with a JSON array; each item: {"n":"name","l":"https url","d":"short description max 6 words"}. No markdown, no extra text.';
+  if(p.kind==="gemini"){var r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+p.model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});var j=await r.json();if(!r.ok)throw new Error((j.error&&j.error.message)||"HTTP "+r.status);return parseToolJSON(j.candidates[0].content.parts[0].text);}
+  if(p.kind==="anthropic"){var ra=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:p.model,max_tokens:1024,messages:[{role:"user",content:prompt}]})});var ja=await ra.json();if(!ra.ok)throw new Error((ja.error&&ja.error.message)||"HTTP "+ra.status);return parseToolJSON(ja.content[0].text);}
+  if(p.kind==="cohere"){var rc=await fetch("https://api.cohere.com/v2/chat",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model:p.model,messages:[{role:"user",content:prompt}]})});var jc=await rc.json();if(!rc.ok)throw new Error((jc.message)||"HTTP "+rc.status);var txt=jc.message.content.map(function(b){return b.text||"";}).join("");return parseToolJSON(txt);}
+  // openai-compatible
+  var hdr={"Content-Type":"application/json","Authorization":"Bearer "+key};if(state.aiProvider==="openrouter"){hdr["HTTP-Referer"]=location.origin;hdr["X-Title"]="Smart Tools";}
+  var ro=await fetch(p.base+"/chat/completions",{method:"POST",headers:hdr,body:JSON.stringify({model:p.model,messages:[{role:"user",content:prompt}],temperature:0.4})});var jo=await ro.json();if(!ro.ok)throw new Error((jo.error&&jo.error.message)||"HTTP "+ro.status);return parseToolJSON(jo.choices[0].message.content);
 }
+/* ===== Internet (real) fetch ===== */
+async function netFetch(catName){var key=state.netKey;
+  if(state.netProvider==="tavily"){var r=await fetch("https://api.tavily.com/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({api_key:key,query:catName+" tools list",max_results:8})});var j=await r.json();if(!r.ok)throw new Error(j.error||"HTTP "+r.status);return (j.results||[]).map(function(o){return {n:o.title,l:o.url,d:(o.content||"").slice(0,70)};});}
+  var rs=await fetch("https://google.serper.dev/search",{method:"POST",headers:{"Content-Type":"application/json","X-API-KEY":key},body:JSON.stringify({q:catName+" tools list"})});var js=await rs.json();if(!rs.ok)throw new Error((js.message)||"HTTP "+rs.status);return (js.organic||[]).map(function(o){return {n:o.title,l:o.link,d:(o.snippet||"").slice(0,70)};});}
+
+/* ===== Add / Edit / Delete custom ===== */
+var editIndex=-1;
+function openToolModal(){editIndex=-1;var t=T();document.getElementById("m_addTool").textContent=t.modAddTool;document.getElementById("b_save").textContent=t.save;document.getElementById("toolModalSub").textContent='"'+state.cats[state.active].name+'"';document.getElementById("tName").value="";document.getElementById("tLink").value="";document.getElementById("tDesc").value="";document.getElementById("toolModal").classList.add("open");}
+function editTool(i){editIndex=i;var t=T();var x=state.cats[state.active].custom[i];document.getElementById("m_addTool").textContent=t.modEditTool;document.getElementById("b_save").textContent=t.update;document.getElementById("toolModalSub").textContent='"'+state.cats[state.active].name+'"';document.getElementById("tName").value=x.n;document.getElementById("tLink").value=x.l;document.getElementById("tDesc").value=x.d||"";document.getElementById("toolModal").classList.add("open");}
+function saveTool(){var n=document.getElementById("tName").value.trim(),l=document.getElementById("tLink").value.trim(),d=document.getElementById("tDesc").value.trim();if(!n||!l)return alert("⚠️");if(!/^https?:\/\//.test(l))l="https://"+l;var c=state.cats[state.active];c.custom=c.custom||[];if(editIndex>=0)c.custom[editIndex]={n:n,l:l,d:d||T().custom};else c.custom.push({n:n,l:l,d:d||T().custom});save();closeModal('toolModal');render();}
 function delTool(i){if(confirm("🗑?")){state.cats[state.active].custom.splice(i,1);save();render();}}
 
-/* Category */
+/* ===== Category ===== */
 function openCatModal(){document.getElementById("catModal").classList.add("open");}
-function saveCat(){
-  var n=document.getElementById("cName").value.trim(),ic=document.getElementById("cIcon").value.trim()||"📁";
-  if(!n)return alert("⚠️");
-  var key="cat-"+Date.now();state.cats[key]={name:n,icon:ic,sub:"",builtin:false,custom:[]};state.order.push(key);state.active=key;save();
-  document.getElementById("cName").value="";document.getElementById("cIcon").value="";closeModal('catModal');render();window.scrollTo({top:0});
-}
+function saveCat(){var n=document.getElementById("cName").value.trim(),ic=document.getElementById("cIcon").value.trim()||"📁";if(!n)return alert("⚠️");var key="cat-"+Date.now();state.cats[key]={name:n,icon:ic,builtin:false,custom:[],fetched:[]};state.order.push(key);state.active=key;save();document.getElementById("cName").value="";document.getElementById("cIcon").value="";closeModal('catModal');render();window.scrollTo({top:0});}
 
-/* Settings */
-function openSettings(){document.getElementById("darkToggle").checked=document.documentElement.getAttribute("data-theme")==="dark";document.getElementById("langSel").value=lang;document.getElementById("settingsModal").classList.add("open");}
+/* ===== Settings: modes ===== */
+function setMode(m){state.mode=m;save();renderModes();render();}
+function renderModes(){var t=T();var html="";
+  // DEV
+  html+='<div class="modecard '+(state.mode==="dev"?"active":"")+'" onclick="setMode(\'dev\')"><div class="mhead">'+t.mDev+(state.mode==="dev"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mDevSub+'</div><div class="mbody"><div class="devnote">'+t.devNote+'<br><a class="keylink" href="https://github.com/mrifathahmedf/smart-tools/edit/main/tools.js" target="_blank">'+t.editFile+'</a></div></div></div>';
+  // AI
+  var provOpts=Object.keys(PROVIDERS).filter(function(k){return PROVIDERS[k].type===state.aiType;}).map(function(k){return '<option value="'+k+'" '+(k===state.aiProvider?"selected":"")+'>'+PROVIDERS[k].label+'</option>';}).join("");
+  var curP=PROVIDERS[state.aiProvider]||PROVIDERS.gemini;
+  var aiKeyUI=state.aiKey?('<div style="color:#16a34a;font-size:13px;font-weight:600;margin-bottom:6px">'+t.keyOn+'</div><div class="mrow"><button class="btn ghost" onclick="event.stopPropagation();replaceKey(\'ai\')">'+t.replaceKey+'</button><button class="btn" style="background:linear-gradient(135deg,#ec4899,#f43f5e)" onclick="event.stopPropagation();removeKey(\'ai\')">'+t.removeKey+'</button></div>'):('<input id="aiKeyInput" placeholder="'+t.apiKey+'" onclick="event.stopPropagation()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);margin-bottom:6px"><button class="btn" style="width:100%" onclick="event.stopPropagation();saveKey(\'ai\')">'+t.saveKey+'</button>');
+  html+='<div class="modecard '+(state.mode==="ai"?"active":"")+'" onclick="setMode(\'ai\')"><div class="mhead">'+t.mAI+(state.mode==="ai"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mAISub+'</div><div class="mbody">'
+    +'<div class="field"><label>'+t.apiType+'</label><select onchange="setAiType(this.value)" onclick="event.stopPropagation()"><option value="free" '+(state.aiType==="free"?"selected":"")+'>'+t.free+'</option><option value="paid" '+(state.aiType==="paid"?"selected":"")+'>'+t.paid+'</option><option value="trial" '+(state.aiType==="trial"?"selected":"")+'>'+t.trial+'</option></select></div>'
+    +'<div class="field"><label>'+t.provider+'</label><select onchange="setAiProvider(this.value)" onclick="event.stopPropagation()">'+provOpts+'</select><a class="keylink" href="'+curP.link+'" target="_blank" onclick="event.stopPropagation()">'+t.getKey+'</a></div>'
+    +'<div class="field"><label>'+t.apiKey+'</label>'+aiKeyUI+'</div></div></div>';
+  // NET
+  var netOpts=Object.keys(NET_PROVIDERS).map(function(k){return '<option value="'+k+'" '+(k===state.netProvider?"selected":"")+'>'+NET_PROVIDERS[k].label+'</option>';}).join("");
+  var curN=NET_PROVIDERS[state.netProvider]||NET_PROVIDERS.serper;
+  var netKeyUI=state.netKey?('<div style="color:#16a34a;font-size:13px;font-weight:600;margin-bottom:6px">'+t.keyOn+'</div><div class="mrow"><button class="btn ghost" onclick="event.stopPropagation();replaceKey(\'net\')">'+t.replaceKey+'</button><button class="btn" style="background:linear-gradient(135deg,#ec4899,#f43f5e)" onclick="event.stopPropagation();removeKey(\'net\')">'+t.removeKey+'</button></div>'):('<input id="netKeyInput" placeholder="'+t.apiKey+'" onclick="event.stopPropagation()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);margin-bottom:6px"><button class="btn" style="width:100%" onclick="event.stopPropagation();saveKey(\'net\')">'+t.saveKey+'</button>');
+  html+='<div class="modecard '+(state.mode==="net"?"active":"")+'" onclick="setMode(\'net\')"><div class="mhead">'+t.mNet+' <span class="pill" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">'+t.premium+'</span>'+(state.mode==="net"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mNetSub+'</div><div class="mbody">'
+    +'<div class="field"><label>'+t.provider+'</label><select onchange="setNetProvider(this.value)" onclick="event.stopPropagation()">'+netOpts+'</select><a class="keylink" href="'+curN.link+'" target="_blank" onclick="event.stopPropagation()">'+t.getKey+'</a></div>'
+    +'<div class="field"><label>'+t.apiKey+'</label>'+netKeyUI+'</div></div></div>';
+  document.getElementById("modeCards").innerHTML=html;
+}
+function setAiType(v){state.aiType=v;var first=Object.keys(PROVIDERS).filter(function(k){return PROVIDERS[k].type===v;})[0];if(first)state.aiProvider=first;save();renderModes();}
+function setAiProvider(v){state.aiProvider=v;save();renderModes();}
+function setNetProvider(v){state.netProvider=v;save();renderModes();}
+function saveKey(which){var el=document.getElementById(which==="ai"?"aiKeyInput":"netKeyInput");var v=(el.value||"").trim();if(!v)return alert("⚠️");if(which==="ai")state.aiKey=v;else state.netKey=v;save();renderModes();}
+function replaceKey(which){if(which==="ai")state.aiKey="";else state.netKey="";renderModes();}
+function removeKey(which){if(which==="ai")state.aiKey="";else state.netKey="";save();renderModes();}
+
+function openSettings(){document.getElementById("darkToggle").checked=document.documentElement.getAttribute("data-theme")==="dark";document.getElementById("langSel").value=lang;renderModes();document.getElementById("settingsModal").classList.add("open");}
 function toggleDark(){var on=document.getElementById("darkToggle").checked;document.documentElement.setAttribute("data-theme",on?"dark":"light");localStorage.setItem("theme",on?"dark":"light");}
 (function(){if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})();
-
 function closeModal(id){document.getElementById(id).classList.remove("open");}
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("show");document.getElementById("backdrop").classList.toggle("show");}
 function closeSide(){document.getElementById("sidebar").classList.remove("show");document.getElementById("backdrop").classList.remove("show");}
 document.querySelectorAll(".overlay").forEach(function(o){o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open");});});
-
 applyLang();render();
 </script>
 </body>

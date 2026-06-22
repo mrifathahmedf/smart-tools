@@ -1,395 +1,59 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Tools — Everything tools in your hand</title>
-<style>
-:root{--bg:#f4f6fb;--panel:#ffffff;--text:#1f2540;--muted:#6b7390;--brand1:#6366f1;--brand2:#ec4899;--brand3:#06b6d4;--card:#ffffff;--border:#e6e9f5;--shadow:0 8px 30px rgba(60,70,160,.12);--side:#ffffff;}
-[data-theme="dark"]{--bg:#0e1117;--panel:#161b27;--text:#e8ecf7;--muted:#9aa3c0;--card:#1b2233;--border:#2a3350;--shadow:0 8px 30px rgba(0,0,0,.45);--side:#141a26;}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,system-ui,'Noto Sans Bengali','Noto Sans Arabic',sans-serif}
-body{background:var(--bg);color:var(--text);transition:.3s}
+<!DOCTYPE html><html lang=bn><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Smart Tools — Everything tools in your hand</title><style>
+:root{--bg:#0e1020;--panel:#171a2e;--card:#1c2038;--text:#eef1ff;--muted:#9aa3c7;--brand1:#7c3aed;--brand2:#ec4899;--brand3:#06b6d4;--line:#2a2f4d;--ok:#22c55e}
+[data-theme=light]{--bg:#f4f6fb;--panel:#fff;--card:#fff;--text:#1f2540;--muted:#6b7390;--line:#e6e9f5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);transition:.3s}
+a{color:inherit;text-decoration:none}
 .app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:var(--side);border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:fixed;height:100vh;overflow-y:auto;transition:.3s;z-index:50}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;margin-bottom:14px;padding:0 6px;cursor:pointer}
-.logo .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand1),var(--brand2));display:grid;place-items:center;color:#fff;font-size:18px}
-.gradtext{background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.cat-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:12px 8px 4px}
-.cat{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;font-weight:600;color:var(--text);transition:.2s}
-.cat:hover{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(236,72,153,.12))}
-.cat.active{background:linear-gradient(135deg,var(--brand1),var(--brand2));color:#fff;box-shadow:var(--shadow)}
-.cat .ic{font-size:18px}
-.main{margin-left:260px;flex:1;padding:24px 30px 80px;transition:.3s;width:100%}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.menu-btn{display:none;background:var(--panel);border:1px solid var(--border);border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer;color:var(--text)}
-.heading h1{font-size:26px}.heading p{color:var(--muted);font-size:14px;margin-top:2px}
-.actions{display:flex;gap:10px}
-.btn{border:none;cursor:pointer;border-radius:12px;padding:11px 18px;font-weight:600;font-size:14px;transition:.2s;color:#fff;background:linear-gradient(135deg,var(--brand1),var(--brand2))}
-.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.btn.ghost{background:var(--panel);color:var(--text);border:1px solid var(--border)}
-.btn.icon{width:44px;height:44px;padding:0;font-size:18px;display:grid;place-items:center}
-.btn:disabled{opacity:.55;cursor:default;transform:none}
-.search{position:relative;margin-bottom:22px}
-.search input{width:100%;padding:14px 16px 14px 44px;border-radius:14px;border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:15px;outline:none}
-.search .si{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:.25s;position:relative;overflow:hidden;text-decoration:none;color:inherit}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand1),var(--brand2),var(--brand3))}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--brand1)}
-.card .ava{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff;font-size:20px}
-.card h3{font-size:16px}.card p{font-size:13px;color:var(--muted);line-height:1.5;flex:1}
-.card .go{font-size:12px;font-weight:700;color:var(--brand1)}
-.badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;color:#fff}
-.bg-ai{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.bg-net{background:linear-gradient(135deg,#06b6d4,#3b82f6)}.bg-dev{background:linear-gradient(135deg,#f59e0b,#f97316)}
-.tactions{position:absolute;top:10px;right:10px;display:flex;gap:6px;opacity:0;transition:.2s}
-.card:hover .tactions{opacity:1}
-.tactions button{width:28px;height:28px;border:none;border-radius:8px;cursor:pointer;font-size:13px;color:#fff}
-.tedit{background:linear-gradient(135deg,#6366f1,#06b6d4)}.tdel{background:linear-gradient(135deg,#ec4899,#f43f5e)}
-.loadwrap{display:flex;justify-content:center;margin:30px 0}
-.empty{text-align:center;color:var(--muted);padding:60px 0}
-.modebar{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;color:var(--muted);margin-bottom:16px}
-.modebar b{color:var(--text)}
-/* HOME */
-.home{display:none}.home.show{display:block}
-.hero{position:relative;border-radius:26px;padding:60px 30px;text-align:center;overflow:hidden;background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899,#06b6d4);background-size:300% 300%;animation:grad 12s ease infinite;color:#fff;box-shadow:var(--shadow)}
-@keyframes grad{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-.hero h1{font-size:clamp(42px,9vw,84px);font-weight:900;letter-spacing:-2px;text-shadow:0 6px 24px rgba(0,0,0,.25);line-height:1}
-.hero .slogan{display:inline-block;margin-top:6px;font-size:clamp(13px,3vw,18px);font-weight:600;transform:rotate(-6deg) translateX(34%);transform-origin:right;opacity:.95;background:rgba(255,255,255,.18);padding:6px 16px;border-radius:30px;backdrop-filter:blur(4px)}
-.hero .tag{display:block;margin-top:34px;font-size:15px;opacity:.9}
-.bubbles span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
-.desc{margin-top:30px;border-radius:22px;padding:34px;background:linear-gradient(135deg,rgba(99,102,241,.10),rgba(236,72,153,.10),rgba(6,182,212,.10));border:1px solid var(--border)}
-.desc h2{font-size:24px;margin-bottom:16px;text-align:center}
-.desc p{font-size:15.5px;line-height:1.95;margin-bottom:16px;color:var(--text);opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.7,.2,1)}
-.desc p.reveal{opacity:1;transform:none}
-.desc p b{background:linear-gradient(135deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.home-hint{margin:24px 0 6px;text-align:center;color:var(--muted);font-size:15px}
-/* Modal */
-.overlay{position:fixed;inset:0;background:rgba(10,12,25,.55);backdrop-filter:blur(4px);display:none;place-items:center;z-index:100;padding:20px}
-.overlay.open{display:grid}
-.modal{background:var(--panel);border-radius:20px;padding:26px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow);border:1px solid var(--border)}
-.modal h2{margin-bottom:6px;font-size:20px}.modal .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
-.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
-.field input,.field select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;outline:none}
-.modal-actions{display:flex;gap:10px;margin-top:8px}.modal-actions .btn{flex:1}
-.toggle{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px;gap:10px}
-.switch{position:relative;width:52px;height:28px;flex:none}.switch input{display:none}
-.slider{position:absolute;inset:0;background:var(--border);border-radius:30px;cursor:pointer;transition:.3s}
-.slider::before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
-.switch input:checked+.slider{background:linear-gradient(135deg,var(--brand1),var(--brand2))}
-.switch input:checked+.slider::before{transform:translateX(24px)}
-.modecard{border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:12px;cursor:pointer;transition:.2s}
-.modecard.active{border-color:var(--brand1);box-shadow:0 0 0 2px rgba(99,102,241,.25)}
-.modecard .mhead{display:flex;align-items:center;gap:10px;font-weight:700}
-.modecard .mhead .pill{font-size:10px;font-weight:800;color:#fff;padding:2px 8px;border-radius:20px;background:linear-gradient(135deg,#f59e0b,#f97316)}
-.modecard .msub{font-size:12px;color:var(--muted);margin:6px 0 0 28px}
-.modecard .mbody{margin:12px 0 0 0;display:none}
-.modecard.active .mbody{display:block}
-.mrow{display:flex;gap:8px}.mrow .btn{padding:9px 12px;font-size:13px}
-.keylink{font-size:12px;display:inline-block;margin-top:6px;color:var(--brand1);text-decoration:none;font-weight:600}
-.spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:s 1s linear infinite;vertical-align:middle;margin-right:8px}
-@keyframes s{to{transform:rotate(360deg)}}
-.devnote{font-size:12px;color:var(--muted);line-height:1.7;background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:12px;margin-top:8px}
-.jump{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;flex-direction:column;gap:8px}
-.jump button{width:48px;height:48px;border:none;border-radius:14px;cursor:pointer;color:#fff;font-size:20px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow);transition:.2s}
-.jump button:hover{transform:scale(1.1)}
-.backdrop{display:none}
-@media(max-width:860px){.sidebar{transform:translateX(-100%)}.sidebar.show{transform:translateX(0)}.main{margin-left:0}.menu-btn{display:grid;place-items:center}.backdrop.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40}}
-</style>
-</head>
-<body>
-<div class="app">
-  <aside class="sidebar" id="sidebar">
-    <div class="logo" onclick="goHome()"><span class="dot">⚡</span><span class="gradtext">Smart Tools</span></div>
-    <div class="cat-title" id="catLabel">CATEGORIES</div>
-    <div id="catList"></div>
-    <button class="btn ghost" style="margin-top:14px" id="newCatBtn" onclick="openCatModal()">+ New Category</button>
-  </aside>
-  <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
-  <main class="main">
-    <div class="topbar">
-      <div style="display:flex;align-items:center;gap:12px">
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <div class="heading"><h1 id="catHeading" class="gradtext">Smart Tools</h1><p id="catSub"></p></div>
-      </div>
-      <div class="actions">
-        <button class="btn" id="addToolBtn" onclick="openToolModal()" style="display:none">+ Add Tool</button>
-        <button class="btn icon ghost" title="Settings" onclick="openSettings()">⚙️</button>
-      </div>
-    </div>
-    <section class="home" id="homeView">
-      <div class="hero">
-        <div class="bubbles"><span style="width:120px;height:120px;top:-30px;left:-20px"></span><span style="width:80px;height:80px;bottom:-20px;right:40px"></span><span style="width:50px;height:50px;top:30px;right:90px"></span></div>
-        <h1>Smart Tools</h1><span class="slogan">Everything tools in your hand</span>
-        <span class="tag" id="heroTag"></span>
-      </div>
-      <div class="desc"><h2 id="descTitle" class="gradtext">About Smart Tools</h2><div id="descBody"></div></div>
-      <p class="home-hint" id="homeHint"></p>
-    </section>
-    <section id="toolsView" style="display:none">
-      <div class="modebar" id="modeBar"></div>
-      <div class="search"><span class="si">🔍</span><input id="searchBox" placeholder="Search tools..." oninput="render()"></div>
-      <div class="grid" id="grid"></div>
-      <div class="loadwrap"><button class="btn" id="loadBtn" onclick="loadMore()">⬇️ Load More</button></div>
-    </section>
-  </main>
-</div>
-<div class="jump">
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">⬆️</button>
-  <button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="Bottom">⬇️</button>
-</div>
-<!-- Add/Edit Tool -->
-<div class="overlay" id="toolModal"><div class="modal">
-  <h2 id="m_addTool">Add Tool</h2><p class="sub" id="toolModalSub"></p>
-  <div class="field"><label id="l_name">Tools name</label><input id="tName" placeholder="example"></div>
-  <div class="field"><label id="l_link">Link</label><input id="tLink" placeholder="https://tools-link-here.com"></div>
-  <div class="field"><label id="l_desc">Description (optional)</label><input id="tDesc" placeholder="What this tool does"></div>
-  <div class="modal-actions"><button class="btn ghost" id="b_cancel1" onclick="closeModal('toolModal')">Cancel</button><button class="btn" id="b_save" onclick="saveTool()">💾 Save Tool</button></div>
-</div></div>
-<!-- Category -->
-<div class="overlay" id="catModal"><div class="modal">
-  <h2 id="m_newCat">New Category</h2><p class="sub" id="m_newCatSub">Create a new tool category</p>
-  <div class="field"><label id="l_catname">Category name</label><input id="cName" placeholder="e.g. Image Generator"></div>
-  <div class="field"><label id="l_caticon">Icon (emoji)</label><input id="cIcon" placeholder="🎨" maxlength="2"></div>
-  <div class="modal-actions"><button class="btn ghost" id="b_cancel2" onclick="closeModal('catModal')">Cancel</button><button class="btn" id="b_addcat" onclick="saveCat()">➕ Add</button></div>
-</div></div>
-<!-- Settings -->
-<div class="overlay" id="settingsModal"><div class="modal">
-  <h2 id="m_settings">⚙️ Settings</h2><p class="sub" id="m_settingsSub">Customize your experience</p>
-  <div class="toggle"><div><strong id="s_dark">🌙 Dark Night Mode</strong><div style="font-size:12px;color:var(--muted)" id="s_darkSub">Comfortable dark theme</div></div><label class="switch"><input type="checkbox" id="darkToggle" onchange="toggleDark()"><span class="slider"></span></label></div>
-  <div class="field"><label id="s_lang">🌐 Language</label><select id="langSel" onchange="setLang(this.value)">
-    <option value="bn">বাংলা (Bengali)</option><option value="en">English</option><option value="hi">हिन्दी (Hindi)</option><option value="ar">العربية (Arabic)</option><option value="es">Español (Spanish)</option><option value="ur">اردو (Urdu)</option></select></div>
-  <h3 style="margin:18px 0 6px;font-size:16px" id="s_modeTitle">🧭 Tool Source</h3>
-  <p class="sub" id="s_modeSub" style="margin-bottom:14px">Choose ONE source. Only one stays active.</p>
-  <div id="modeCards"></div>
-  <div class="modal-actions" style="margin-top:6px"><button class="btn" style="flex:1" id="s_close" onclick="closeModal('settingsModal')">Close</button></div>
-</div></div>
-
-<!-- Developer tools (safe, separate file) -->
-<script src="tools.js" onerror="window.DEV_TOOLS=window.DEV_TOOLS||{}"></script>
-<script>
-/* ===== Providers for "Searching Tools from AI" ===== */
-var PROVIDERS={
- gemini:{label:"Google Gemini",type:"free",link:"https://aistudio.google.com/apikey",kind:"gemini",model:"gemini-1.5-flash"},
- groq:{label:"Groq (Llama 3.3)",type:"free",link:"https://console.groq.com/keys",kind:"openai",base:"https://api.groq.com/openai/v1",model:"llama-3.3-70b-versatile"},
- openrouter:{label:"OpenRouter (free models)",type:"free",link:"https://openrouter.ai/keys",kind:"openai",base:"https://openrouter.ai/api/v1",model:"meta-llama/llama-3.3-70b-instruct:free"},
- hf:{label:"Hugging Face",type:"free",link:"https://huggingface.co/settings/tokens",kind:"openai",base:"https://router.huggingface.co/v1",model:"meta-llama/Llama-3.1-8B-Instruct"},
- openai:{label:"OpenAI (ChatGPT)",type:"paid",link:"https://platform.openai.com/api-keys",kind:"openai",base:"https://api.openai.com/v1",model:"gpt-4o-mini"},
- anthropic:{label:"Anthropic (Claude)",type:"paid",link:"https://console.anthropic.com/settings/keys",kind:"anthropic",model:"claude-3-5-haiku-latest"},
- deepseek:{label:"DeepSeek",type:"paid",link:"https://platform.deepseek.com/api_keys",kind:"openai",base:"https://api.deepseek.com",model:"deepseek-chat"},
- mistral:{label:"Mistral",type:"trial",link:"https://console.mistral.ai/api-keys",kind:"openai",base:"https://api.mistral.ai/v1",model:"mistral-small-latest"},
- cohere:{label:"Cohere",type:"trial",link:"https://dashboard.cohere.com/api-keys",kind:"cohere",model:"command-r"}
-};
-var NET_PROVIDERS={
- serper:{label:"Serper.dev (Google)",link:"https://serper.dev/api-key"},
- tavily:{label:"Tavily Search",link:"https://app.tavily.com/home"}
-};
-
-/* ===== i18n (missing keys auto-fallback to English) ===== */
-var I18N={
- en:{cats:"CATEGORIES",newCat:"+ New Category",addTool:"+ Add Tool",search:"Search tools...",load:"⬇️ Load More",loadingDev:"🔎 Loading more...",loadingAI:"🤖 AI is finding tools...",loadingNet:"🌐 Searching the internet...",
-   heroTag:"Pick your favorite tools from the category on the left 👈",hint:"⬅️ Select a category to get started",aiChatSub:"All your AI chat tools in one place",
-   modAddTool:"Add Tool",modEditTool:"Edit Tool",lname:"Tools name",llink:"Link",ldesc:"Description (optional)",cancel:"Cancel",save:"💾 Save Tool",update:"💾 Update Tool",
-   modNewCat:"New Category",modNewCatSub:"Create a new tool category",lcatname:"Category name",lcaticon:"Icon (emoji)",addc:"➕ Add",
-   setTitle:"⚙️ Settings",setSub:"Customize your experience",dark:"🌙 Dark Night Mode",darkSub:"Comfortable dark theme",lang:"🌐 Language",close:"Close",
-   open:"Open ↗",notFound:"No tools yet. Click \"+ Add Tool\" or use Load More.",custom:"Custom tool",allLoaded:"✓ All tools loaded",
-   modeTitle:"🧭 Tool Source",modeSub:"Choose ONE source — only one stays active to save your time & cost.",
-   mDev:"📦 More Tools Upcoming",mDevSub:"Big offline list + developer-added tools. Free, fast, reliable.",
-   mAI:"🤖 Searching Tools from AI",mAISub:"Add your AI API key. The app uses AI to discover tools.",
-   mNet:"🌐 Searching Tools Internet",mNetSub:"Real-time internet search via API.",premium:"PREMIUM",active:"ACTIVE",
-   apiType:"API type",free:"Free",paid:"Paid",trial:"Trial",provider:"Provider",apiKey:"API key",getKey:"🔑 Create API key",
-   saveKey:"Save",removeKey:"Remove",replaceKey:"Replace",keyOn:"✓ Key saved & active",noKey:"No API key added yet",
-   needKeyAI:"Add your AI API key in Settings → Searching Tools from AI.",needKeyNet:"Add a search API key in Settings → Searching Tools Internet.",
-   devNote:"Developers can add tools safely by editing only the tools.js file — a small mistake there won't crash the whole app.",editFile:"✏️ Edit tools.js on GitHub",
-   modeNow:"Source",badgeAI:"AI",badgeNet:"NET",badgeDev:"DEV",fetchFail:"Could not fetch tools. Check your API key / network.",
-   descTitle:"About Smart Tools",
-   desc:["<b>Smart Tools</b> is your one smart hub for every useful tool on the internet. Instead of searching across countless sites, you find everything neatly arranged by category — right at your fingertips.",
-         "Our <b>goal</b> is simple: save your time and effort. Whether you need AI chat, image, video or any other tool, just open a category and it is there. No more endless searching, no more wasted minutes.",
-         "Our <b>vision</b> is to become the world's smartest tool hub, where any tool — old or new — is only one click away. With <b>Load More</b> the list keeps growing, and you can even add your own tools.",
-         "Built to be <b>colorful, fast and comfortable</b> on every device — mobile, desktop, iPhone and Mac. Smart Tools puts everything tools in your hand. ✨"]},
- bn:{cats:"ক্যাটাগরি",newCat:"+ নতুন ক্যাটাগরি",addTool:"+ টুল যোগ করুন",search:"টুল খুঁজুন...",load:"⬇️ আরো লোড করুন",loadingDev:"🔎 লোড হচ্ছে...",loadingAI:"🤖 AI টুল খুঁজছে...",loadingNet:"🌐 ইন্টারনেটে খুঁজছি...",
-   heroTag:"বাম পাশের ক্যাটাগরি থেকে আপনার পছন্দের টুল খুঁজুন 👈",hint:"⬅️ একটি ক্যাটাগরি সিলেক্ট করে শুরু করুন",aiChatSub:"আপনার সব এআই চ্যাট টুল এক জায়গায়",
-   modAddTool:"টুল যোগ করুন",modEditTool:"টুল এডিট করুন",lname:"টুলের নাম",llink:"লিংক",ldesc:"বর্ণনা (ঐচ্ছিক)",cancel:"বাতিল",save:"💾 Save Tool",update:"💾 আপডেট করুন",
-   modNewCat:"নতুন ক্যাটাগরি",modNewCatSub:"নতুন টুল ক্যাটাগরি তৈরি করুন",lcatname:"ক্যাটাগরির নাম",lcaticon:"আইকন (ইমোজি)",addc:"➕ যোগ করুন",
-   setTitle:"⚙️ সেটিংস",setSub:"আপনার অভিজ্ঞতা কাস্টমাইজ করুন",dark:"🌙 ডার্ক নাইট মোড",darkSub:"চোখের আরামের জন্য ডার্ক থিম",lang:"🌐 ভাষা",close:"বন্ধ করুন",
-   open:"খুলুন ↗",notFound:"এখনো কোনো টুল নেই। \"+ টুল যোগ করুন\" বা Load More ব্যবহার করুন।",custom:"কাস্টম টুল",allLoaded:"✓ সব টুল দেখানো হয়েছে",
-   modeTitle:"🧭 টুল সোর্স",modeSub:"একটি সোর্স বেছে নিন — সময় ও খরচ বাঁচাতে একসাথে শুধু একটাই চালু থাকবে।",
-   mDev:"📦 More Tools Upcoming",mDevSub:"বড় অফলাইন তালিকা + ডেভেলপার-যোগ করা টুল। ফ্রি, দ্রুত, নির্ভরযোগ্য।",
-   mAI:"🤖 Searching Tools from AI",mAISub:"আপনার AI API key যোগ করুন। অ্যাপ AI দিয়ে টুল খুঁজবে।",
-   mNet:"🌐 Searching Tools Internet",mNetSub:"API দিয়ে রিয়েল-টাইম ইন্টারনেট সার্চ।",premium:"প্রিমিয়াম",active:"চালু",
-   apiType:"API ধরন",free:"ফ্রি",paid:"পেইড",trial:"ট্রায়াল",provider:"প্রোভাইডার",apiKey:"API key",getKey:"🔑 API key তৈরি করুন",
-   saveKey:"সেভ",removeKey:"রিমুভ",replaceKey:"রিপ্লেস",keyOn:"✓ Key সেভ ও চালু আছে",noKey:"এখনো কোনো API key যোগ করা হয়নি",
-   needKeyAI:"সেটিংস → Searching Tools from AI তে আপনার AI API key যোগ করুন।",needKeyNet:"সেটিংস → Searching Tools Internet এ একটি সার্চ API key যোগ করুন।",
-   devNote:"ডেভেলপাররা নিরাপদে শুধু tools.js ফাইলটি এডিট করেই টুল যোগ করতে পারবেন — ছোট ভুলেও পুরো অ্যাপ ক্র্যাশ করবে না।",editFile:"✏️ GitHub এ tools.js এডিট করুন",
-   modeNow:"সোর্স",badgeAI:"AI",badgeNet:"NET",badgeDev:"DEV",fetchFail:"টুল আনা যায়নি। আপনার API key / নেট সংযোগ দেখুন।",
-   descTitle:"Smart Tools সম্পর্কে",
-   desc:["<b>Smart Tools</b> হলো ইন্টারনেটের সব দরকারি টুলের জন্য আপনার একটি স্মার্ট হাব। অসংখ্য সাইটে খুঁজে বেড়ানোর বদলে, এখানে সবকিছু ক্যাটাগরি অনুযায়ী সুন্দরভাবে সাজানো — একদম আপনার হাতের মুঠোয়।",
-         "আমাদের <b>লক্ষ্য</b> খুব সহজ: আপনার সময় ও পরিশ্রম বাঁচানো। এআই চ্যাট, ইমেজ, ভিডিও বা যেকোনো টুল দরকার হলে শুধু ক্যাটাগরিটি খুলুন — টুল হাজির। আর কোনো অন্তহীন খোঁজাখুঁজি নয়, সময়ের অপচয় নয়।",
-         "আমাদের <b>ভিশন</b> হলো পৃথিবীর সবচেয়ে স্মার্ট টুল হাব হয়ে ওঠা, যেখানে পুরোনো হোক বা নতুন — যেকোনো টুল মাত্র এক ক্লিক দূরে। <b>Load More</b> দিয়ে তালিকা বাড়তেই থাকে, আর আপনি নিজের টুলও যোগ করতে পারেন।",
-         "প্রতিটি ডিভাইসে — মোবাইল, ডেস্কটপ, আইফোন ও ম্যাক — <b>রঙিন, দ্রুত ও আরামদায়ক</b> অভিজ্ঞতার জন্য তৈরি। Smart Tools সব টুল এনে দেয় আপনার হাতের মুঠোয়। ✨"]},
- hi:{aiChatSub:"आपके सभी AI चैट टूल एक जगह",heroTag:"बाईं ओर की श्रेणी से अपने पसंदीदा टूल चुनें 👈",hint:"⬅️ शुरू करने के लिए एक श्रेणी चुनें",cats:"श्रेणियाँ",newCat:"+ नई श्रेणी",addTool:"+ टूल जोड़ें",search:"टूल खोजें...",close:"बंद करें",lang:"🌐 भाषा",dark:"🌙 डार्क मोड"},
- ar:{aiChatSub:"كل أدوات الدردشة الذكية في مكان واحد",heroTag:"اختر أدواتك المفضلة من الفئة على اليسار 👈",hint:"⬅️ اختر فئة للبدء",cats:"الفئات",newCat:"+ فئة جديدة",addTool:"+ إضافة أداة",search:"ابحث...",close:"إغلاق",lang:"🌐 اللغة",dark:"🌙 الوضع الليلي"},
- es:{aiChatSub:"Todas tus herramientas de chat IA en un lugar",heroTag:"Elige tus herramientas favoritas de la izquierda 👈",hint:"⬅️ Selecciona una categoría",cats:"CATEGORÍAS",newCat:"+ Nueva categoría",addTool:"+ Añadir",search:"Buscar...",close:"Cerrar",lang:"🌐 Idioma",dark:"🌙 Modo nocturno"},
- ur:{aiChatSub:"آپ کے تمام AI چیٹ ٹولز ایک جگہ",heroTag:"بائیں جانب کی قسم سے اپنے پسندیدہ ٹولز چنیں 👈",hint:"⬅️ ایک قسم منتخب کریں",cats:"اقسام",newCat:"+ نئی قسم",addTool:"+ ٹول شامل کریں",search:"تلاش کریں...",close:"بند کریں",lang:"🌐 زبان",dark:"🌙 ڈارک موڈ"}
-};
-Object.keys(I18N).forEach(function(L){for(var k in I18N.en){if(I18N[L][k]===undefined)I18N[L][k]=I18N.en[k];}});
-function T(){return I18N[lang]||I18N.en;}
-
-/* ===== Offline pool ===== */
-var POOL=[
- {n:"ChatGPT",l:"https://chat.openai.com",d:"OpenAI's popular AI chatbot",c:"#10a37f"},{n:"Claude",l:"https://claude.ai",d:"Anthropic's safe & smart AI",c:"#d97757"},
- {n:"Gemini",l:"https://gemini.google.com",d:"Google's multimodal AI",c:"#4285f4"},{n:"Perplexity",l:"https://www.perplexity.ai",d:"AI answer search engine",c:"#20808d"},
- {n:"Mistral / Le Chat",l:"https://chat.mistral.ai",d:"Mistral's open AI chat",c:"#fa5310"},{n:"Qwen Chat",l:"https://chat.qwen.ai",d:"Alibaba's Qwen AI chat",c:"#615ced"},
- {n:"Microsoft Copilot",l:"https://copilot.microsoft.com",d:"Microsoft's AI assistant",c:"#0078d4"},{n:"DeepSeek",l:"https://chat.deepseek.com",d:"Powerful reasoning AI chat",c:"#4d6bfe"},
- {n:"Grok",l:"https://grok.com",d:"xAI's AI chatbot",c:"#111111"},{n:"Meta AI",l:"https://www.meta.ai",d:"Meta's Llama-based AI",c:"#0064e0"},
- {n:"Poe",l:"https://poe.com",d:"Many AI models in one app",c:"#5d3fd3"},{n:"HuggingChat",l:"https://huggingface.co/chat",d:"Hugging Face open chat",c:"#ff9d00"},
- {n:"Pi",l:"https://pi.ai",d:"Inflection's personal AI",c:"#a06bf5"},{n:"Character.AI",l:"https://character.ai",d:"Character-based AI chat",c:"#3b5bfe"},
- {n:"You.com",l:"https://you.com",d:"AI search & chat",c:"#7c3aed"},{n:"Kimi (Moonshot)",l:"https://kimi.moonshot.cn",d:"Long-context AI chat",c:"#16a3ff"},
- {n:"Ernie Bot",l:"https://yiyan.baidu.com",d:"Baidu's AI chat",c:"#2932e1"},{n:"Doubao",l:"https://www.doubao.com",d:"ByteDance's AI chat",c:"#0a84ff"},
- {n:"Clova X",l:"https://clova-x.naver.com",d:"Naver's Korean AI",c:"#03c75a"},{n:"Jasper Chat",l:"https://www.jasper.ai",d:"Marketing AI chat",c:"#ff7a59"},
- {n:"Phind",l:"https://www.phind.com",d:"AI chat for developers",c:"#2563eb"},{n:"Komo AI",l:"https://komo.ai",d:"Fast AI search chat",c:"#ff5a5f"},
- {n:"Andi Search",l:"https://andisearch.com",d:"Conversational AI search",c:"#00b3a4"},{n:"GroqChat",l:"https://groq.com",d:"Ultra-fast AI inference chat",c:"#f55036"},
- {n:"Cohere Chat",l:"https://cohere.com/chat",d:"Enterprise AI chat",c:"#39594d"},{n:"ChatGLM",l:"https://chatglm.cn",d:"Zhipu bilingual AI chat",c:"#3859ff"},
- {n:"Tongyi",l:"https://tongyi.aliyun.com",d:"Alibaba Tongyi AI chat",c:"#615ced"},{n:"Spark Desk",l:"https://xinghuo.xfyun.cn",d:"iFlytek Spark AI chat",c:"#1f6feb"},
- {n:"Brave Leo",l:"https://brave.com/leo",d:"Brave browser AI chat",c:"#fb542b"},{n:"Chatsonic",l:"https://writesonic.com/chat",d:"Writesonic AI chat",c:"#9013fe"},
- {n:"Falcon Chat",l:"https://falconllm.tii.ae",d:"TII Falcon AI chat",c:"#0ea5e9"},{n:"Yandex Alice",l:"https://alice.yandex.ru",d:"Yandex AI assistant",c:"#ffcc00"}
-];
-
-/* ===== State ===== */
-var state=JSON.parse(localStorage.getItem("smartTools3")||"null");
-function defaultState(){return {cats:{"ai-chat":{name:"AI Chat Tools",icon:"💬",builtin:true,shown:8,custom:[],fetched:[]}},order:["ai-chat"],active:"home",
-  mode:"dev",aiType:"free",aiProvider:"gemini",aiKey:"",netProvider:"serper",netKey:""};}
-if(!state)state=defaultState();
-state.active="home";
-if(!state.mode)state.mode="dev";
-var lang=localStorage.getItem("lang")||"bn";
-function save(){var a=state.active;localStorage.setItem("smartTools3",JSON.stringify(state));state.active=a;}
-var DEV=window.DEV_TOOLS||{};
-
-/* ===== Language apply ===== */
-function applyLang(){var t=T();document.documentElement.lang=lang;document.documentElement.dir=(lang==="ar"||lang==="ur")?"rtl":"ltr";
-  document.getElementById("catLabel").textContent=t.cats;document.getElementById("newCatBtn").textContent=t.newCat;document.getElementById("addToolBtn").textContent=t.addTool;
-  document.getElementById("searchBox").placeholder=t.search;document.getElementById("heroTag").textContent=t.heroTag;document.getElementById("homeHint").textContent=t.hint;
-  document.getElementById("l_name").textContent=t.lname;document.getElementById("l_link").textContent=t.llink;document.getElementById("l_desc").textContent=t.ldesc;
-  document.getElementById("b_cancel1").textContent=t.cancel;document.getElementById("m_newCat").textContent=t.modNewCat;document.getElementById("m_newCatSub").textContent=t.modNewCatSub;
-  document.getElementById("l_catname").textContent=t.lcatname;document.getElementById("l_caticon").textContent=t.lcaticon;document.getElementById("b_cancel2").textContent=t.cancel;document.getElementById("b_addcat").textContent=t.addc;
-  document.getElementById("m_settings").textContent=t.setTitle;document.getElementById("m_settingsSub").textContent=t.setSub;document.getElementById("s_dark").textContent=t.dark;document.getElementById("s_darkSub").textContent=t.darkSub;
-  document.getElementById("s_lang").textContent=t.lang;document.getElementById("s_close").textContent=t.close;document.getElementById("s_modeTitle").textContent=t.modeTitle;document.getElementById("s_modeSub").textContent=t.modeSub;
-  document.getElementById("descTitle").textContent=t.descTitle;
-  document.getElementById("descBody").innerHTML=t.desc.map(function(p){return '<p>'+p+'</p>';}).join("");
-  document.getElementById("langSel").value=lang;
-  setupReveal();
-}
-function setLang(v){lang=v;localStorage.setItem("lang",v);applyLang();render();}
-
-/* ===== Scroll reveal ===== */
-function setupReveal(){var ps=document.querySelectorAll(".desc p");if(!("IntersectionObserver" in window)){ps.forEach(function(p){p.classList.add("reveal");});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("reveal");});},{threshold:.15});
-  ps.forEach(function(p){io.observe(p);});}
-
-/* ===== Tools assembly ===== */
-function colorOf(t){return t.c||["#6366f1","#ec4899","#06b6d4","#f59e0b","#10b981","#8b5cf6"][((t.n||"x").charCodeAt(0))%6];}
-function permanentTools(c,key){var base=c.builtin?POOL.slice(0,c.shown):[];var dev=(DEV[key]||[]);var fetched=c.fetched||[];return base.concat(dev,fetched);}
-function badgeFor(t){if(t.src==="ai")return '<span class="badge bg-ai">'+T().badgeAI+'</span>';if(t.src==="net")return '<span class="badge bg-net">'+T().badgeNet+'</span>';if(t.src==="dev")return '<span class="badge bg-dev">'+T().badgeDev+'</span>';return "";}
-
-function renderCats(){document.getElementById("catList").innerHTML=state.order.map(function(k){var c=state.cats[k];return '<div class="cat '+(k===state.active?'active':'')+'" onclick="selectCat(\''+k+'\')"><span class="ic">'+c.icon+'</span>'+c.name+'</div>';}).join("");}
-function goHome(){state.active="home";render();setupReveal();if(window.innerWidth<=860)closeSide();}
-function selectCat(k){state.active=k;render();if(window.innerWidth<=860)closeSide();window.scrollTo({top:0});}
-
-function render(){var t=T();renderCats();var home=state.active==="home";
-  document.getElementById("homeView").classList.toggle("show",home);document.getElementById("toolsView").style.display=home?"none":"block";document.getElementById("addToolBtn").style.display=home?"none":"inline-flex";
-  if(home){document.getElementById("catHeading").textContent="Smart Tools";document.getElementById("catSub").textContent="";return;}
-  var key=state.active,c=state.cats[key];
-  document.getElementById("catHeading").textContent=c.name;document.getElementById("catSub").textContent=(c.builtin?t.aiChatSub:"");
-  var modeName=state.mode==="ai"?t.mAI:state.mode==="net"?t.mNet:t.mDev;
-  document.getElementById("modeBar").innerHTML=t.modeNow+': <b>'+modeName+'</b>';
-  var q=(document.getElementById("searchBox").value||"").toLowerCase();
-  var perm=permanentTools(c,key),custom=c.custom||[],all=perm.concat(custom);
-  var list=all.filter(function(x){return (x.n||"").toLowerCase().indexOf(q)>-1||(x.d||"").toLowerCase().indexOf(q)>-1;});
-  var g=document.getElementById("grid");
-  if(list.length===0)g.innerHTML='<div class="empty" style="grid-column:1/-1">'+t.notFound+'</div>';
-  else g.innerHTML=list.map(function(x){var gi=all.indexOf(x);var isCustom=gi>=perm.length;var ci=gi-perm.length;
-    var ctrl=isCustom?('<div class="tactions"><button class="tedit" title="Edit" onclick="event.preventDefault();event.stopPropagation();editTool('+ci+')">✏️</button><button class="tdel" title="Remove" onclick="event.preventDefault();event.stopPropagation();delTool('+ci+')">🗑</button></div>'):badgeFor(x);
-    return '<a class="card" href="'+x.l+'" target="_blank" rel="noopener">'+ctrl+'<div class="ava" style="background:linear-gradient(135deg,'+colorOf(x)+',#ec4899)">'+(x.n||"?").charAt(0).toUpperCase()+'</div><h3>'+x.n+'</h3><p>'+(x.d||t.custom)+'</p><span class="go">'+t.open+'</span></a>';}).join("");
-  var btn=document.getElementById("loadBtn");btn.disabled=false;
-  if(state.mode==="dev"){var more=(c.builtin&&c.shown<POOL.length);if(more){btn.style.display="inline-flex";btn.textContent=t.load;}else{btn.style.display="inline-flex";btn.disabled=true;btn.textContent=t.allLoaded;}}
-  else{btn.style.display="inline-flex";btn.textContent=t.load;}
-}
-
-/* ===== Load More by mode ===== */
-async function loadMore(){var t=T();var key=state.active,c=state.cats[key];var btn=document.getElementById("loadBtn");
-  if(state.mode==="dev"){if(!c.builtin)return;btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingDev;setTimeout(function(){c.shown=Math.min(c.shown+6,POOL.length);save();render();},700);return;}
-  if(state.mode==="ai"){if(!state.aiKey){alert(t.needKeyAI);openSettings();return;}btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingAI;
-    try{var got=await aiFetch(c.name,permanentTools(c,key).map(function(x){return x.n;}));attachFetched(c,got,"ai");}catch(e){alert(t.fetchFail+"\n"+(e.message||e));}render();return;}
-  if(state.mode==="net"){if(!state.netKey){alert(t.needKeyNet);openSettings();return;}btn.disabled=true;btn.innerHTML='<span class="spin"></span>'+t.loadingNet;
-    try{var got2=await netFetch(c.name);attachFetched(c,got2,"net");}catch(e){alert(t.fetchFail+"\n"+(e.message||e));}render();return;}
-}
-function attachFetched(c,arr,src){c.fetched=c.fetched||[];var have={};permanentTools(c,state.active).concat(c.custom||[]).forEach(function(x){have[(x.n||"").toLowerCase()]=1;});
-  arr.forEach(function(x){if(x&&x.n&&x.l&&!have[x.n.toLowerCase()]){x.src=src;c.fetched.push(x);have[x.n.toLowerCase()]=1;}});save();}
-
-/* ===== AI fetch ===== */
-function parseToolJSON(text){var m=text.match(/\[[\s\S]*\]/);if(!m)throw new Error("Bad AI response");var arr=JSON.parse(m[0]);return arr.map(function(o){return {n:o.n||o.name,l:o.l||o.url||o.link,d:o.d||o.desc||o.description||""};});}
-async function aiFetch(catName,exclude){var p=PROVIDERS[state.aiProvider],key=state.aiKey;
-  var prompt='List 8 popular, real, currently-working '+catName+' tools or websites. Exclude these: '+(exclude||[]).join(", ")+'. Respond ONLY with a JSON array; each item: {"n":"name","l":"https url","d":"short description max 6 words"}. No markdown, no extra text.';
-  if(p.kind==="gemini"){var r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+p.model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});var j=await r.json();if(!r.ok)throw new Error((j.error&&j.error.message)||"HTTP "+r.status);return parseToolJSON(j.candidates[0].content.parts[0].text);}
-  if(p.kind==="anthropic"){var ra=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:p.model,max_tokens:1024,messages:[{role:"user",content:prompt}]})});var ja=await ra.json();if(!ra.ok)throw new Error((ja.error&&ja.error.message)||"HTTP "+ra.status);return parseToolJSON(ja.content[0].text);}
-  if(p.kind==="cohere"){var rc=await fetch("https://api.cohere.com/v2/chat",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model:p.model,messages:[{role:"user",content:prompt}]})});var jc=await rc.json();if(!rc.ok)throw new Error((jc.message)||"HTTP "+rc.status);var txt=jc.message.content.map(function(b){return b.text||"";}).join("");return parseToolJSON(txt);}
-  // openai-compatible
-  var hdr={"Content-Type":"application/json","Authorization":"Bearer "+key};if(state.aiProvider==="openrouter"){hdr["HTTP-Referer"]=location.origin;hdr["X-Title"]="Smart Tools";}
-  var ro=await fetch(p.base+"/chat/completions",{method:"POST",headers:hdr,body:JSON.stringify({model:p.model,messages:[{role:"user",content:prompt}],temperature:0.4})});var jo=await ro.json();if(!ro.ok)throw new Error((jo.error&&jo.error.message)||"HTTP "+ro.status);return parseToolJSON(jo.choices[0].message.content);
-}
-/* ===== Internet (real) fetch ===== */
-async function netFetch(catName){var key=state.netKey;
-  if(state.netProvider==="tavily"){var r=await fetch("https://api.tavily.com/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({api_key:key,query:catName+" tools list",max_results:8})});var j=await r.json();if(!r.ok)throw new Error(j.error||"HTTP "+r.status);return (j.results||[]).map(function(o){return {n:o.title,l:o.url,d:(o.content||"").slice(0,70)};});}
-  var rs=await fetch("https://google.serper.dev/search",{method:"POST",headers:{"Content-Type":"application/json","X-API-KEY":key},body:JSON.stringify({q:catName+" tools list"})});var js=await rs.json();if(!rs.ok)throw new Error((js.message)||"HTTP "+rs.status);return (js.organic||[]).map(function(o){return {n:o.title,l:o.link,d:(o.snippet||"").slice(0,70)};});}
-
-/* ===== Add / Edit / Delete custom ===== */
-var editIndex=-1;
-function openToolModal(){editIndex=-1;var t=T();document.getElementById("m_addTool").textContent=t.modAddTool;document.getElementById("b_save").textContent=t.save;document.getElementById("toolModalSub").textContent='"'+state.cats[state.active].name+'"';document.getElementById("tName").value="";document.getElementById("tLink").value="";document.getElementById("tDesc").value="";document.getElementById("toolModal").classList.add("open");}
-function editTool(i){editIndex=i;var t=T();var x=state.cats[state.active].custom[i];document.getElementById("m_addTool").textContent=t.modEditTool;document.getElementById("b_save").textContent=t.update;document.getElementById("toolModalSub").textContent='"'+state.cats[state.active].name+'"';document.getElementById("tName").value=x.n;document.getElementById("tLink").value=x.l;document.getElementById("tDesc").value=x.d||"";document.getElementById("toolModal").classList.add("open");}
-function saveTool(){var n=document.getElementById("tName").value.trim(),l=document.getElementById("tLink").value.trim(),d=document.getElementById("tDesc").value.trim();if(!n||!l)return alert("⚠️");if(!/^https?:\/\//.test(l))l="https://"+l;var c=state.cats[state.active];c.custom=c.custom||[];if(editIndex>=0)c.custom[editIndex]={n:n,l:l,d:d||T().custom};else c.custom.push({n:n,l:l,d:d||T().custom});save();closeModal('toolModal');render();}
-function delTool(i){if(confirm("🗑?")){state.cats[state.active].custom.splice(i,1);save();render();}}
-
-/* ===== Category ===== */
-function openCatModal(){document.getElementById("catModal").classList.add("open");}
-function saveCat(){var n=document.getElementById("cName").value.trim(),ic=document.getElementById("cIcon").value.trim()||"📁";if(!n)return alert("⚠️");var key="cat-"+Date.now();state.cats[key]={name:n,icon:ic,builtin:false,custom:[],fetched:[]};state.order.push(key);state.active=key;save();document.getElementById("cName").value="";document.getElementById("cIcon").value="";closeModal('catModal');render();window.scrollTo({top:0});}
-
-/* ===== Settings: modes ===== */
-function setMode(m){state.mode=m;save();renderModes();render();}
-function renderModes(){var t=T();var html="";
-  // DEV
-  html+='<div class="modecard '+(state.mode==="dev"?"active":"")+'" onclick="setMode(\'dev\')"><div class="mhead">'+t.mDev+(state.mode==="dev"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mDevSub+'</div><div class="mbody"><div class="devnote">'+t.devNote+'<br><a class="keylink" href="https://github.com/mrifathahmedf/smart-tools/edit/main/tools.js" target="_blank">'+t.editFile+'</a></div></div></div>';
-  // AI
-  var provOpts=Object.keys(PROVIDERS).filter(function(k){return PROVIDERS[k].type===state.aiType;}).map(function(k){return '<option value="'+k+'" '+(k===state.aiProvider?"selected":"")+'>'+PROVIDERS[k].label+'</option>';}).join("");
-  var curP=PROVIDERS[state.aiProvider]||PROVIDERS.gemini;
-  var aiKeyUI=state.aiKey?('<div style="color:#16a34a;font-size:13px;font-weight:600;margin-bottom:6px">'+t.keyOn+'</div><div class="mrow"><button class="btn ghost" onclick="event.stopPropagation();replaceKey(\'ai\')">'+t.replaceKey+'</button><button class="btn" style="background:linear-gradient(135deg,#ec4899,#f43f5e)" onclick="event.stopPropagation();removeKey(\'ai\')">'+t.removeKey+'</button></div>'):('<input id="aiKeyInput" placeholder="'+t.apiKey+'" onclick="event.stopPropagation()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);margin-bottom:6px"><button class="btn" style="width:100%" onclick="event.stopPropagation();saveKey(\'ai\')">'+t.saveKey+'</button>');
-  html+='<div class="modecard '+(state.mode==="ai"?"active":"")+'" onclick="setMode(\'ai\')"><div class="mhead">'+t.mAI+(state.mode==="ai"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mAISub+'</div><div class="mbody">'
-    +'<div class="field"><label>'+t.apiType+'</label><select onchange="setAiType(this.value)" onclick="event.stopPropagation()"><option value="free" '+(state.aiType==="free"?"selected":"")+'>'+t.free+'</option><option value="paid" '+(state.aiType==="paid"?"selected":"")+'>'+t.paid+'</option><option value="trial" '+(state.aiType==="trial"?"selected":"")+'>'+t.trial+'</option></select></div>'
-    +'<div class="field"><label>'+t.provider+'</label><select onchange="setAiProvider(this.value)" onclick="event.stopPropagation()">'+provOpts+'</select><a class="keylink" href="'+curP.link+'" target="_blank" onclick="event.stopPropagation()">'+t.getKey+'</a></div>'
-    +'<div class="field"><label>'+t.apiKey+'</label>'+aiKeyUI+'</div></div></div>';
-  // NET
-  var netOpts=Object.keys(NET_PROVIDERS).map(function(k){return '<option value="'+k+'" '+(k===state.netProvider?"selected":"")+'>'+NET_PROVIDERS[k].label+'</option>';}).join("");
-  var curN=NET_PROVIDERS[state.netProvider]||NET_PROVIDERS.serper;
-  var netKeyUI=state.netKey?('<div style="color:#16a34a;font-size:13px;font-weight:600;margin-bottom:6px">'+t.keyOn+'</div><div class="mrow"><button class="btn ghost" onclick="event.stopPropagation();replaceKey(\'net\')">'+t.replaceKey+'</button><button class="btn" style="background:linear-gradient(135deg,#ec4899,#f43f5e)" onclick="event.stopPropagation();removeKey(\'net\')">'+t.removeKey+'</button></div>'):('<input id="netKeyInput" placeholder="'+t.apiKey+'" onclick="event.stopPropagation()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);margin-bottom:6px"><button class="btn" style="width:100%" onclick="event.stopPropagation();saveKey(\'net\')">'+t.saveKey+'</button>');
-  html+='<div class="modecard '+(state.mode==="net"?"active":"")+'" onclick="setMode(\'net\')"><div class="mhead">'+t.mNet+' <span class="pill" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">'+t.premium+'</span>'+(state.mode==="net"?' <span class="pill">'+t.active+'</span>':'')+'</div><div class="msub">'+t.mNetSub+'</div><div class="mbody">'
-    +'<div class="field"><label>'+t.provider+'</label><select onchange="setNetProvider(this.value)" onclick="event.stopPropagation()">'+netOpts+'</select><a class="keylink" href="'+curN.link+'" target="_blank" onclick="event.stopPropagation()">'+t.getKey+'</a></div>'
-    +'<div class="field"><label>'+t.apiKey+'</label>'+netKeyUI+'</div></div></div>';
-  document.getElementById("modeCards").innerHTML=html;
-}
-function setAiType(v){state.aiType=v;var first=Object.keys(PROVIDERS).filter(function(k){return PROVIDERS[k].type===v;})[0];if(first)state.aiProvider=first;save();renderModes();}
-function setAiProvider(v){state.aiProvider=v;save();renderModes();}
-function setNetProvider(v){state.netProvider=v;save();renderModes();}
-function saveKey(which){var el=document.getElementById(which==="ai"?"aiKeyInput":"netKeyInput");var v=(el.value||"").trim();if(!v)return alert("⚠️");if(which==="ai")state.aiKey=v;else state.netKey=v;save();renderModes();}
-function replaceKey(which){if(which==="ai")state.aiKey="";else state.netKey="";renderModes();}
-function removeKey(which){if(which==="ai")state.aiKey="";else state.netKey="";save();renderModes();}
-
-function openSettings(){document.getElementById("darkToggle").checked=document.documentElement.getAttribute("data-theme")==="dark";document.getElementById("langSel").value=lang;renderModes();document.getElementById("settingsModal").classList.add("open");}
-function toggleDark(){var on=document.getElementById("darkToggle").checked;document.documentElement.setAttribute("data-theme",on?"dark":"light");localStorage.setItem("theme",on?"dark":"light");}
-(function(){if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})();
-function closeModal(id){document.getElementById(id).classList.remove("open");}
-function toggleSidebar(){document.getElementById("sidebar").classList.toggle("show");document.getElementById("backdrop").classList.toggle("show");}
-function closeSide(){document.getElementById("sidebar").classList.remove("show");document.getElementById("backdrop").classList.remove("show");}
-document.querySelectorAll(".overlay").forEach(function(o){o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open");});});
-applyLang();render();
-</script>
-</body>
-</html>
+.sidebar{width:240px;background:var(--panel);border-right:1px solid var(--line);padding:18px 12px;position:fixed;top:0;left:0;bottom:0;overflow:auto;transition:.3s;z-index:40}
+.sidebar.hide{transform:translateX(-260px)}
+.brand-sm{font-weight:800;font-size:20px;background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:16px;padding:0 8px}
+.catbtn{display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;border:none;background:transparent;color:var(--text);border-radius:12px;cursor:pointer;font-size:15px;text-align:left;margin-bottom:6px}
+.catbtn:hover{background:var(--card)}
+.catbtn.active{background:linear-gradient(90deg,var(--brand1),var(--brand2));color:#fff}
+.main{flex:1;margin-left:240px;padding:20px;transition:.3s}
+.main.full{margin-left:0}
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.icon-btn{width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:20px;cursor:pointer}
+.title{font-size:34px;font-weight:800;background:linear-gradient(90deg,var(--brand1),var(--brand2),var(--brand3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted);font-size:15px}
+.btn{border:none;border-radius:12px;padding:12px 18px;font-size:15px;font-weight:600;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--brand1),var(--brand2))}
+.btn.ghost{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+.subtabs{display:flex;gap:8px;overflow-x:auto;padding:6px 0;margin:10px 0}
+.subtab{white-space:nowrap;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;font-size:14px;font-weight:600}
+.subtab.active{background:linear-gradient(90deg,var(--brand1),var(--brand3));color:#fff;border-color:transparent}
+.search{width:100%;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:15px;margin:8px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand1),var(--brand2),var(--brand3))}
+.card h3{font-size:18px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14px;min-height:38px}
+.card .open{color:var(--brand2);font-weight:600;font-size:14px;display:inline-block;margin-top:10px}
+.badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;color:#fff}
+.bd-custom{background:#f59e0b}.bd-ai{background:#7c3aed}.bd-net{background:#06b6d4}.bd-dev{background:#22c55e}
+.rowbtns{display:flex;gap:8px;margin-top:10px}
+.mini{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer}
+.empty{text-align:center;color:var(--muted);padding:50px 10px}
+.loadwrap{text-align:center;margin:26px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-start;justify-content:center;padding:30px 14px;z-index:60;overflow:auto}
+.modal.show{display:flex}
+.sheet{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;width:100%;max-width:560px}
+.sheet h2{margin-bottom:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.field input,.field select{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:14px}
+.modecards{display:grid;gap:10px}
+.modecard{border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;background:var(--card)}
+.modecard.active{border-color:var(--brand1);box-shadow:0 0 0 2px var(--brand1) inset}
+.modecard b{font-size:15px}.modecard span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.premium{font-size:10px;background:linear-gradient(90deg,#f59e0b,#ec4899);color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px}
+.keylink{color:var(--brand3);font-size:13px;font-weight:600}
+.jump{position:fixed;right:16px;display:flex;flex-direction:column;gap:10px;z-index:30}
+.jump.bottom{bottom:24px}
+.jbtn{width:50px;height:50px;border-radius:14px;border:none;color:#fff;font-size:20px;cursor:pointer;background:linear-gradient(135deg,var(--brand1),var(--brand2))}
+.hr{height:1px;background:var(--line);margin:16px 0}
+.note{font-size:12px;color:var(--muted);margin-top:6px}
+.ptype{font-size:11px;padding:2px 8px;border-radius:999px;margin-left:6px;font-weight:700}
+.t-free{background:#22c55e;color:#fff}.t-paid{background:#ef4444;color:#fff}.t-trial{background:#f59e0b;color:#fff}
+@media(max-width:760px){.main{margin-left:0}.sidebar{transform:translateX(-260px)}.sidebar.show{transform:none}.title{font-size:26px}}
+</style></head><body><div class=app><aside class=sidebar id=sb><div class=brand-sm>🧰 Smart Tools</div><div id=cats></div></aside><main class=main id=main><div id=content></div></main></div><div class='jump bottom'><button class=jbtn onclick="scrollTo({top:0,behavior:'smooth'})">⬆️</button><button class=jbtn onclick="scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">⬇️</button></div><div class=modal id=addModal><div class=sheet><h2 id=addTitle>টুল যোগ করুন</h2><div class=field><label>নাম</label><input id=an placeholder='যেমন ChatGPT'></div><div class=field><label>বর্ণনা</label><input id=ad placeholder='সংক্ষিপ্ত বর্ণনা'></div><div class=field><label>লিংক (URL)</label><input id=au placeholder='https://...'></div><div class=rowbtns><button class=btn onclick=saveAdd()>💾 সেভ</button><button class='btn ghost' onclick="show('addModal',false)">বাতিল</button></div><div class=note>আপনার যোগ করা টুল "✏️ Your Tools" ট্যাবে আলাদা থাকবে। একই টুল দুইবার যোগ হবে না।</div></div></div><div class=modal id=setModal><div class=sheet><div style='display:flex;justify-content:space-between;align-items:center'><h2>⚙️ সেটিংস</h2><button class='btn ghost' onclick="show('setModal',false)">✕</button></div><div id=setBody></div></div></div><script src='tools.js'></script><script>var BUILTIN={"ai-chat":[["ChatGPT","OpenAI-এর জনপ্রিয় AI চ্যাটবট","https://chat.openai.com"],["Claude","Anthropic-এর নিরাপদ ও স্মার্ট AI","https://claude.ai"],["Gemini","Google-এর মাল্টিমোডাল AI","https://gemini.google.com"],["Microsoft Copilot","Microsoft-এর AI সহকারী","https://copilot.microsoft.com"],["Perplexity","উত্তরসহ AI সার্চ ইঞ্জিন","https://www.perplexity.ai"],["Grok","xAI-এর কথোপকথন AI","https://grok.com"],["DeepSeek","শক্তিশালী ওপেন AI চ্যাট","https://chat.deepseek.com"],["Meta AI","Meta-এর Llama ভিত্তিক চ্যাট","https://www.meta.ai"],["Mistral Le Chat","Mistral-এর দ্রুত AI চ্যাট","https://chat.mistral.ai"],["Poe","একসাথে অনেক AI মডেল","https://poe.com"],["Pi","ব্যক্তিগত আবেগপূর্ণ AI","https://pi.ai"],["HuggingChat","ওপেন-সোর্স AI চ্যাট","https://huggingface.co/chat"],["Character.AI","চরিত্রভিত্তিক AI চ্যাট","https://character.ai"],["You.com","AI সার্চ ও চ্যাট","https://you.com"],["Qwen Chat","Alibaba-এর Qwen AI","https://chat.qwen.ai"],["Groq","অতি দ্রুত AI ইনফারেন্স","https://groq.com"],["Kimi","দীর্ঘ কনটেক্সট AI চ্যাট","https://kimi.moonshot.cn"],["Phind","ডেভেলপারদের জন্য AI","https://www.phind.com"],["Komo","প্রাইভেসি-কেন্দ্রিক AI সার্চ","https://komo.ai"],["Coze","AI বট তৈরির প্ল্যাটফর্ম","https://www.coze.com"],["Andi","জেনারেটিভ AI সার্চ","https://andisearch.com"],["Jasper Chat","মার্কেটিং AI চ্যাট","https://www.jasper.ai/chat"],["GitHub Copilot Chat","কোডিং AI চ্যাট","https://github.com/features/copilot"],["Le Chat Mistral","Mistral চ্যাট","https://chat.mistral.ai"],["Reka","মাল্টিমোডাল AI অ্যাসিস্ট্যান্ট","https://chat.reka.ai"]]};var CATEGORIES=[{"id":"ai-chat","name":"AI Chat Tools","icon":"🤖"}];var AIP=[{"id":"gemini","name":"Google Gemini","type":"free","link":"https://aistudio.google.com/app/apikey","kind":"gemini","model":"gemini-1.5-flash"},{"id":"groq","name":"Groq","type":"free","link":"https://console.groq.com/keys","kind":"openai","base":"https://api.groq.com/openai/v1","model":"llama-3.3-70b-versatile"},{"id":"openrouter","name":"OpenRouter","type":"free","link":"https://openrouter.ai/keys","kind":"openai","base":"https://openrouter.ai/api/v1","model":"meta-llama/llama-3.3-70b-instruct:free"},{"id":"together","name":"Together AI","type":"free","link":"https://api.together.xyz/settings/api-keys","kind":"openai","base":"https://api.together.xyz/v1","model":"meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"},{"id":"cerebras","name":"Cerebras","type":"free","link":"https://cloud.cerebras.ai/platform","kind":"openai","base":"https://api.cerebras.ai/v1","model":"llama3.1-8b"},{"id":"huggingface","name":"Hugging Face","type":"free","link":"https://huggingface.co/settings/tokens","kind":"store"},{"id":"openai","name":"OpenAI","type":"paid","link":"https://platform.openai.com/api-keys","kind":"openai","base":"https://api.openai.com/v1","model":"gpt-4o-mini"},{"id":"deepseek","name":"DeepSeek","type":"paid","link":"https://platform.deepseek.com/api_keys","kind":"openai","base":"https://api.deepseek.com/v1","model":"deepseek-chat"},{"id":"perplexity","name":"Perplexity","type":"paid","link":"https://www.perplexity.ai/settings/api","kind":"openai","base":"https://api.perplexity.ai","model":"sonar"},{"id":"xai","name":"xAI Grok","type":"paid","link":"https://console.x.ai","kind":"openai","base":"https://api.x.ai/v1","model":"grok-2-latest"},{"id":"anthropic","name":"Anthropic Claude","type":"paid","link":"https://console.anthropic.com/settings/keys","kind":"store"},{"id":"mistral","name":"Mistral","type":"trial","link":"https://console.mistral.ai/api-keys","kind":"openai","base":"https://api.mistral.ai/v1","model":"mistral-small-latest"},{"id":"cohere","name":"Cohere","type":"trial","link":"https://dashboard.cohere.com/api-keys","kind":"store"},{"id":"fireworks","name":"Fireworks AI","type":"trial","link":"https://fireworks.ai/account/api-keys","kind":"openai","base":"https://api.fireworks.ai/inference/v1","model":"accounts/fireworks/models/llama-v3p1-8b-instruct"},{"id":"ai21","name":"AI21 Labs","type":"trial","link":"https://studio.ai21.com/account/api-key","kind":"store"}];var NETP=[{"id":"serper","name":"Serper.dev (Google)","link":"https://serper.dev/dashboard"},{"id":"tavily","name":"Tavily","link":"https://app.tavily.com/home"},{"id":"serpapi","name":"SerpApi","link":"https://serpapi.com/manage-api-key"},{"id":"brave","name":"Brave Search","link":"https://api-dashboard.search.brave.com/app/keys"}];var DEV=(window.DEV_TOOLS||{});function L(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}}function S(k,v){localStorage.setItem(k,JSON.stringify(v));}var st={theme:L('st_theme','dark'),lang:L('st_lang','bn'),cat:null,view:'builtin',mode:L('st_mode',''),aiProv:L('st_aiProv','gemini'),netProv:L('st_netProv','serper'),aiKeys:L('st_aiKeys',{}),netKeys:L('st_netKeys',{})};function pools(v){if(v=='custom')return L('st_custom',{});if(v=='net')return L('st_net',{});if(v=='ai')return L('st_ai',{});return {};}function savePool(v,o){if(v=='custom')S('st_custom',o);if(v=='net')S('st_net',o);if(v=='ai')S('st_ai',o);}function norm(u){return (u||'').toLowerCase().replace(/^https?:\/\//,'').replace(/\/$/,'').trim();}function toObjs(arr,src){return (arr||[]).map(function(t){return Array.isArray(t)?{name:t[0],desc:t[1],url:t[2],src:src}:{name:t.name,desc:t.desc,url:t.url,src:src};});}function getTools(v,cat){if(v=='builtin')return toObjs(BUILTIN[cat]||[],'dev');if(v=='upcoming')return toObjs(DEV[cat]||[],'dev');var o=pools(v);return toObjs(o[cat]||[],v=='net'?'net':(v=='ai'?'ai':'custom'));}function exists(list,t){var k=norm(t.url)||((t.name||'').toLowerCase());return list.some(function(x){return (norm(x.url)||(x.name||'').toLowerCase())==k;});}function addTools(v,cat,arr){var o=pools(v);var cur=(o[cat]||[]).map(function(t){return {name:t[0]||t.name,desc:t[1]||t.desc,url:t[2]||t.url};});var added=0;arr.forEach(function(t){if(!t.name||!t.url)return;if(exists(cur,t))return;cur.push({name:t.name,desc:t.desc||'',url:t.url});added++;});o[cat]=cur;savePool(v,o);return added;}function applyTheme(){document.documentElement.setAttribute('data-theme',st.theme=='light'?'light':'dark');}var VIEWS=[{id:'builtin',name:'🧰 Smart Tools'},{id:'net',name:'🌐 Internet'},{id:'ai',name:'🤖 AI'},{id:'upcoming',name:'📦 Upcoming'},{id:'custom',name:'✏️ Your Tools'}];function renderCats(){var s=document.getElementById('cats');s.innerHTML='';CATEGORIES.forEach(function(c){var b=document.createElement('button');b.className='catbtn'+(st.cat==c.id?' active':'');b.innerHTML=c.icon+' '+c.name;b.onclick=function(){st.cat=c.id;st.view='builtin';if(window.innerWidth<=760)toggleSide(false);render();};s.appendChild(b);});}function curCatName(){var c=CATEGORIES.filter(function(x){return x.id==st.cat;})[0];return c?c.name:'';}function render(){applyTheme();renderCats();var root=document.getElementById('content');if(!st.cat){root.innerHTML=homeHTML();setupReveal();return;}var tabs=VIEWS.map(function(v){return '<button class="subtab'+(st.view==v.id?' active':'')+'" onclick="setView(\''+v.id+'\')">'+v.name+'</button>';}).join('');var tools=getTools(st.view,st.cat);var q=(document.getElementById('q')?document.getElementById('q').value:'').toLowerCase();var shown=tools.filter(function(t){return !q||(t.name+' '+t.desc).toLowerCase().indexOf(q)>=0;});var cards=shown.map(cardHTML).join('');var canRemove=(st.view=='custom');var loadBtn='';if(st.view=='net'||st.view=='ai'){loadBtn='<div class=loadwrap><button class=btn id=loadbtn onclick=loadMore()>🔎 আরও টুল খুঁজুন ('+(st.view=='net'?'Internet':'AI')+')</button></div>';}var head='<div class=topbar><button class=icon-btn onclick="toggleSide()">☰</button><div><div class=title>'+curCatName()+'</div><div class=subtitle>সাব-ক্যাটাগরি বেছে নিন — প্রতিটি সোর্স আলাদা</div></div></div>';head+='<div class=topbar><button class=btn onclick=openAdd()>+ টুল যোগ করুন</button><button class=icon-btn onclick=openSettings()>⚙️</button></div>';head+='<div class=subtabs>'+tabs+'</div>';head+='<input id=q class=search placeholder="🔍 টুল খুঁজুন..." oninput=render() value="'+q.replace(/"/g,'')+'">';var body=shown.length?('<div class=grid>'+cards+'</div>'):emptyHTML();root.innerHTML=head+body+loadBtn;var qi=document.getElementById('q');if(qi){qi.focus();qi.value=q;}}function cardHTML(t){var bd=t.src=='custom'?'<span class="badge bd-custom">YOUR</span>':(t.src=='ai'?'<span class="badge bd-ai">AI</span>':(t.src=='net'?'<span class="badge bd-net">NET</span>':'<span class="badge bd-dev">DEV</span>'));var rm=t.src=='custom'?('<div class=rowbtns><button class=mini onclick="editTool(\''+encodeURIComponent(t.url)+'\')">✏️ এডিট</button><button class=mini onclick="delTool(\''+encodeURIComponent(t.url)+'\')">🗑 রিমুভ</button></div>'):'';return '<div class=card>'+bd+'<h3>'+esc(t.name)+'</h3><p>'+esc(t.desc||'')+'</p><a class=open target=_blank href="'+t.url+'">খুলুন ↗</a>'+rm+'</div>';}function esc(s){return (s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');}function emptyHTML(){var m={builtin:'এই ক্যাটাগরিতে ডিফল্ট টুল প্রস্তুত।',upcoming:'📦 ডেভেলপার শীঘ্রই আরও টুল যোগ করবেন।',net:'🌐 Internet সোর্স থেকে এখনো টুল যোগ হয়নি। নিচের বাটনে খুঁজুন (সেটিংসে Serper key দিন)।',ai:'🤖 AI সোর্স থেকে এখনো টুল যোগ হয়নি। নিচের বাটনে খুঁজুন (সেটিংসে AI key দিন)।',custom:'✏️ আপনি এখনো কোনো টুল যোগ করেননি।'};return '<div class=empty>'+(m[st.view]||'কোনো টুল নেই')+'</div>';}function setView(v){st.view=v;render();}function homeHTML(){return '<div class=topbar><button class=icon-btn onclick="toggleSide()">☰</button></div>'+'<div style="text-align:center;padding:40px 10px"><div class=title style="font-size:46px">Smart Tools</div>'+'<div style="font-size:18px;color:var(--muted);transform:rotate(-3deg);margin:10px 0 30px">✨ Everything tools in your hand ✨</div></div>'+'<div class=reveal style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:22px;border-radius:18px;margin:16px 0"><b>🎯 লক্ষ্য</b><p>সব দরকারি অনলাইন টুল এক জায়গায় খুঁজে পাওয়া ও সাজিয়ে রাখা।</p></div>'+'<div class=reveal style="background:linear-gradient(135deg,#06b6d4,#7c3aed);color:#fff;padding:22px;border-radius:18px;margin:16px 0"><b>🌈 ভিশন</b><p>একটি স্মার্ট, রঙিন ও দ্রুত টুল-ডিরেক্টরি যা সবার হাতের নাগালে।</p></div>'+'<div class=reveal style="background:linear-gradient(135deg,#ec4899,#f59e0b);color:#fff;padding:22px;border-radius:18px;margin:16px 0"><b>💡 উদ্দেশ্য</b><p>বাঁ পাশের ক্যাটাগরি থেকে বেছে নিন — Internet, AI, Upcoming ও আপনার নিজের টুল আলাদা আলাদা সাব-ট্যাবে।</p></div>'+'<div class=empty>👈 শুরু করতে বাঁ পাশ থেকে একটি ক্যাটাগরি বেছে নিন</div>';}function setupReveal(){var els=document.querySelectorAll('.reveal');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='none';}});});els.forEach(function(el){el.style.opacity=0;el.style.transform='translateY(30px)';el.style.transition='.6s';io.observe(el);});}var editKey=null;function openAdd(){editKey=null;document.getElementById('an').value='';document.getElementById('ad').value='';document.getElementById('au').value='';document.getElementById('addTitle').innerText='টুল যোগ করুন';show('addModal',true);}function editTool(eu){var u=decodeURIComponent(eu);var o=L('st_custom',{});var a=o[st.cat]||[];var t=a.filter(function(x){return (x[2]||x.url)==u;})[0];if(!t)return;editKey=u;document.getElementById('an').value=t[0]||t.name;document.getElementById('ad').value=t[1]||t.desc;document.getElementById('au').value=t[2]||t.url;document.getElementById('addTitle').innerText='টুল এডিট করুন';show('addModal',true);}function saveAdd(){var n=document.getElementById('an').value.trim();var d=document.getElementById('ad').value.trim();var u=document.getElementById('au').value.trim();if(!n||!u){alert('নাম ও লিংক দিন');return;}if(!/^https?:\/\//.test(u))u='https://'+u;var o=L('st_custom',{});var a=(o[st.cat]||[]).map(function(t){return {name:t[0]||t.name,desc:t[1]||t.desc,url:t[2]||t.url};});if(editKey){a=a.filter(function(t){return t.url!=editKey;});}if(exists(a,{name:n,url:u})){alert('⚠️ এই টুল আগেই যোগ করা আছে');return;}a.push({name:n,desc:d,url:u});o[st.cat]=a.map(function(t){return [t.name,t.desc,t.url];});S('st_custom',o);show('addModal',false);st.view='custom';render();}function delTool(eu){var u=decodeURIComponent(eu);if(!confirm('এই টুল রিমুভ করবেন?'))return;var o=L('st_custom',{});o[st.cat]=(o[st.cat]||[]).filter(function(t){return (t[2]||t.url)!=u;});S('st_custom',o);render();}function show(id,b){document.getElementById(id).classList[b?'add':'remove']('show');}function toggleSide(f){var sb=document.getElementById('sb');if(window.innerWidth<=760){sb.classList.toggle('show',f);}else{sb.classList.toggle('hide');document.getElementById('main').classList.toggle('full');}}function openSettings(){renderSettings();show('setModal',true);}function renderSettings(){var aiOpts=AIP.map(function(p){return '<option value="'+p.id+'"'+(st.aiProv==p.id?' selected':'')+'>'+p.name+' ('+p.type+')</option>';}).join('');var netOpts=NETP.map(function(p){return '<option value="'+p.id+'"'+(st.netProv==p.id?' selected':'')+'>'+p.name+'</option>';}).join('');var curAi=AIP.filter(function(p){return p.id==st.aiProv;})[0]||AIP[0];var curNet=NETP.filter(function(p){return p.id==st.netProv;})[0]||NETP[0];var aiKey=(st.aiKeys[st.aiProv]||'');var netKey=(st.netKeys[st.netProv]||'');var modes=[{id:'net',t:'🌐 Searching Tools Internet',d:'Serper/Tavily key দিয়ে আসল ইন্টারনেট সার্চ',prem:true},{id:'ai',t:'🤖 Searching Tools from AI',d:'AI API key দিয়ে টুল খুঁজে আনা',prem:false},{id:'upcoming',t:'📦 More Tools Upcoming',d:'ডেভেলপার-মেইনটেইন করা অফলাইন তালিকা',prem:false}];var mc=modes.map(function(m){return '<div class="modecard'+(st.mode==m.id?' active':'')+'" onclick="setMode(\''+m.id+'\')"><b>'+m.t+(m.prem?'<span class=premium>PREMIUM</span>':'')+'</b><span>'+m.d+'</span></div>';}).join('');var langs=[['bn','বাংলা'],['en','English'],['hi','हिन्दी'],['ar','العربية'],['es','Español'],['ur','اردو']];var langOpts=langs.map(function(l){return '<option value='+l[0]+(st.lang==l[0]?' selected':'')+'>'+l[1]+'</option>';}).join('');var h='';h+='<div class=field><label>🎨 থিম</label><select onchange="st.theme=this.value;S(\'st_theme\',st.theme);applyTheme();"><option value=dark'+(st.theme=='dark'?' selected':'')+'>🌙 ডার্ক</option><option value=light'+(st.theme=='light'?' selected':'')+'>☀️ লাইট</option></select></div>';h+='<div class=field><label>🌍 ভাষা</label><select onchange="st.lang=this.value;S(\'st_lang\',st.lang);">'+langOpts+'</select></div>';h+='<div class=hr></div><h3>🧭 টুল সোর্স (একসাথে একটি)</h3><div class=modecards>'+mc+'</div>';h+='<div class=hr></div><h3>🤖 AI সোর্স — API key</h3>';h+='<div class=field><label>প্রোভাইডার বাছুন (Free / Paid / Trial)</label><select id=aiProvSel onchange="st.aiProv=this.value;S(\'st_aiProv\',st.aiProv);renderSettings();">'+aiOpts+'</select></div>';h+='<div class=field><label>'+curAi.name+' API key</label><input id=aiKeyIn type=password placeholder="key পেস্ট করুন" value="'+aiKey+'"><div class=note>টাইপ: <span class="ptype t-'+curAi.type+'">'+curAi.type+'</span> &nbsp; <a class=keylink target=_blank href="'+curAi.link+'">🔑 '+curAi.name+' key তৈরি করুন ↗</a></div></div>';h+='<div class=rowbtns><button class=btn onclick=saveAiKey()>💾 সেভ</button><button class=mini onclick=removeAiKey()>🗑 রিমুভ</button></div>';h+='<div class=hr></div><h3>🌐 Internet সোর্স — API key <span class=premium>PREMIUM</span></h3>';h+='<div class=field><label>সার্চ প্রোভাইডার</label><select id=netProvSel onchange="st.netProv=this.value;S(\'st_netProv\',st.netProv);renderSettings();">'+netOpts+'</select></div>';h+='<div class=field><label>'+curNet.name+' API key</label><input id=netKeyIn type=password placeholder="key পেস্ট করুন" value="'+netKey+'"><div class=note><a class=keylink target=_blank href="'+curNet.link+'">🔑 '+curNet.name+' key তৈরি করুন ↗</a></div></div>';h+='<div class=rowbtns><button class=btn onclick=saveNetKey()>💾 সেভ</button><button class=mini onclick=removeNetKey()>🗑 রিমুভ</button></div>';h+='<div class=hr></div><div class=note>👨‍💻 ডেভেলপার: <a class=keylink target=_blank href="https://github.com/mrifathahmedf/smart-tools/edit/main/tools.js">✏️ tools.js এডিট করুন (নিরাপদ, ক্র্যাশ-ফ্রি)↗</a></div>';document.getElementById('setBody').innerHTML=h;}function setMode(m){st.mode=(st.mode==m?'':m);S('st_mode',st.mode);renderSettings();}function saveAiKey(){st.aiKeys[st.aiProv]=document.getElementById('aiKeyIn').value.trim();S('st_aiKeys',st.aiKeys);alert('✅ AI key সেভ হয়েছে');}function removeAiKey(){delete st.aiKeys[st.aiProv];S('st_aiKeys',st.aiKeys);renderSettings();}function saveNetKey(){st.netKeys[st.netProv]=document.getElementById('netKeyIn').value.trim();S('st_netKeys',st.netKeys);alert('✅ Internet key সেভ হয়েছে');}function removeNetKey(){delete st.netKeys[st.netProv];S('st_netKeys',st.netKeys);renderSettings();}function loadMore(){if(st.view=='net')return netSearch();if(st.view=='ai')return aiSearch();}function setBtn(t){var b=document.getElementById('loadbtn');if(b){b.innerText=t;b.disabled=true;}}function resetBtn(){render();}function netSearch(){if(st.mode!='net'){alert('⚙️ সেটিংসে আগে "🌐 Searching Tools Internet" মোড চালু করুন।');return;}var prov=st.netProv;var key=st.netKeys[prov];if(!key){alert('⚙️ সেটিংসে '+prov+' API key দিন।');openSettings();return;}if(prov!='serper'){alert('এই বিল্ডে সরাসরি সার্চ শুধু Serper-এ সক্রিয়। অন্যগুলোর key সেভ থাকবে।');return;}setBtn('🔎 খুঁজছি...');var q=curCatName()+' online tools';fetch('https://google.serper.dev/search',{method:'POST',headers:{'X-API-KEY':key,'Content-Type':'application/json'},body:JSON.stringify({q:q,num:10})}).then(function(r){return r.json();}).then(function(d){var items=(d.organic||[]).map(function(o){return {name:o.title,desc:o.snippet||'',url:o.link};});var n=addTools('net',st.cat,items);alert(n>0?'✅ '+n+'টি নতুন টুল যোগ হয়েছে, ডুপ্লিকেট বাদ':'নতুন কিছু পাওয়া যায়নি');resetBtn();}).catch(function(e){alert('❌ সার্চ ব্যর্থ: '+e.message);resetBtn();});}function aiSearch(){if(st.mode!='ai'){alert('⚙️ সেটিংসে আগে "🤖 Searching Tools from AI" মোড চালু করুন।');return;}var p=AIP.filter(function(x){return x.id==st.aiProv;})[0];var key=st.aiKeys[st.aiProv];if(!key){alert('⚙️ সেটিংসে '+(p?p.name:'AI')+' key দিন।');openSettings();return;}if(p.kind=='store'){alert(p.name+'-এর সরাসরি সার্চ এই বিল্ডে নেই, key সেভ থাকবে। Gemini/Groq/OpenAI/OpenRouter/DeepSeek/Mistral ইত্যাদি সরাসরি কাজ করে।');return;}setBtn('🤖 AI খুঁজছে...');var prompt='List 10 popular '+curCatName()+' websites. Reply ONLY as lines in format: Name | one-line description | https url. No numbering, no extra text.';var done=function(text){var lines=(text||'').split('\n').filter(function(l){return l.indexOf('|')>0;});var items=lines.map(function(l){var a=l.split('|');return {name:(a[0]||'').replace(/^[-*0-9. ]+/,'').trim(),desc:(a[1]||'').trim(),url:(a[2]||'').trim()};}).filter(function(t){return /^https?:/.test(t.url);});var n=addTools('ai',st.cat,items);alert(n>0?'✅ '+n+'টি নতুন টুল যোগ হয়েছে, ডুপ্লিকেট বাদ':'নতুন কিছু পাওয়া যায়নি');resetBtn();};var fail=function(e){alert('❌ AI সার্চ ব্যর্থ: '+e);resetBtn();};if(p.kind=='gemini'){fetch('https://generativelanguage.googleapis.com/v1beta/models/'+p.model+':generateContent?key='+key,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})}).then(function(r){return r.json();}).then(function(d){if(d.error){fail(d.error.message);return;}var t=((((d.candidates||[])[0]||{}).content||{}).parts||[{}])[0].text||'';done(t);}).catch(function(e){fail(e.message);});}else{fetch(p.base+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model:p.model,messages:[{role:'user',content:prompt}]})}).then(function(r){return r.json();}).then(function(d){if(d.error){fail(d.error.message||JSON.stringify(d.error));return;}var t=((((d.choices||[])[0]||{}).message)||{}).content||'';done(t);}).catch(function(e){fail(e.message);});}}applyTheme();render();window.addEventListener('resize',function(){});</script></body></html>

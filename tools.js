@@ -22,5 +22,8 @@ window.DEV_TOOLS = {
     ["Example AI Tool", "এভাবে নতুন টুল যোগ করুন (এই লাইনটি কপি করুন)", "https://app.lobehub.com/signin?referral=LfrTy6H7"]
     // ,["রিফা", "বর্ণনা", "https://app.lobehub.com/signin?referral=LfrTy6H7"]   <-- কমা খুলে এভাবে যোগ করুন
   ]
+     ["Example Aol", "এভাবে নতুন টুল যোগ করুন (এই লাইনটি কপি করুন)", "https://crompt.ai/invited?c= REF69074741"]
+    // ,["রিফা", "বর্ণনা", "https://crompt.ai/invited?c= REF69074741"]   <-- কমা খুলে এভাবে যোগ করুন
+  ]
   // নতুন ক্যাটাগরির জন্য:  ,"category-id": [ ["নাম","বর্ণনা","https://..."] ]
 };

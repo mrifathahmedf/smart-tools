@@ -123,5 +123,11 @@ window.SOCIALS = [
     "url": "https://mastodon.social/@rifathmia",
     "slug": "mastodon",
     "color": "#6364FF"
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com/mrifathahmedf",
+    "slug": "github",
+    "color": "#181717"
   }
 ];

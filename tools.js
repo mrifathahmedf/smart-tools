@@ -19,8 +19,8 @@
 window.DEV_TOOLS = {
   "ai-chat": [
     // 👇 এটি একটি উদাহরণ টুল — কপি করে নিচে নতুন টুল যোগ করুন
-    ["Example AI Tool", "এভাবে নতুন টুল যোগ করুন (এই লাইনটি কপি করুন)", "https://example.com"]
-    // ,["নতুন টুলের নাম", "বর্ণনা", "https://link.com"]   <-- কমা খুলে এভাবে যোগ করুন
+    ["Example AI Tool", "এভাবে নতুন টুল যোগ করুন (এই লাইনটি কপি করুন)", "https://app.lobehub.com/signin?referral=LfrTy6H7"]
+    // ,["রিফাত", "বর্ণনা", "https://app.lobehub.com/signin?referral=LfrTy6H7"]   <-- কমা খুলে এভাবে যোগ করুন
   ]
   // নতুন ক্যাটাগরির জন্য:  ,"category-id": [ ["নাম","বর্ণনা","https://..."] ]
 };

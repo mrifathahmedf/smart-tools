@@ -1,0 +1,19 @@
+{
+  "name": "Smart Tools — Everything tools in your hand",
+  "short_name": "Smart Tools",
+  "description": "Discover, organize & quick-launch your favorite online tools.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1020",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
